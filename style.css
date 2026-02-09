@@ -21,6 +21,7 @@ body {
   color: var(--white);
   line-height: 1.7;
   min-height: 100vh;
+  text-align: center;
 }
 
 a {
@@ -46,10 +47,11 @@ img {
 }
 
 .page {
-  padding: 140px 6vw 96px;
+  padding: 140px 8vw 120px;
   display: flex;
   flex-direction: column;
-  gap: 72px;
+  gap: 96px;
+  align-items: center;
 }
 
 .page.light {
@@ -68,7 +70,7 @@ img {
   left: 0;
   width: 100%;
   z-index: 100;
-  padding: 24px 6vw;
+  padding: 16px 6vw;
   background: rgba(11, 11, 11, 0.85);
   border-bottom: 1px solid var(--line);
   backdrop-filter: blur(12px);
@@ -76,7 +78,7 @@ img {
 
 .header-inner {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
 }
 
@@ -93,46 +95,27 @@ img {
 }
 
 .menu-button {
-  justify-self: end;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  width: 34px;
+  justify-self: start;
+  font-family: "JetBrains Mono", "Courier New", monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 0.75rem;
   cursor: pointer;
-}
-
-.menu-button span {
-  display: block;
-  width: 100%;
-  height: 2px;
-  background: var(--white);
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.menu-button.is-open span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-
-.menu-button.is-open span:nth-child(2) {
-  opacity: 0;
-}
-
-.menu-button.is-open span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
 }
 
 .nav-drawer {
   position: fixed;
-  top: 80px;
-  right: 6vw;
-  min-width: 240px;
+  top: 72px;
+  left: 6vw;
+  min-width: 220px;
   background: var(--glass);
   border: 1px solid var(--glass-border);
   border-radius: 16px;
-  padding: 24px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  text-align: center;
   opacity: 0;
   transform: translateY(-10px);
   pointer-events: none;
@@ -162,6 +145,7 @@ img {
   display: flex;
   flex-direction: column;
   gap: 18px;
+  align-items: center;
 }
 
 .eyebrow {
@@ -221,6 +205,8 @@ h3 {
   display: grid;
   gap: 32px;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  width: 100%;
+  max-width: 1100px;
 }
 
 .card {
@@ -229,6 +215,7 @@ h3 {
   display: flex;
   flex-direction: column;
   gap: 14px;
+  align-items: center;
 }
 
 .card .tag {
@@ -244,6 +231,8 @@ h3 {
   gap: 40px;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   align-items: start;
+  width: 100%;
+  max-width: 1100px;
 }
 
 .tracklist {
@@ -251,6 +240,7 @@ h3 {
   gap: 10px;
   font-family: "JetBrains Mono", "Courier New", monospace;
   font-size: 0.85rem;
+  justify-items: center;
 }
 
 .tracklist li {
@@ -266,6 +256,7 @@ h3 {
   display: flex;
   flex-direction: column;
   gap: 14px;
+  align-items: center;
 }
 
 .release-card a {
@@ -280,6 +271,12 @@ h3 {
   border-radius: 14px;
   overflow: hidden;
   background: var(--black);
+  width: 100%;
+}
+
+.embed iframe {
+  width: 100%;
+  min-height: 420px;
 }
 
 .form {
@@ -287,6 +284,9 @@ h3 {
   flex-direction: column;
   gap: 16px;
   max-width: 520px;
+  width: 100%;
+  margin: 0 auto;
+  align-items: center;
 }
 
 .form label {
@@ -306,6 +306,7 @@ h3 {
   padding: 12px;
   color: inherit;
   font-family: "Poppins", system-ui, sans-serif;
+  width: 100%;
 }
 
 .form small {
@@ -320,6 +321,7 @@ h3 {
   gap: 16px;
   font-size: 0.85rem;
   color: var(--muted);
+  align-items: center;
 }
 
 .footer-links {
@@ -329,6 +331,7 @@ h3 {
   text-transform: uppercase;
   letter-spacing: 0.15em;
   font-size: 0.7rem;
+  justify-content: center;
 }
 
 .cookie-banner {
