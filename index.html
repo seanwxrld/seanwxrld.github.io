@@ -1,171 +1,162 @@
- (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
-diff --git a/index.html b/index.html
-index 8b137891791fe96927ad78e64b0aad7bded08bdc..8154ff54469c9318c57c186ea389cb70830a77c8 100644
---- a/index.html
-+++ b/index.html
-@@ -1 +1,162 @@
-+<!DOCTYPE html>
-+<html lang="en">
-+  <head>
-+    <meta charset="UTF-8" />
-+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-+    <title>SĒAN MOSIKILI · Official Site</title>
-+    <meta
-+      name="description"
-+      content="Official home for SĒAN MOSIKILI — South African singer, songwriter, and producer shaping minimal dark pop and alt R&B."
-+    />
-+    <meta property="og:title" content="SĒAN MOSIKILI · Official Site" />
-+    <meta
-+      property="og:description"
-+      content="Minimalist official site for SĒAN MOSIKILI. Music, tour, gallery, and Swarm fan access."
-+    />
-+    <meta property="og:type" content="website" />
-+    <meta property="og:url" content="https://seanwxrld.com" />
-+    <link rel="stylesheet" href="style.css" />
-+    <link rel="preconnect" href="https://fonts.googleapis.com" />
-+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-+    <link
-+      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@300;500&family=Poppins:wght@300;400;500;600&display=swap"
-+      rel="stylesheet"
-+    />
-+    <script type="application/ld+json">
-+      {
-+        "@context": "https://schema.org",
-+        "@type": "MusicGroup",
-+        "name": "SĒAN MOSIKILI",
-+        "alternateName": "SĒAN",
-+        "genre": ["Dark Pop", "Alternative R&B", "Alternative Pop"],
-+        "foundingLocation": "Johannesburg, South Africa",
-+        "sameAs": [
-+          "https://www.instagram.com/seanwxrld",
-+          "https://www.youtube.com/@seanwxrld",
-+          "https://x.com/seanwxrld",
-+          "https://www.tiktok.com/@seanwxrld",
-+          "https://music.apple.com/us/artist/s%C4%93an-mosikili/1868976258",
-+          "https://open.spotify.com/artist/5yU7mw9J7mmv5ubNcA1O1P",
-+          "https://tidal.com/artist/73061343",
-+          "https://www.deezer.com/artist/367447902",
-+          "https://music.amazon.com/artists/B0GGSBZGNC/s%C4%93an-mosikili"
-+        ]
-+      }
-+    </script>
-+  </head>
-+  <body>
-+    <header class="site-header">
-+      <div class="header-inner">
-+        <span class="header-spacer" aria-hidden="true"></span>
-+        <a class="logo" href="index.html">SĒAN MOSIKILI</a>
-+        <button class="menu-button" type="button" data-menu-button aria-label="Open navigation" aria-expanded="false">
-+          <span></span>
-+          <span></span>
-+          <span></span>
-+        </button>
-+      </div>
-+      <nav class="nav-drawer" data-nav-drawer aria-label="Primary">
-+        <a class="active" href="index.html">Home</a>
-+        <a href="music.html">Music</a>
-+        <a href="releases.html">Releases</a>
-+        <a href="tour.html">Tour</a>
-+        <a href="gallery.html">Gallery</a>
-+        <a href="about.html">About</a>
-+        <a href="swarm.html">Swarm</a>
-+        <a href="https://shop.seanwxrld.com" target="_blank" rel="noreferrer">Shop</a>
-+        <a href="contact.html">Contact</a>
-+      </nav>
-+    </header>
- 
-+    <main class="page">
-+      <section class="hero reveal">
-+        <p class="eyebrow">Official Home</p>
-+        <h1>Minimalism with weight.</h1>
-+        <p class="lead">
-+          SĒAN MOSIKILI is a South African singer, songwriter, and producer shaping dark pop, alt R&B,
-+          and minimalist soundscapes. This is the official home for releases, visuals, and the Swarm.
-+        </p>
-+        <div>
-+          <a class="button primary" href="music.html">Listen Now</a>
-+          <a class="button ghost" href="swarm.html">Join the Swarm</a>
-+        </div>
-+      </section>
-+
-+      <section class="section-grid reveal" aria-label="Highlights">
-+        <article class="card">
-+          <span class="tag">Out Now</span>
-+          <h2>All Mine (Afterhours Edition)</h2>
-+          <p>Two new versions with deeper atmosphere and late-night tension.</p>
-+          <a class="button ghost" href="releases.html#all-mine">Explore release</a>
-+        </article>
-+        <article class="card">
-+          <span class="tag">Upcoming</span>
-+          <h2>Dopamine High</h2>
-+          <p>New single landing February 27. First glimpse into TWĒNTY.</p>
-+          <a class="button ghost" href="releases.html#dopamine-high">Release details</a>
-+        </article>
-+        <article class="card">
-+          <span class="tag">Album</span>
-+          <h2>TWĒNTY</h2>
-+          <p>April 10, 2026 — a diaristic debut album about becoming.</p>
-+          <a class="button ghost" href="releases.html#twenty">Full story</a>
-+        </article>
-+      </section>
-+
-+      <section class="split reveal" aria-label="Newsletter">
-+        <div>
-+          <p class="eyebrow">Swarm Newsletter</p>
-+          <h2>Private updates. Early access.</h2>
-+          <p class="lead">
-+            Join the Swarm to receive first access to tickets, merch drops, and listening rooms.
-+          </p>
-+        </div>
-+        <form class="form" data-subscribe-form>
-+          <label>
-+            Email
-+            <input type="email" name="email" placeholder="you@example.com" required />
-+          </label>
-+          <label>
-+            Interest
-+            <input type="text" name="interest" placeholder="Tour, merch, licensing" />
-+          </label>
-+          <button class="button primary" type="submit">Join Swarm</button>
-+          <small>No email address is shown publicly. Submission opens your mail client.</small>
-+        </form>
-+      </section>
-+    </main>
-+
-+    <footer class="footer">
-+      <strong>SĒAN MOSIKILI</strong>
-+      <p>Copyright © 2026 SĒAN MOSIKILI — All Rights Reserved.</p>
-+      <div class="footer-links">
-+        <a href="https://www.instagram.com/seanwxrld" target="_blank" rel="noreferrer">Instagram</a>
-+        <a href="https://www.youtube.com/@seanwxrld" target="_blank" rel="noreferrer">YouTube</a>
-+        <a href="https://x.com/seanwxrld" target="_blank" rel="noreferrer">X</a>
-+        <a href="https://www.tiktok.com/@seanwxrld" target="_blank" rel="noreferrer">TikTok</a>
-+        <a href="https://music.apple.com/us/artist/s%C4%93an-mosikili/1868976258" target="_blank" rel="noreferrer">Apple Music</a>
-+        <a href="https://open.spotify.com/artist/5yU7mw9J7mmv5ubNcA1O1P" target="_blank" rel="noreferrer">Spotify</a>
-+        <a href="https://tidal.com/artist/73061343" target="_blank" rel="noreferrer">Tidal</a>
-+        <a href="https://www.deezer.com/artist/367447902" target="_blank" rel="noreferrer">Deezer</a>
-+        <a href="https://music.amazon.com/artists/B0GGSBZGNC/s%C4%93an-mosikili" target="_blank" rel="noreferrer">Amazon Music</a>
-+      </div>
-+      <div class="footer-links">
-+        <a href="privacy.html">Privacy</a>
-+        <a href="terms.html">Terms</a>
-+      </div>
-+    </footer>
-+
-+    <div class="cookie-banner hidden" data-cookie-banner>
-+      <p>
-+        This site uses cookies only for basic performance and Swarm access preferences. Choose your
-+        experience.
-+      </p>
-+      <div class="cookie-actions">
-+        <button class="button ghost" type="button" data-cookie-decline>Decline</button>
-+        <button class="button primary" type="button" data-cookie-accept>Accept</button>
-+      </div>
-+    </div>
-+
-+    <script src="script.js"></script>
-+  </body>
-+</html>
- 
-EOF
-)
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SĒAN MOSIKILI · Official Site</title>
+    <meta
+      name="description"
+      content="Official home for SĒAN MOSIKILI — South African singer, songwriter, and producer shaping minimal dark pop and alt R&B."
+    />
+    <meta property="og:title" content="SĒAN MOSIKILI · Official Site" />
+    <meta
+      property="og:description"
+      content="Minimalist official site for SĒAN MOSIKILI. Music, tour, gallery, and Swarm fan access."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://seanwxrld.com" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@300;500&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "MusicGroup",
+        "name": "SĒAN MOSIKILI",
+        "alternateName": "SĒAN",
+        "genre": ["Dark Pop", "Alternative R&B", "Alternative Pop"],
+        "foundingLocation": "Johannesburg, South Africa",
+        "sameAs": [
+          "https://www.instagram.com/seanwxrld",
+          "https://www.youtube.com/@seanwxrld",
+          "https://x.com/seanwxrld",
+          "https://www.tiktok.com/@seanwxrld",
+          "https://music.apple.com/us/artist/s%C4%93an-mosikili/1868976258",
+          "https://open.spotify.com/artist/5yU7mw9J7mmv5ubNcA1O1P",
+          "https://tidal.com/artist/73061343",
+          "https://www.deezer.com/artist/367447902",
+          "https://music.amazon.com/artists/B0GGSBZGNC/s%C4%93an-mosikili"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <span class="header-spacer" aria-hidden="true"></span>
+        <a class="logo" href="index.html">SĒAN MOSIKILI</a>
+        <button class="menu-button" type="button" data-menu-button aria-label="Open navigation" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      <nav class="nav-drawer" data-nav-drawer aria-label="Primary">
+        <a class="active" href="index.html">Home</a>
+        <a href="music.html">Music</a>
+        <a href="releases.html">Releases</a>
+        <a href="tour.html">Tour</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="about.html">About</a>
+        <a href="swarm.html">Swarm</a>
+        <a href="https://shop.seanwxrld.com" target="_blank" rel="noreferrer">Shop</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main class="page">
+      <section class="hero reveal">
+        <p class="eyebrow">Official Home</p>
+        <h1>Minimalism with weight.</h1>
+        <p class="lead">
+          SĒAN MOSIKILI is a South African singer, songwriter, and producer shaping dark pop, alt R&B,
+          and minimalist soundscapes. This is the official home for releases, visuals, and the Swarm.
+        </p>
+        <div>
+          <a class="button primary" href="music.html">Listen Now</a>
+          <a class="button ghost" href="swarm.html">Join the Swarm</a>
+        </div>
+      </section>
+
+      <section class="section-grid reveal" aria-label="Highlights">
+        <article class="card">
+          <span class="tag">Out Now</span>
+          <h2>All Mine (Afterhours Edition)</h2>
+          <p>Two new versions with deeper atmosphere and late-night tension.</p>
+          <a class="button ghost" href="releases.html#all-mine">Explore release</a>
+        </article>
+        <article class="card">
+          <span class="tag">Upcoming</span>
+          <h2>Dopamine High</h2>
+          <p>New single landing February 27. First glimpse into TWĒNTY.</p>
+          <a class="button ghost" href="releases.html#dopamine-high">Release details</a>
+        </article>
+        <article class="card">
+          <span class="tag">Album</span>
+          <h2>TWĒNTY</h2>
+          <p>April 10, 2026 — a diaristic debut album about becoming.</p>
+          <a class="button ghost" href="releases.html#twenty">Full story</a>
+        </article>
+      </section>
+
+      <section class="split reveal" aria-label="Newsletter">
+        <div>
+          <p class="eyebrow">Swarm Newsletter</p>
+          <h2>Private updates. Early access.</h2>
+          <p class="lead">
+            Join the Swarm to receive first access to tickets, merch drops, and listening rooms.
+          </p>
+        </div>
+        <form class="form" data-subscribe-form>
+          <label>
+            Email
+            <input type="email" name="email" placeholder="you@example.com" required />
+          </label>
+          <label>
+            Interest
+            <input type="text" name="interest" placeholder="Tour, merch, licensing" />
+          </label>
+          <button class="button primary" type="submit">Join Swarm</button>
+          <small>No email address is shown publicly. Submission opens your mail client.</small>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <strong>SĒAN MOSIKILI</strong>
+      <p>Copyright © 2026 SĒAN MOSIKILI — All Rights Reserved.</p>
+      <div class="footer-links">
+        <a href="https://www.instagram.com/seanwxrld" target="_blank" rel="noreferrer">Instagram</a>
+        <a href="https://www.youtube.com/@seanwxrld" target="_blank" rel="noreferrer">YouTube</a>
+        <a href="https://x.com/seanwxrld" target="_blank" rel="noreferrer">X</a>
+        <a href="https://www.tiktok.com/@seanwxrld" target="_blank" rel="noreferrer">TikTok</a>
+        <a href="https://music.apple.com/us/artist/s%C4%93an-mosikili/1868976258" target="_blank" rel="noreferrer">Apple Music</a>
+        <a href="https://open.spotify.com/artist/5yU7mw9J7mmv5ubNcA1O1P" target="_blank" rel="noreferrer">Spotify</a>
+        <a href="https://tidal.com/artist/73061343" target="_blank" rel="noreferrer">Tidal</a>
+        <a href="https://www.deezer.com/artist/367447902" target="_blank" rel="noreferrer">Deezer</a>
+        <a href="https://music.amazon.com/artists/B0GGSBZGNC/s%C4%93an-mosikili" target="_blank" rel="noreferrer">Amazon Music</a>
+      </div>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </footer>
+
+    <div class="cookie-banner hidden" data-cookie-banner>
+      <p>
+        This site uses cookies only for basic performance and Swarm access preferences. Choose your
+        experience.
+      </p>
+      <div class="cookie-actions">
+        <button class="button ghost" type="button" data-cookie-decline>Decline</button>
+        <button class="button primary" type="button" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
