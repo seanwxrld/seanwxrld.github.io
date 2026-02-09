@@ -47,11 +47,16 @@ img {
 }
 
 .page {
-  padding: 140px 8vw 120px;
+  padding: 160px 10vw 140px;
   display: flex;
   flex-direction: column;
-  gap: 96px;
+  gap: 120px;
   align-items: center;
+}
+
+.page section {
+  width: 100%;
+  max-width: 1100px;
 }
 
 .page.light {
@@ -74,12 +79,14 @@ img {
   background: rgba(11, 11, 11, 0.85);
   border-bottom: 1px solid var(--line);
   backdrop-filter: blur(12px);
+  text-align: left;
 }
 
 .header-inner {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: minmax(90px, 1fr) auto minmax(90px, 1fr);
   align-items: center;
+  width: 100%;
 }
 
 .logo {
@@ -88,10 +95,12 @@ img {
   text-transform: uppercase;
   font-size: 1rem;
   text-align: center;
+  justify-self: center;
 }
 
 .header-spacer {
   height: 1px;
+  justify-self: end;
 }
 
 .menu-button {
@@ -101,11 +110,12 @@ img {
   letter-spacing: 0.3em;
   font-size: 0.75rem;
   cursor: pointer;
+  text-align: left;
 }
 
 .nav-drawer {
-  position: fixed;
-  top: 72px;
+  position: absolute;
+  top: calc(100% + 12px);
   left: 6vw;
   min-width: 220px;
   background: var(--glass);
@@ -141,10 +151,10 @@ img {
 }
 
 .hero {
-  max-width: 720px;
+  max-width: 760px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 22px;
   align-items: center;
 }
 
@@ -165,7 +175,7 @@ h3 {
 }
 
 h1 {
-  font-size: clamp(2.6rem, 4vw, 3.5rem);
+  font-size: clamp(2.8rem, 4.6vw, 3.9rem);
 }
 
 h2 {
@@ -203,8 +213,8 @@ h3 {
 
 .section-grid {
   display: grid;
-  gap: 32px;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 48px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   width: 100%;
   max-width: 1100px;
 }
@@ -228,16 +238,23 @@ h3 {
 
 .split {
   display: grid;
-  gap: 40px;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  align-items: start;
+  gap: 56px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  align-items: center;
   width: 100%;
   max-width: 1100px;
 }
 
+.split > div {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+
 .tracklist {
   display: grid;
-  gap: 10px;
+  gap: 12px;
   font-family: "JetBrains Mono", "Courier New", monospace;
   font-size: 0.85rem;
   justify-items: center;
@@ -276,7 +293,7 @@ h3 {
 
 .embed iframe {
   width: 100%;
-  min-height: 420px;
+  min-height: 460px;
 }
 
 .form {
@@ -315,10 +332,10 @@ h3 {
 
 .footer {
   border-top: 1px solid var(--line);
-  padding: 32px 6vw 48px;
+  padding: 40px 6vw 64px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
   font-size: 0.85rem;
   color: var(--muted);
   align-items: center;
