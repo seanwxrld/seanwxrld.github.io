@@ -488,25 +488,36 @@ h3 {
   font-size: 0.75rem;
   color: var(--muted);
 }
-/* SPACER div to add scrollable gaps */
-.spacer {
-  height: 120px; /* adjust for more/less space */
+/* Fullscreen hero */
+.hero-full {
+  min-height: 100vh; /* full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertically center content */
+  align-items: center;
+  padding: 0 2rem; /* side padding */
+  text-align: center;
 }
 
-/* Optional: bigger top margin for hero so it hits first screen nicely */
-.hero:first-of-type {
-  margin-top: 120px;
+/* Give other sections breathing room */
+.hero + section,
+.section-grid,
+.newsletter {
+  margin-top: 6rem; /* space from previous section */
+  margin-bottom: 6rem; /* consistent spacing */
 }
 
-/* Adjust sections to feel distinct */
-section {
-  margin-bottom: 4rem; /* adds consistent space after each section */
-}
-
-/* Optional: responsive tweaks */
+/* Optional: smaller spacing on mobile */
 @media (max-width: 760px) {
-  .spacer {
-    height: 80px;
+  .hero-full {
+    padding: 0 1.5rem;
+  }
+
+  .hero + section,
+  .section-grid,
+  .newsletter {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
   }
 }
 
