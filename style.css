@@ -488,3 +488,25 @@ h3 {
   font-size: 0.75rem;
   color: var(--muted);
 }
+/* SPACER div to add scrollable gaps */
+.spacer {
+  height: 120px; /* adjust for more/less space */
+}
+
+/* Optional: bigger top margin for hero so it hits first screen nicely */
+.hero:first-of-type {
+  margin-top: 120px;
+}
+
+/* Adjust sections to feel distinct */
+section {
+  margin-bottom: 4rem; /* adds consistent space after each section */
+}
+
+/* Optional: responsive tweaks */
+@media (max-width: 760px) {
+  .spacer {
+    height: 80px;
+  }
+}
+
