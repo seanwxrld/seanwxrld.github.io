@@ -1,4 +1,55 @@
-  <!-- Favicon -->
+diff --git a/index.html b/index.html
+index b8a7026bbdaefcedcf0a74d6159144809435554b..f9b63b7b14be7527f636aed41108307b5d294db6 100644
+--- a/index.html
++++ b/index.html
+@@ -1,43 +1,43 @@
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>SĒAN MOSIKILI · Official Site</title>
+      <meta
+        name="description"
+        content="SĒAN MOSIKILI (Tswelopele Sean Mosikili) is a South African singer, songwriter, and record producer creating pop, dark pop, and alternative R&B. Explore his music, albums, and exclusive releases."
+      />
+      <meta property="og:title" content="SĒAN MOSIKILI · Official Site" />
+      <meta
+        property="og:description"
+        content="Official site for SĒAN MOSIKILI Explore his latest music, merch, tour dates and exclusive releases."
+      />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://seanwxrld.com" />
+-     <link rel="stylesheet" href="/style.css" />
++     <link rel="stylesheet" href="style.css" />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@300;500&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+      />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicGroup",
+    "name": "SĒAN MOSIKILI",
+    "alternateName": "SĒAN",
+    "url": "https://seanwxrld.com",
+    "image": "https://seanwxrld.com/assets/profile-image.jpg",
+    "sameAs": [
+      "https://www.instagram.com/seanwxrld",
+      "https://www.youtube.com/@seanwxrld",
+      "https://x.com/seanwxrld",
+      "https://www.tiktok.com/@seanwxrld",
+      "https://music.apple.com/us/artist/s%C4%93an-mosikili/1868976258",
+      "https://open.spotify.com/artist/5yU7mw9J7mmv5ubNcA1O1P",
+      "https://tidal.com/artist/73061343",
+      "https://www.deezer.com/artist/367447902",
+      "https://music.amazon.com/artists/B0GGSBZGNC/s%C4%93an-mosikili",
+      "https://genius.com/artists/Sean-mosikili",
+@@ -88,117 +88,134 @@
+  
+      <!-- Favicon -->
   <link rel="icon" href="https://img1.wsimg.com/isteam/ip/5a2a9d49-b1c8-428e-99f9-97754ef881e2/3.jpg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:2560,h:2560" type="image/jpeg">
   
   <!-- Apple/iOS touch icon -->
@@ -22,27 +73,39 @@
           <a href="/music/">Music</a>
           <a href="/releases/">Releases</a>
           <a href="/tour/">Tour</a>
-         <a href="/gallery/">Visuals</a>
+-         <a href="/gallery/">Gallery</a>
++         <a href="/gallery/">Visuals</a>
           <a href="/about/">About</a>
           <a href="/swarm/">Swarm</a>
-         <a href="/shop/">Shop</a>
+-         <a href="https://shop.seanwxrld.com" target="_blank" rel="noreferrer">Shop</a>
++         <a href="/shop/">Shop</a>
           <a href="/contact/">Contact</a>
         </nav>
       </header>
-
-    <main class="page page-home">
-      <section class="hero hero-home reveal">
-        <div class="hero-home-backdrop"></div>
-        <div class="hero-home-content">
-          <p class="eyebrow">Official Home</p>
-          <h1>MIND & EMOTIONS</h1>
-          <p class="eyebrow">COMING SOON.</p>
-          <div>
-            <a class="button ghost" href="/swarm/">Join the Swarm</a>
-          </div>
-        </div>
-      </section>
-        <p class="eyebrow section-label">WHAT'S NEW</p>
+  
+-     <main class="page">
+-       <section class="hero reveal">
+-         <p class="eyebrow">Official Home</p>
+-         <h1>MIND & EMOTIONS</h1>
+-         <p class="eyebrow">COMING SOON.</p>
+-         <div>
+-           <a class="button ghost" href="/swarm/">Join the Swarm</a>
+-         </div>
+-       </section>
+-         <p class="eyebrow">WHAT'S NEW</p>
++    <main class="page page-home">
++      <section class="hero hero-home reveal">
++        <div class="hero-home-backdrop"></div>
++        <div class="hero-home-content">
++          <p class="eyebrow">Official Home</p>
++          <h1>MIND & EMOTIONS</h1>
++          <p class="eyebrow">COMING SOON.</p>
++          <div>
++            <a class="button ghost" href="/swarm/">Join the Swarm</a>
++          </div>
++        </div>
++      </section>
++        <p class="eyebrow section-label">WHAT'S NEW</p>
         <section class="section-grid reveal" aria-label="Highlights">
           <article class="card">
             <span class="tag">Out Now</span>
@@ -72,25 +135,29 @@
         Join the SWARM to get first access to tickets, merch drops, exclusive listening rooms, and more.
       </p>
   
-     <form class="newsletter-form" data-subscribe-form data-source="homepage">
-       <label>
-         Email
-         <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required />
-       </label>
-       <label>
-         Interests
-         <select name="interest" aria-label="Choose your primary interest">
-           <option value="">Choose one (optional)</option>
-           <option value="New Music Releases">New Music Releases</option>
-           <option value="Tour Announcements">Tour Announcements</option>
-           <option value="Merch Drops">Merch Drops</option>
-           <option value="Exclusive Listening Rooms">Exclusive Listening Rooms</option>
-           <option value="All of the Above">All of the Above</option>
-         </select>
-       </label>
+-     <form class="newsletter-form" data-subscribe-form>
+-       <input type="email" name="email" placeholder="Your email address" required />
+-       <input type="text" name="interest" placeholder="Your interests (optional)" />
++     <form class="newsletter-form" data-subscribe-form data-source="homepage">
++       <label>
++         Email
++         <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required />
++       </label>
++       <label>
++         Interests
++         <select name="interest" aria-label="Choose your primary interest">
++           <option value="">Choose one (optional)</option>
++           <option value="New Music Releases">New Music Releases</option>
++           <option value="Tour Announcements">Tour Announcements</option>
++           <option value="Merch Drops">Merch Drops</option>
++           <option value="Exclusive Listening Rooms">Exclusive Listening Rooms</option>
++           <option value="All of the Above">All of the Above</option>
++         </select>
++       </label>
         <button class="button primary" type="submit">Join the SWARM</button>
-       <p class="form-status" data-form-status aria-live="polite"></p>
-       <small>Secure signup — no mail app redirect.</small>
+-       <small>No email is shown publicly. Submitting opens your mail client.</small>
++       <p class="form-status" data-form-status aria-live="polite"></p>
++       <small>Secure signup — no mail app redirect.</small>
       </form>
     </div>
   </section>
@@ -116,3 +183,19 @@
           <a href="/terms/">Terms</a>
         </div>
       </footer>
+  
+      <div class="cookie-banner hidden" data-cookie-banner>
+        <p>
+          This site uses cookies only for basic performance and Swarm access preferences. Choose your
+          experience.
+        </p>
+        <div class="cookie-actions">
+          <button class="button ghost" type="button" data-cookie-decline>Decline</button>
+          <button class="button primary" type="button" data-cookie-accept>Accept</button>
+        </div>
+      </div>
+  
+-    <script src="/script.js"></script>
++    <script src="script.js"></script>
+    </body>
+  </html>
