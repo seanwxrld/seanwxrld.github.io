@@ -1,201 +1,190 @@
-diff --git a/script.js b/script.js
-index 0236352eca4268b0dd246830c7a53b6550cccd15..5a7e60a7c376acbf979d64765cf1e015ad0e0fc8 100644
---- a/script.js
-+++ b/script.js
-@@ -1,95 +1,190 @@
- const menuButton = document.querySelector('[data-menu-button]');
- const navDrawer = document.querySelector('[data-nav-drawer]');
- const cookieBanner = document.querySelector('[data-cookie-banner]');
- const cookieAccept = document.querySelector('[data-cookie-accept]');
- const cookieDecline = document.querySelector('[data-cookie-decline]');
- const contactForm = document.querySelector('[data-contact-form]');
--const subscribeForm = document.querySelector('[data-subscribe-form]');
-+const subscribeForms = document.querySelectorAll('[data-subscribe-form]');
- 
- const toggleMenu = () => {
-   const isOpen = navDrawer.classList.toggle('is-open');
-   menuButton.classList.toggle('is-open', isOpen);
-   menuButton.setAttribute('aria-expanded', String(isOpen));
- };
- 
- if (menuButton && navDrawer) {
-   menuButton.addEventListener('click', toggleMenu);
-   document.addEventListener('click', (event) => {
-     if (!navDrawer.contains(event.target) && !menuButton.contains(event.target)) {
-       navDrawer.classList.remove('is-open');
-       menuButton.classList.remove('is-open');
-       menuButton.setAttribute('aria-expanded', 'false');
-     }
-   });
- }
- 
- const COOKIE_KEY = 'seanmosikili-cookie-consent';
--if (cookieBanner && !localStorage.getItem(COOKIE_KEY)) {
-+
-+const getCookieValue = (name) => {
-+  const prefixed = `; ${document.cookie}`;
-+  const parts = prefixed.split(`; ${name}=`);
-+  if (parts.length === 2) {
-+    return parts.pop().split(';').shift();
-+  }
-+  return null;
-+};
-+
-+const setCookieValue = (name, value, days) => {
-+  const maxAge = days * 24 * 60 * 60;
-+  document.cookie = `${name}=${value}; Max-Age=${maxAge}; Path=/; SameSite=Lax`;
-+};
-+
-+const hasCookieConsent = getCookieValue(COOKIE_KEY) || localStorage.getItem(COOKIE_KEY);
-+if (cookieBanner && !hasCookieConsent) {
-   cookieBanner.classList.remove('hidden');
- }
- 
- const handleCookieChoice = (value) => {
-   localStorage.setItem(COOKIE_KEY, value);
-+  setCookieValue(COOKIE_KEY, value, 365);
-   if (cookieBanner) {
-     cookieBanner.classList.add('hidden');
-   }
- };
- 
- if (cookieAccept) {
-   cookieAccept.addEventListener('click', () => handleCookieChoice('accepted'));
- }
- 
- if (cookieDecline) {
-   cookieDecline.addEventListener('click', () => handleCookieChoice('declined'));
- }
- 
- const buildEmail = () => {
-   const user = 'seanrunsthemedia';
-   const domain = 'icloud.com';
-   return `${user}@${domain}`;
- };
- 
- const openMailClient = (form, subject) => {
-   const formData = new FormData(form);
-   const email = buildEmail();
-   const name = formData.get('name') || '';
-   const message = formData.get('message') || '';
-   const interest = formData.get('interest') || '';
-   const sender = formData.get('email') || '';
-   const body = `Name: ${name}\nEmail: ${sender}\nInterest: ${interest}\n\n${message}`;
-   const mailto = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-   window.location.href = mailto;
- };
- 
- if (contactForm) {
-   contactForm.addEventListener('submit', (event) => {
-     event.preventDefault();
-     openMailClient(contactForm, 'Booking / Collaboration Request');
-   });
- }
- 
--if (subscribeForm) {
--  subscribeForm.addEventListener('submit', (event) => {
-+const firebaseConfig = {
-+  apiKey: 'AIzaSyCg8ESTI4q5NSlzG_pm_5wZPNEdSqQR4kU',
-+  authDomain: 'sean-mosikili-official-website.firebaseapp.com',
-+  projectId: 'sean-mosikili-official-website',
-+  storageBucket: 'sean-mosikili-official-website.firebasestorage.app',
-+  messagingSenderId: '553905440133',
-+  appId: '1:553905440133:web:9ee90d720f3d45dce270ec',
-+  measurementId: 'G-67YTCJ2CSZ'
-+};
-+
-+let firebaseDbPromise;
-+
-+const getFirebaseDb = async () => {
-+  if (!firebaseDbPromise) {
-+    firebaseDbPromise = Promise.all([
-+      import('https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js'),
-+      import('https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js')
-+    ]).then(([firebaseApp, firestore]) => {
-+      const app = firebaseApp.initializeApp(firebaseConfig);
-+      return {
-+        addDoc: firestore.addDoc,
-+        collection: firestore.collection,
-+        db: firestore.getFirestore(app),
-+        serverTimestamp: firestore.serverTimestamp
-+      };
-+    });
-+  }
-+
-+  return firebaseDbPromise;
-+};
-+
-+const setFormStatus = (form, message, statusType) => {
-+  const statusEl = form.querySelector('[data-form-status]');
-+  if (!statusEl) {
-+    return;
-+  }
-+
-+  statusEl.textContent = message;
-+  statusEl.dataset.statusType = statusType;
-+};
-+
-+subscribeForms.forEach((form) => {
-+  form.addEventListener('submit', async (event) => {
-     event.preventDefault();
--    openMailClient(subscribeForm, 'Swarm Newsletter Signup');
-+
-+    const submitButton = form.querySelector('button[type="submit"]');
-+    const formData = new FormData(form);
-+    const email = (formData.get('email') || '').toString().trim().toLowerCase();
-+    const interest = (formData.get('interest') || '').toString().trim();
-+
-+    if (!email) {
-+      setFormStatus(form, 'Please enter a valid email address.', 'error');
-+      return;
-+    }
-+
-+    if (submitButton) {
-+      submitButton.disabled = true;
-+      submitButton.textContent = 'Joining...';
-+    }
-+    setFormStatus(form, 'Saving your signup...', 'pending');
-+
-+    try {
-+      const firebase = await getFirebaseDb();
-+      await firebase.addDoc(firebase.collection(firebase.db, 'newsletter_signups'), {
-+        email,
-+        interest,
-+        source: form.dataset.source || 'unknown',
-+        page: window.location.pathname,
-+        createdAt: firebase.serverTimestamp()
-+      });
-+
-+      form.reset();
-+      setFormStatus(form, 'You are in. Welcome to the SWARM.', 'success');
-+    } catch (error) {
-+      console.error('Newsletter signup failed', error);
-+      setFormStatus(form, 'Signup failed. Please try again in a moment.', 'error');
-+    } finally {
-+      if (submitButton) {
-+        submitButton.disabled = false;
-+        submitButton.textContent = form.dataset.source === 'homepage' ? 'Join the SWARM' : 'Create Swarm Access';
-+      }
-+    }
-   });
--}
-+});
- 
- if ('IntersectionObserver' in window) {
-   const observer = new IntersectionObserver(
-     (entries) => {
-       entries.forEach((entry) => {
-         if (entry.isIntersecting) {
-           entry.target.classList.add('is-visible');
-         }
-       });
-     },
-     { threshold: 0.15 }
-   );
- 
-   document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
- } else {
-   document.querySelectorAll('.reveal').forEach((el) => {
-     el.classList.add('is-visible');
-   });
- }
+const menuButton = document.querySelector('[data-menu-button]');
+const navDrawer = document.querySelector('[data-nav-drawer]');
+const cookieBanner = document.querySelector('[data-cookie-banner]');
+const cookieAccept = document.querySelector('[data-cookie-accept]');
+const cookieDecline = document.querySelector('[data-cookie-decline]');
+const contactForm = document.querySelector('[data-contact-form]');
+const subscribeForms = document.querySelectorAll('[data-subscribe-form]');
+
+const toggleMenu = () => {
+  const isOpen = navDrawer.classList.toggle('is-open');
+  menuButton.classList.toggle('is-open', isOpen);
+  menuButton.setAttribute('aria-expanded', String(isOpen));
+};
+
+if (menuButton && navDrawer) {
+  menuButton.addEventListener('click', toggleMenu);
+  document.addEventListener('click', (event) => {
+    if (!navDrawer.contains(event.target) && !menuButton.contains(event.target)) {
+      navDrawer.classList.remove('is-open');
+      menuButton.classList.remove('is-open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
+const COOKIE_KEY = 'seanmosikili-cookie-consent';
+
+const getCookieValue = (name) => {
+  const prefixed = `; ${document.cookie}`;
+  const parts = prefixed.split(`; ${name}=`);
+  if (parts.length === 2) {
+    return parts.pop().split(';').shift();
+  }
+  return null;
+};
+
+const setCookieValue = (name, value, days) => {
+  const maxAge = days * 24 * 60 * 60;
+  document.cookie = `${name}=${value}; Max-Age=${maxAge}; Path=/; SameSite=Lax`;
+};
+
+const hasCookieConsent = getCookieValue(COOKIE_KEY) || localStorage.getItem(COOKIE_KEY);
+if (cookieBanner && !hasCookieConsent) {
+  cookieBanner.classList.remove('hidden');
+}
+
+const handleCookieChoice = (value) => {
+  localStorage.setItem(COOKIE_KEY, value);
+  setCookieValue(COOKIE_KEY, value, 365);
+  if (cookieBanner) {
+    cookieBanner.classList.add('hidden');
+  }
+};
+
+if (cookieAccept) {
+  cookieAccept.addEventListener('click', () => handleCookieChoice('accepted'));
+}
+
+if (cookieDecline) {
+  cookieDecline.addEventListener('click', () => handleCookieChoice('declined'));
+}
+
+const buildEmail = () => {
+  const user = 'seanrunsthemedia';
+  const domain = 'icloud.com';
+  return `${user}@${domain}`;
+};
+
+const openMailClient = (form, subject) => {
+  const formData = new FormData(form);
+  const email = buildEmail();
+  const name = formData.get('name') || '';
+  const message = formData.get('message') || '';
+  const interest = formData.get('interest') || '';
+  const sender = formData.get('email') || '';
+  const body = `Name: ${name}\nEmail: ${sender}\nInterest: ${interest}\n\n${message}`;
+  const mailto = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href = mailto;
+};
+
+if (contactForm) {
+  contactForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    openMailClient(contactForm, 'Booking / Collaboration Request');
+  });
+}
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyCg8ESTI4q5NSlzG_pm_5wZPNEdSqQR4kU',
+  authDomain: 'sean-mosikili-official-website.firebaseapp.com',
+  projectId: 'sean-mosikili-official-website',
+  storageBucket: 'sean-mosikili-official-website.firebasestorage.app',
+  messagingSenderId: '553905440133',
+  appId: '1:553905440133:web:9ee90d720f3d45dce270ec',
+  measurementId: 'G-67YTCJ2CSZ'
+};
+
+let firebaseDbPromise;
+
+const getFirebaseDb = async () => {
+  if (!firebaseDbPromise) {
+    firebaseDbPromise = Promise.all([
+      import('https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js'),
+      import('https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js')
+    ]).then(([firebaseApp, firestore]) => {
+      const app = firebaseApp.initializeApp(firebaseConfig);
+      return {
+        addDoc: firestore.addDoc,
+        collection: firestore.collection,
+        db: firestore.getFirestore(app),
+        serverTimestamp: firestore.serverTimestamp
+      };
+    });
+  }
+
+  return firebaseDbPromise;
+};
+
+const setFormStatus = (form, message, statusType) => {
+  const statusEl = form.querySelector('[data-form-status]');
+  if (!statusEl) {
+    return;
+  }
+
+  statusEl.textContent = message;
+  statusEl.dataset.statusType = statusType;
+};
+
+subscribeForms.forEach((form) => {
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const submitButton = form.querySelector('button[type="submit"]');
+    const formData = new FormData(form);
+    const email = (formData.get('email') || '').toString().trim().toLowerCase();
+    const interest = (formData.get('interest') || '').toString().trim();
+
+    if (!email) {
+      setFormStatus(form, 'Please enter a valid email address.', 'error');
+      return;
+    }
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Joining...';
+    }
+    setFormStatus(form, 'Saving your signup...', 'pending');
+
+    try {
+      const firebase = await getFirebaseDb();
+      await firebase.addDoc(firebase.collection(firebase.db, 'newsletter_signups'), {
+        email,
+        interest,
+        source: form.dataset.source || 'unknown',
+        page: window.location.pathname,
+        createdAt: firebase.serverTimestamp()
+      });
+
+      form.reset();
+      setFormStatus(form, 'You are in. Welcome to the SWARM.', 'success');
+    } catch (error) {
+      console.error('Newsletter signup failed', error);
+      setFormStatus(form, 'Signup failed. Please try again in a moment.', 'error');
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = form.dataset.source === 'homepage' ? 'Join the SWARM' : 'Create Swarm Access';
+      }
+    }
+  });
+});
+
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+} else {
+  document.querySelectorAll('.reveal').forEach((el) => {
+    el.classList.add('is-visible');
+  });
+}
