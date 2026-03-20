@@ -31,7 +31,6 @@ index 0236352eca4268b0dd246830c7a53b6550cccd15..5a7e60a7c376acbf979d64765cf1e015
  }
  
  const COOKIE_KEY = 'seanmosikili-cookie-consent';
--if (cookieBanner && !localStorage.getItem(COOKIE_KEY)) {
 +
 +const getCookieValue = (name) => {
 +  const prefixed = `; ${document.cookie}`;
@@ -92,9 +91,7 @@ index 0236352eca4268b0dd246830c7a53b6550cccd15..5a7e60a7c376acbf979d64765cf1e015
      openMailClient(contactForm, 'Booking / Collaboration Request');
    });
  }
- 
--if (subscribeForm) {
--  subscribeForm.addEventListener('submit', (event) => {
+
 +const firebaseConfig = {
 +  apiKey: 'AIzaSyCg8ESTI4q5NSlzG_pm_5wZPNEdSqQR4kU',
 +  authDomain: 'sean-mosikili-official-website.firebaseapp.com',
@@ -139,7 +136,6 @@ index 0236352eca4268b0dd246830c7a53b6550cccd15..5a7e60a7c376acbf979d64765cf1e015
 +subscribeForms.forEach((form) => {
 +  form.addEventListener('submit', async (event) => {
      event.preventDefault();
--    openMailClient(subscribeForm, 'Swarm Newsletter Signup');
 +
 +    const submitButton = form.querySelector('button[type="submit"]');
 +    const formData = new FormData(form);
@@ -179,7 +175,6 @@ index 0236352eca4268b0dd246830c7a53b6550cccd15..5a7e60a7c376acbf979d64765cf1e015
 +      }
 +    }
    });
--}
 +});
  
  if ('IntersectionObserver' in window) {
