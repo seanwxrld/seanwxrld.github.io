@@ -6,19 +6,40 @@ const cookieDecline = document.querySelector('[data-cookie-decline]');
 const contactForm = document.querySelector('[data-contact-form]');
 const subscribeForms = document.querySelectorAll('[data-subscribe-form]');
 
+const closeMenu = () => {
+  if (!menuButton || !navDrawer) {
+    return;
+  }
+
+  navDrawer.classList.remove('is-open');
+  menuButton.classList.remove('is-open');
+  menuButton.setAttribute('aria-expanded', 'false');
+  document.body.classList.remove('menu-open');
+};
+
 const toggleMenu = () => {
+  if (!menuButton || !navDrawer) {
+    return;
+  }
+
   const isOpen = navDrawer.classList.toggle('is-open');
   menuButton.classList.toggle('is-open', isOpen);
   menuButton.setAttribute('aria-expanded', String(isOpen));
+  document.body.classList.toggle('menu-open', isOpen);
 };
 
 if (menuButton && navDrawer) {
   menuButton.addEventListener('click', toggleMenu);
+
   document.addEventListener('click', (event) => {
     if (!navDrawer.contains(event.target) && !menuButton.contains(event.target)) {
-      navDrawer.classList.remove('is-open');
-      menuButton.classList.remove('is-open');
-      menuButton.setAttribute('aria-expanded', 'false');
+      closeMenu();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeMenu();
     }
   });
 }
@@ -60,6 +81,16 @@ if (cookieDecline) {
   cookieDecline.addEventListener('click', () => handleCookieChoice('declined'));
 }
 
+const setFormStatus = (form, message, statusType = 'pending') => {
+  const statusEl = form.querySelector('[data-form-status]');
+  if (!statusEl) {
+    return;
+  }
+
+  statusEl.textContent = message;
+  statusEl.dataset.statusType = statusType;
+};
+
 const buildEmail = () => {
   const user = 'seanrunsthemedia';
   const domain = 'icloud.com';
@@ -81,6 +112,12 @@ const openMailClient = (form, subject) => {
 if (contactForm) {
   contactForm.addEventListener('submit', (event) => {
     event.preventDefault();
+
+    if (!contactForm.reportValidity()) {
+      return;
+    }
+
+    setFormStatus(contactForm, 'Opening your email app…', 'pending');
     openMailClient(contactForm, 'Booking / Collaboration Request');
   });
 }
@@ -116,33 +153,28 @@ const getFirebaseDb = async () => {
   return firebaseDbPromise;
 };
 
-const setFormStatus = (form, message, statusType) => {
-  const statusEl = form.querySelector('[data-form-status]');
-  if (!statusEl) {
-    return;
-  }
-
-  statusEl.textContent = message;
-  statusEl.dataset.statusType = statusType;
-};
-
 subscribeForms.forEach((form) => {
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
+    if (!form.reportValidity()) {
+      return;
+    }
+
     const submitButton = form.querySelector('button[type="submit"]');
+    const originalLabel = form.dataset.submitLabel || (submitButton ? submitButton.textContent : 'Submit');
     const formData = new FormData(form);
     const email = (formData.get('email') || '').toString().trim().toLowerCase();
     const interest = (formData.get('interest') || '').toString().trim();
 
-    if (!email) {
+    if (!email || !email.includes('@')) {
       setFormStatus(form, 'Please enter a valid email address.', 'error');
       return;
     }
 
     if (submitButton) {
       submitButton.disabled = true;
-      submitButton.textContent = 'Joining...';
+      submitButton.textContent = 'Saving...';
     }
     setFormStatus(form, 'Saving your signup...', 'pending');
 
@@ -164,7 +196,7 @@ subscribeForms.forEach((form) => {
     } finally {
       if (submitButton) {
         submitButton.disabled = false;
-        submitButton.textContent = form.dataset.source === 'homepage' ? 'Join the SWARM' : 'Create Swarm Access';
+        submitButton.textContent = originalLabel;
       }
     }
   });

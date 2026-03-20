@@ -4,8 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SĒAN MOSIKILI · Swarm</title>
-    <meta name="description" content="Swarm is the private fan hub for SĒAN MOSIKILI — sign up or sign in." />
+    <meta name="description" content="Swarm is the private fan hub for SĒAN MOSIKILI — join for early access and exclusive updates." />
     <link rel="stylesheet" href="/style.css" />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/SeanMosikiliSongCover.png" />
+    <meta name="theme-color" content="#070707" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -28,7 +31,7 @@
         <a href="/gallery/">Gallery</a>
         <a href="/about/">About</a>
         <a class="active" href="/swarm/">Swarm</a>
-        <a href="https://shop.seanwxrld.com" target="_blank" rel="noreferrer">Shop</a>
+        <a href="https://shop.seanwxrld.com" target="_blank" rel="noopener noreferrer">Shop</a>
         <a href="/contact/">Contact</a>
       </nav>
     </header>
@@ -38,32 +41,33 @@
         <p class="eyebrow">Swarm</p>
         <h1>Private access for the real ones.</h1>
         <p class="lead">
-          Swarm is the official fan portal for exclusive drops, private listening rooms, and early
-          access. Sign up or sign in below.
+          The sign-up flow is now focused and stable: one waitlist form, one clear promise, and no broken
+          sign-in state blocking submissions.
         </p>
       </section>
 
       <section class="split reveal">
-        <form class="form" data-subscribe-form>
-          <h2>Sign Up</h2>
+        <form class="form" data-subscribe-form data-source="swarm" data-submit-label="Join the SWARM">
+          <h2>Join the waitlist</h2>
           <label>
             Email
-            <input type="email" name="email" placeholder="you@example.com" required />
+            <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required />
           </label>
           <label>
             Interest
-            <input type="text" name="interest" placeholder="Music, merch, tour" />
+            <input type="text" name="interest" placeholder="Music, merch, events, visuals" />
           </label>
-          <button class="button primary" type="submit">Create Swarm Access</button>
-
-          <h2>Sign In</h2>
-          <label>
-            Access Code
-            <input type="password" name="access" placeholder="Invite code" required />
-          </label>
-          <button class="button ghost" type="submit">Enter Swarm</button>
-          <small>Authentication system will be connected once you choose a platform.</small>
+          <button class="button primary" type="submit">Join the SWARM</button>
+          <p class="form-status" data-form-status aria-live="polite"></p>
+          <small>Early access, release alerts, listening rooms, and first notice on drops.</small>
         </form>
+
+        <article class="panel">
+          <p class="kicker">What you get</p>
+          <h2>Early, not noisy.</h2>
+          <p>Priority access to music links, event announcements, limited merch, and private release moments.</p>
+          <p class="meta-note">Full member sign-in is rolling out later — the waitlist is live now.</p>
+        </article>
       </section>
     </main>
 
@@ -71,15 +75,15 @@
       <strong>SĒAN MOSIKILI</strong>
       <p>Copyright © 2026 SĒAN MOSIKILI — All Rights Reserved.</p>
       <div class="footer-links">
-        <a href="https://www.instagram.com/seanwxrld" target="_blank" rel="noreferrer">Instagram</a>
-        <a href="https://www.youtube.com/@seanwxrld" target="_blank" rel="noreferrer">YouTube</a>
-        <a href="https://x.com/seanwxrld" target="_blank" rel="noreferrer">X</a>
-        <a href="https://www.tiktok.com/@seanwxrld" target="_blank" rel="noreferrer">TikTok</a>
-        <a href="https://music.apple.com/us/artist/s%C4%93an-mosikili/1868976258" target="_blank" rel="noreferrer">Apple Music</a>
-        <a href="https://open.spotify.com/artist/5yU7mw9J7mmv5ubNcA1O1P" target="_blank" rel="noreferrer">Spotify</a>
-        <a href="https://tidal.com/artist/73061343" target="_blank" rel="noreferrer">Tidal</a>
-        <a href="https://www.deezer.com/artist/367447902" target="_blank" rel="noreferrer">Deezer</a>
-        <a href="https://music.amazon.com/artists/B0GGSBZGNC/s%C4%93an-mosikili" target="_blank" rel="noreferrer">Amazon Music</a>
+        <a href="https://www.instagram.com/seanwxrld" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.youtube.com/@seanwxrld" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <a href="https://x.com/seanwxrld" target="_blank" rel="noopener noreferrer">X</a>
+        <a href="https://www.tiktok.com/@seanwxrld" target="_blank" rel="noopener noreferrer">TikTok</a>
+        <a href="https://music.apple.com/us/artist/s%C4%93an-mosikili/1868976258" target="_blank" rel="noopener noreferrer">Apple Music</a>
+        <a href="https://open.spotify.com/artist/5yU7mw9J7mmv5ubNcA1O1P" target="_blank" rel="noopener noreferrer">Spotify</a>
+        <a href="https://tidal.com/artist/73061343" target="_blank" rel="noopener noreferrer">Tidal</a>
+        <a href="https://www.deezer.com/artist/367447902" target="_blank" rel="noopener noreferrer">Deezer</a>
+        <a href="https://music.amazon.com/artists/B0GGSBZGNC/s%C4%93an-mosikili" target="_blank" rel="noopener noreferrer">Amazon Music</a>
       </div>
       <div class="footer-links">
         <a href="/privacy/">Privacy</a>
