@@ -6,12 +6,12 @@
     <title>SĒAN MOSIKILI · Shop</title>
     <meta
       name="description"
-      content="Official SĒAN MOSIKILI shop hub for music, merch, presales, and storefront previews."
+      content="Official SĒAN MOSIKILI shop hub for private previews, presale collections, merch, and music storefront categories."
     />
     <meta property="og:title" content="SĒAN MOSIKILI · Shop" />
     <meta
       property="og:description"
-      content="Browse the official SĒAN MOSIKILI shop hub for music, merch, and upcoming presales."
+      content="The official shop will open for presale and preview soon. Enter the password to view the private storefront hub."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://seanwxrld.com/shop/" />
@@ -47,119 +47,142 @@
       </nav>
     </header>
 
-    <main class="page page-store">
+    <main class="page page-store" data-store-root>
       <section class="hero reveal store-hero store-page-header">
         <p class="eyebrow">Official Store Hub</p>
-        <h1>SHOP MUSIC + MERCH</h1>
+        <h1>SHOP PREVIEW + PRESALE ACCESS</h1>
         <p class="lead">
-          The official SĒAN MOSIKILI store now lives fully on-site with a white storefront background, category pages, and room for
-          presales, previews, and future retailer links.
+          A private storefront for upcoming presales, merch previews, and music drops. The public shop opens soon, but the structure
+          is already here.
         </p>
         <div class="hero-meta store-hero-meta">
           <div class="hero-stat store-stat highlight">
-            <strong>Now Live</strong>
-            <span>Store hub is open on-site</span>
+            <strong>Launch</strong>
+            <span>Presale + preview opening soon</span>
           </div>
           <div class="hero-stat store-stat">
             <strong>Browse</strong>
-            <span>Music, merch, and future categories</span>
+            <span>Music, merch, and future shop categories</span>
           </div>
           <div class="hero-stat store-stat">
-            <strong>Look</strong>
-            <span>White gallery storefront with red accents</span>
+            <strong>Access</strong>
+            <span>Private password preview for now</span>
           </div>
         </div>
       </section>
 
-      <section class="store-subnav reveal" aria-label="Shop sections">
-        <a class="button primary" href="/shop/">SHOP HOME</a>
-        <a class="button ghost" href="/shop/music/">MUSIC</a>
-        <a class="button ghost" href="/shop/merch/">MERCH</a>
+      <section class="store-gate reveal" data-store-gate>
+        <div class="store-gate-copy">
+          <p class="kicker">Private Entry</p>
+          <h2>THE SHOP WILL OPEN FOR PRESALE AND PREVIEW SOON</h2>
+          <p>
+            This is the private storefront facade for the official SĒAN MOSIKILI shop. Enter the password to preview the structure,
+            browse the hidden categories, and step inside before the public launch.
+          </p>
+        </div>
+        <form class="store-password-form" data-store-form>
+          <label>
+            Password
+            <input
+              type="password"
+              name="password"
+              autocomplete="current-password"
+              placeholder="Enter store password"
+              required
+              data-store-password
+            />
+          </label>
+          <button class="button primary" type="submit">ENTER THE STORE</button>
+          <p class="form-status" data-store-status aria-live="polite"></p>
+          <small>Private preview access only.</small>
+        </form>
       </section>
 
-      <section class="section-intro reveal" aria-label="Store intro">
-        <p class="eyebrow">Storefront Map</p>
-        <h2>PICK A SHOP CATEGORY</h2>
-        <p class="lead">
-          The main shop now acts like a hub. Music and merch each live on their own pages, with room for more sections as the
-          storefront expands.
-        </p>
-      </section>
+      <div class="store-shell is-locked" data-store-shell aria-hidden="true">
+        <section class="section-intro reveal" aria-label="Store intro">
+          <p class="eyebrow">Storefront Map</p>
+          <h2>PICK A SHOP CATEGORY</h2>
+          <p class="lead">
+            The main shop now acts like a hub. Music and merch each live on their own shop pages, with room for more sections as the
+            storefront expands.
+          </p>
+        </section>
 
-      <section class="section-grid reveal" aria-label="Shop hub categories">
-        <article class="card store-card store-card-featured store-link-card">
-          <span class="tag">Music</span>
-          <h2>SHOP MUSIC</h2>
-          <p>Browse singles, albums, and mixtape-era releases with presale labels, released titles, and platform-link placeholders.</p>
-          <div class="store-link-row">
-            <span class="store-chip">All releases loaded</span>
-            <span class="store-chip">Presale states set</span>
-          </div>
-          <a class="button primary" href="/shop/music/">OPEN MUSIC SHOP</a>
-        </article>
-        <article class="card store-card store-link-card">
-          <span class="tag">Merch</span>
-          <h2>SHOP MERCH</h2>
-          <p>View the official merch page structure for exhibition apparel, posters, and future limited drops.</p>
-          <div class="store-link-row">
-            <span class="store-chip">Drop previews</span>
-            <span class="store-chip">Collection layout ready</span>
-          </div>
-          <a class="button ghost" href="/shop/merch/">OPEN MERCH SHOP</a>
-        </article>
-        <article class="card store-card store-link-card">
-          <span class="tag">Soon</span>
-          <h2>MORE CATEGORIES TO COME</h2>
-          <p>Bundles, exclusives, and special editions can plug into this shop hub later without changing the overall look.</p>
-          <div class="store-link-row">
-            <span class="store-link-pill">Bundles</span>
-            <span class="store-link-pill">Collector editions</span>
-            <span class="store-link-pill">Exclusive drops</span>
-          </div>
-        </article>
-      </section>
-
-      <section class="split reveal store-showcase" aria-label="Store preview panels">
-        <article class="panel store-product-panel">
-          <div class="store-product-copy">
-            <p class="kicker">Music Preview</p>
-            <h2>PRE-SALES + RELEASED TITLES</h2>
-            <p>
-              Upcoming titles are marked as presale previews, while <strong>ALL MINE</strong> and <strong>ALL MINE (AFTERHOURS
-              EDITION)</strong> are shown as released now.
-            </p>
+        <section class="section-grid reveal" aria-label="Shop hub categories">
+          <article class="card store-card store-card-featured store-link-card">
+            <span class="tag">Music</span>
+            <h2>SHOP MUSIC</h2>
+            <p>Browse singles, albums, and mixtape-era releases with presale labels and placeholder retailer actions.</p>
             <div class="store-link-row">
-              <span class="store-chip">Released now</span>
-              <span class="store-chip">Presale soon</span>
-              <span class="store-chip">Store links later</span>
+              <span class="store-chip">All releases loaded</span>
+              <span class="store-chip">Presale states set</span>
             </div>
-            <a class="button ghost" href="/shop/music/">GO TO MUSIC SHOP</a>
-          </div>
-          <figure class="release-media store-media-card store-media-light">
-            <img src="/assets/TWENTY ALBUM COVER.jpeg" alt="TWĒNTY cover art preview inside the music shop" loading="lazy" />
-          </figure>
-        </article>
-
-        <article class="panel store-product-panel">
-          <div class="store-product-copy">
-            <p class="kicker">Merch Preview</p>
-            <h2>FRAGILE EXHIBITION CAPSULE</h2>
-            <p>
-              The merch side carries the same white-gallery presentation while keeping the current visual era, red accents, and drop
-              language intact.
-            </p>
+            <a class="button primary" href="/shop/music/">OPEN MUSIC SHOP</a>
+          </article>
+          <article class="card store-card store-link-card">
+            <span class="tag">Merch</span>
+            <h2>SHOP MERCH</h2>
+            <p>View the official merch page structure for exhibition apparel, posters, and future limited drops.</p>
             <div class="store-link-row">
-              <span class="store-chip">Capsule tee</span>
-              <span class="store-chip">Poster concept</span>
-              <span class="store-chip">Collector hoodie</span>
+              <span class="store-chip">Drop previews</span>
+              <span class="store-chip">Collection layout ready</span>
             </div>
-            <a class="button ghost" href="/shop/merch/">GO TO MERCH SHOP</a>
-          </div>
-          <figure class="release-media store-media-card store-media-light">
-            <img src="/assets/FRAGILE EXHBITION (Mixtape by SEAN album art).png" alt="FRAGILE EXHIBITION artwork preview for merch shop" loading="lazy" />
-          </figure>
-        </article>
-      </section>
+            <a class="button ghost" href="/shop/merch/">OPEN MERCH SHOP</a>
+          </article>
+          <article class="card store-card store-link-card">
+            <span class="tag">Soon</span>
+            <h2>MORE CATEGORIES TO COME</h2>
+            <p>Bundles, exclusives, and special editions can plug into this shop hub later without changing the overall look.</p>
+            <div class="store-link-row">
+              <span class="store-link-pill">Bundles</span>
+              <span class="store-link-pill">Collector editions</span>
+              <span class="store-link-pill">Exclusive drops</span>
+            </div>
+          </article>
+        </section>
+
+        <section class="split reveal store-showcase" aria-label="Store preview panels">
+          <article class="panel store-product-panel">
+            <div class="store-product-copy">
+              <p class="kicker">Music Preview</p>
+              <h2>PRE-SALES + RELEASED TITLES</h2>
+              <p>
+                Upcoming titles are marked as presale previews, while <strong>ALL MINE</strong> and <strong>ALL MINE (AFTERHOURS
+                EDITION)</strong> are shown as released now.
+              </p>
+              <div class="store-link-row">
+                <span class="store-chip">Released now</span>
+                <span class="store-chip">Presale soon</span>
+                <span class="store-chip">Store links later</span>
+              </div>
+              <a class="button ghost" href="/shop/music/">GO TO MUSIC SHOP</a>
+            </div>
+            <figure class="release-media store-media-card store-media-light">
+              <img src="/assets/TWENTY ALBUM COVER.jpeg" alt="TWĒNTY cover art preview inside the music shop" loading="lazy" />
+            </figure>
+          </article>
+
+          <article class="panel store-product-panel">
+            <div class="store-product-copy">
+              <p class="kicker">Merch Preview</p>
+              <h2>FRAGILE EXHIBITION CAPSULE</h2>
+              <p>
+                The merch side carries the same white-gallery presentation while keeping the current visual era, red accents, and drop
+                language intact.
+              </p>
+              <div class="store-link-row">
+                <span class="store-chip">Capsule tee</span>
+                <span class="store-chip">Poster concept</span>
+                <span class="store-chip">Collector hoodie</span>
+              </div>
+              <a class="button ghost" href="/shop/merch/">GO TO MERCH SHOP</a>
+            </div>
+            <figure class="release-media store-media-card store-media-light">
+              <img src="/assets/FRAGILE EXHBITION (Mixtape by SEAN album art).png" alt="FRAGILE EXHIBITION artwork preview for merch shop" loading="lazy" />
+            </figure>
+          </article>
+        </section>
+      </div>
     </main>
 
     <footer class="footer shop-footer">

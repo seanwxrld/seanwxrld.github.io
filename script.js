@@ -45,6 +45,82 @@ if (menuButton && navDrawer) {
 }
 
 
+const storeRoot = document.querySelector('[data-store-root]');
+const storeShell = document.querySelector('[data-store-shell]');
+const storeGate = document.querySelector('[data-store-gate]');
+const storeForm = document.querySelector('[data-store-form]');
+const storePasswordInput = document.querySelector('[data-store-password]');
+const storeStatus = document.querySelector('[data-store-status]');
+const STORE_PASSWORD_KEY = 'seanmosikili-store-access';
+const STORE_PASSWORD_VALUE = 'FRAGILE-EXHIBITION';
+
+const unlockStore = () => {
+  if (!storeShell) {
+    return;
+  }
+
+  storeShell.classList.remove('is-locked');
+  storeShell.classList.add('is-unlocked');
+  storeShell.setAttribute('aria-hidden', 'false');
+
+  if (storeGate) {
+    storeGate.classList.add('hidden');
+  }
+
+  if (storeRoot) {
+    storeRoot.dataset.storeUnlocked = 'true';
+  }
+};
+
+const lockStore = () => {
+  if (!storeShell) {
+    return;
+  }
+
+  storeShell.classList.add('is-locked');
+  storeShell.classList.remove('is-unlocked');
+  storeShell.setAttribute('aria-hidden', 'true');
+};
+
+const setStoreStatus = (message, statusType = 'pending') => {
+  if (!storeStatus) {
+    return;
+  }
+
+  storeStatus.textContent = message;
+  storeStatus.dataset.statusType = statusType;
+};
+
+const hasStoreAccess = sessionStorage.getItem(STORE_PASSWORD_KEY) === 'granted';
+if (storeShell && hasStoreAccess) {
+  unlockStore();
+} else if (storeShell) {
+  lockStore();
+}
+
+if (storeForm) {
+  storeForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    if (!storePasswordInput) {
+      return;
+    }
+
+    const enteredPassword = storePasswordInput.value.trim();
+    if (enteredPassword === STORE_PASSWORD_VALUE) {
+      sessionStorage.setItem(STORE_PASSWORD_KEY, 'granted');
+      unlockStore();
+      setStoreStatus('Access granted. Welcome inside the official store preview.', 'success');
+      storeForm.reset();
+      return;
+    }
+
+    sessionStorage.removeItem(STORE_PASSWORD_KEY);
+    lockStore();
+    setStoreStatus('Incorrect password. Please try again.', 'error');
+  });
+}
+
 const COOKIE_KEY = 'seanmosikili-cookie-consent';
 
 const getCookieValue = (name) => {

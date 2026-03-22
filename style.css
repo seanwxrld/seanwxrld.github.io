@@ -944,7 +944,8 @@ h3 {
 .shop-body .meta-note,
 .shop-body .notice,
 .shop-body .footer,
-.shop-body .form small {
+.shop-body .form small,
+.shop-body .store-password-form small {
   color: rgba(21, 21, 21, 0.62);
 }
 
@@ -980,6 +981,8 @@ h3 {
   box-shadow: 0 24px 64px rgba(216, 15, 29, 0.1), 0 18px 40px rgba(0, 0, 0, 0.08);
 }
 
+.store-gate,
+.store-shell,
 .store-item-card,
 .store-product-panel,
 .shop-body .card,
@@ -1009,6 +1012,78 @@ h3 {
   background: #ffffff;
   border-color: rgba(0, 0, 0, 0.08);
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
+}
+
+.store-gate {
+  width: min(100%, 880px);
+  margin: 0 auto;
+  padding: 32px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 28px;
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  align-items: center;
+}
+
+.store-gate-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+.store-password-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 22px;
+  border-radius: 22px;
+  background: rgba(247, 245, 241, 0.9);
+  border: 1px solid rgba(216, 15, 29, 0.14);
+}
+
+.store-password-form label {
+  font-family: "JetBrains Mono", "Courier New", monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.store-password-form input {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 14px;
+  padding: 12px 14px;
+  color: var(--black-soft);
+}
+
+.store-shell {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 104px;
+  transition: opacity 0.28s ease, transform 0.28s ease, filter 0.28s ease;
+}
+
+.store-shell.is-locked {
+  opacity: 0;
+  transform: translateY(16px);
+  filter: blur(12px);
+  pointer-events: none;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.store-shell.is-unlocked {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+  pointer-events: auto;
 }
 
 .store-card,
@@ -1091,6 +1166,15 @@ h3 {
 }
 
 @media (max-width: 760px) {
+  .store-gate,
+  .store-password-form {
+    padding: 22px;
+  }
+
+  .store-shell {
+    gap: 84px;
+  }
+
   .store-actions,
   .store-link-row {
     width: 100%;
