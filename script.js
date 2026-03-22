@@ -44,6 +44,7 @@ if (menuButton && navDrawer) {
   });
 }
 
+
 const COOKIE_KEY = 'seanmosikili-cookie-consent';
 
 const getCookieValue = (name) => {

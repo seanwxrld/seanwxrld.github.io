@@ -917,3 +917,224 @@ h3 {
     grid-template-columns: 1fr;
   }
 }
+
+
+.shop-body {
+  background: var(--white);
+  color: var(--black-soft);
+}
+
+.shop-body .page-store {
+  color: var(--black-soft);
+  background:
+    radial-gradient(circle at top, rgba(216, 15, 29, 0.12), transparent 32%),
+    linear-gradient(180deg, #ffffff 0%, #f7f5f1 100%);
+}
+
+.shop-header {
+  background: rgba(247, 245, 241, 0.92);
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+  color: var(--black-soft);
+}
+
+.shop-header .menu-button::after,
+.shop-body .nav-drawer a.active,
+.shop-body .eyebrow,
+.shop-body .lead,
+.shop-body .meta-note,
+.shop-body .notice,
+.shop-body .footer,
+.shop-body .form small {
+  color: rgba(21, 21, 21, 0.62);
+}
+
+.shop-body .kicker,
+.shop-body .tag,
+.shop-body .store-link-pill,
+.shop-body .store-chip {
+  color: var(--red);
+}
+
+.shop-nav-drawer {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: var(--black-soft);
+}
+
+.store-hero {
+  gap: 28px;
+}
+
+.store-hero-meta {
+  width: 100%;
+}
+
+.store-stat {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.store-stat.highlight,
+.store-card-featured {
+  border-color: rgba(216, 15, 29, 0.24);
+  box-shadow: 0 24px 64px rgba(216, 15, 29, 0.1), 0 18px 40px rgba(0, 0, 0, 0.08);
+}
+
+.store-item-card,
+.store-product-panel,
+.shop-body .card,
+.shop-body .release-card,
+.shop-body .panel,
+.shop-body .gallery-tile,
+.shop-body .form,
+.shop-body .legal-copy,
+.shop-body .hero-stat {
+  background: rgba(255, 255, 255, 0.86);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: var(--black-soft);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.08);
+}
+
+.shop-body .button.primary {
+  color: var(--white);
+}
+
+.shop-body .button.ghost {
+  border-color: rgba(0, 0, 0, 0.16);
+}
+
+.shop-body .release-media,
+.shop-body .embed,
+.shop-body .video-frame {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
+}
+
+.store-card,
+.store-product-panel,
+.store-item-card {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.store-bullet-list {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+  width: 100%;
+}
+
+.store-bullet-list li {
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.store-link-row,
+.store-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.store-link-pill,
+.store-chip {
+  border: 1px solid rgba(216, 15, 29, 0.18);
+  background: rgba(216, 15, 29, 0.08);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-family: "JetBrains Mono", "Courier New", monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.66rem;
+}
+
+.store-product-panel {
+  justify-content: space-between;
+}
+
+.store-product-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.store-media-card {
+  width: 100%;
+}
+
+.store-media-light img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.store-collection {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.store-item-art img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.is-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.shop-footer {
+  color: rgba(21, 21, 21, 0.62);
+  border-top-color: rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 760px) {
+  .store-actions,
+  .store-link-row {
+    width: 100%;
+  }
+}
+
+
+.store-page-header {
+  max-width: 920px;
+}
+
+.store-subnav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+
+.store-link-card {
+  justify-content: space-between;
+}
+
+.store-catalog-grid {
+  align-items: stretch;
+}
+
+.store-shop-item {
+  justify-content: flex-start;
+}
+
+.store-shop-item .store-actions {
+  margin-top: auto;
+  width: 100%;
+}
+
+.store-shop-item-live {
+  border-color: rgba(216, 15, 29, 0.22);
+  box-shadow: 0 22px 56px rgba(216, 15, 29, 0.08), 0 16px 38px rgba(0, 0, 0, 0.08);
+}
+
+.store-item-meta {
+  font-family: "JetBrains Mono", "Courier New", monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.68rem;
+  color: rgba(21, 21, 21, 0.62);
+}
