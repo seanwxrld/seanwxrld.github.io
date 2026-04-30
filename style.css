@@ -1,9 +1,9 @@
 :root {
   color-scheme: dark;
   --black: #000000;
-  --black-soft: #0a0a0a;
-  --red: #d80f1d;
-  --red-soft: rgba(216, 15, 29, 0.18);
+  --black-soft: #050505;
+  --red: #ffffff;
+  --red-soft: rgba(255, 255, 255, 0.18);
   --white: #f7f5f1;
   --muted: #b7b2aa;
   --muted-strong: #d5d0c8;
@@ -26,7 +26,7 @@ html {
 }
 
 body {
-  font-family: "Poppins", system-ui, sans-serif;
+  font-family: "JetBrains Mono", "Courier New", monospace;
   background: var(--black);
   color: var(--white);
   line-height: 1.7;
@@ -155,7 +155,7 @@ video {
   width: 100%;
   z-index: 100;
   padding: 16px 6vw;
-  background: rgba(7, 7, 7, 0.84);
+  background: rgba(0, 0, 0, 0.96);
   border-bottom: 1px solid var(--line);
   backdrop-filter: blur(16px);
   text-align: left;
@@ -170,7 +170,7 @@ video {
 }
 
 .logo {
-  font-family: "Archivo Black", sans-serif;
+  font-family: "JetBrains Mono", "Courier New", monospace;
   letter-spacing: 0.34em;
   text-transform: uppercase;
   font-size: 1rem;
@@ -279,7 +279,7 @@ video {
 
 .hero-stat strong {
   display: block;
-  font-family: "Archivo Black", sans-serif;
+  font-family: "JetBrains Mono", "Courier New", monospace;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: 6px;
@@ -403,7 +403,7 @@ video {
 h1,
 h2,
 h3 {
-  font-family: "Archivo Black", sans-serif;
+  font-family: "JetBrains Mono", "Courier New", monospace;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
@@ -642,7 +642,7 @@ h3 {
   border-radius: 14px;
   padding: 12px 14px;
   color: inherit;
-  font-family: "Poppins", system-ui, sans-serif;
+  font-family: "JetBrains Mono", "Courier New", monospace;
   width: 100%;
 }
 
@@ -841,7 +841,7 @@ h3 {
   white-space: nowrap;
   padding: 0.65em 0;
   color: var(--red);
-  font-family: "Archivo Black", sans-serif;
+  font-family: "JetBrains Mono", "Courier New", monospace;
   font-size: clamp(1.2rem, 3vw, 2rem);
   animation: scroll-left 14s linear infinite;
 }
@@ -1221,4 +1221,26 @@ h3 {
   letter-spacing: 0.16em;
   font-size: 0.68rem;
   color: rgba(21, 21, 21, 0.62);
+}
+
+
+h1, h2, h3, .logo, .button, .tag, .kicker, .eyebrow, .nav-drawer a {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+body, .card, .panel, .hero-stat, .release-card, .gallery-tile, .form, .store-item-card {
+  background: #000;
+  border-color: rgba(255,255,255,0.2);
+}
+
+.button.primary {
+  background: #fff;
+  color: #000;
+  border: 1px solid #fff;
+}
+
+.button.ghost {
+  border: 1px solid #fff;
+  color: #fff;
 }
