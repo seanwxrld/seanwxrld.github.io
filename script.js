@@ -269,7 +269,7 @@ subscribeForms.forEach((form) => {
       });
 
       form.reset();
-      setFormStatus(form, 'You are in. Welcome to the SWARM.', 'success');
+      setFormStatus(form, 'Your sign up was succesful, thank you<3.', 'success');
     } catch (error) {
       console.error('Newsletter signup failed', error);
       setFormStatus(form, 'Signup failed. Please try again in a moment.', 'error');
