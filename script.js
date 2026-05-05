@@ -227,7 +227,29 @@ const getFirebaseDb = async () => {
       };
     });
   }
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyCg8ESTI4q5NSlzG_pm_5wZPNEdSqQR4kU",
+    authDomain: "sean-mosikili-official-website.firebaseapp.com",
+    projectId: "sean-mosikili-official-website",
+    storageBucket: "sean-mosikili-official-website.firebasestorage.app",
+    messagingSenderId: "553905440133",
+    appId: "1:553905440133:web:9ee90d720f3d45dce270ec",
+    measurementId: "G-67YTCJ2CSZ"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
   return firebaseDbPromise;
 };
 
