@@ -214,16 +214,14 @@ let firebaseDbPromise;
 const getFirebaseDb = async () => {
   if (!firebaseDbPromise) {
     firebaseDbPromise = Promise.all([
-    
-           import('https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js'),
+      import('https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js'),
       import('https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js')
     ]).then(([firebaseApp, firestore]) => {
       const app = firebaseApp.getApps().length
         ? firebaseApp.getApp()
-        : firebaseApp.initializeApp(firebaseConfig);      return {
-      const app = firebaseApp.getApps().length
-        ? firebaseApp.getApp()
-        : firebaseApp.initializeApp(firebaseConfig);      return {
+        : firebaseApp.initializeApp(firebaseConfig);
+
+      return {
         addDoc: firestore.addDoc,
         collection: firestore.collection,
         db: firestore.getFirestore(app),
