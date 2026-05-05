@@ -5,6 +5,7 @@ const cookieAccept = document.querySelector('[data-cookie-accept]');
 const cookieDecline = document.querySelector('[data-cookie-decline]');
 const contactForm = document.querySelector('[data-contact-form]');
 const subscribeForms = document.querySelectorAll('[data-subscribe-form]');
+const RELEASE_POPUP_KEY = 'seanmosikili-release-popup-dismissed';
 
 const closeMenu = () => {
   if (!menuButton || !navDrawer) {
@@ -44,6 +45,30 @@ if (menuButton && navDrawer) {
   });
 }
 
+if (!localStorage.getItem(RELEASE_POPUP_KEY)) {
+  const popup = document.createElement('aside');
+  popup.className = 'release-popup';
+  popup.setAttribute('role', 'dialog');
+  popup.setAttribute('aria-live', 'polite');
+  popup.innerHTML = `
+    <button class="release-popup-close" type="button" aria-label="Close popup" data-release-popup-dismiss>×</button>
+    <p class="release-popup-copy">ALL MINE (Afterhours Edition) by SĒAN MOSIKILI is out now! His sophmore single PARKING LOT is open for early pre-save...</p>
+    <div class="release-popup-actions">
+      <a class="release-popup-button" href="https://ditto.fm/all-mine-afterhours-edition" target="_blank" rel="noopener noreferrer">LISTEN...</a>
+      <a class="release-popup-button" href="https://seanwxrld.com/presave" target="_blank" rel="noopener noreferrer">PRE-SAVE</a>
+    </div>
+  `;
+
+  document.body.appendChild(popup);
+
+  const dismissButton = popup.querySelector('[data-release-popup-dismiss]');
+  if (dismissButton) {
+    dismissButton.addEventListener('click', () => {
+      localStorage.setItem(RELEASE_POPUP_KEY, 'true');
+      popup.remove();
+    });
+  }
+}
 
 const storeRoot = document.querySelector('[data-store-root]');
 const storeShell = document.querySelector('[data-store-shell]');
