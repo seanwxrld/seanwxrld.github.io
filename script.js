@@ -52,9 +52,9 @@ if (!localStorage.getItem(RELEASE_POPUP_KEY)) {
   popup.setAttribute('aria-live', 'polite');
   popup.innerHTML = `
     <button class="release-popup-close" type="button" aria-label="Close popup" data-release-popup-dismiss>×</button>
-    <p class="release-popup-copy">ALL MINE (Afterhours Edition) by SĒAN MOSIKILI is out now! His sophmore single PARKING LOT is open for early pre-save...</p>
+    <p class="release-popup-copy">ALL MINE (Afterhours Edition) by SĒAN MOSIKILI is out now! His sophmore single PARKING LOT is open for early pre-save.</p>
     <div class="release-popup-actions">
-      <a class="release-popup-button" href="https://ditto.fm/all-mine-afterhours-edition" target="_blank" rel="noopener noreferrer">LISTEN...</a>
+      <a class="release-popup-button" href="https://ditto.fm/all-mine-afterhours-edition" target="_blank" rel="noopener noreferrer">LISTEN</a>
       <a class="release-popup-button" href="https://seanwxrld.com/presave" target="_blank" rel="noopener noreferrer">PRE-SAVE</a>
     </div>
   `;
