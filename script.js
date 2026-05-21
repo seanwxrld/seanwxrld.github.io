@@ -52,9 +52,9 @@ if (!localStorage.getItem(RELEASE_POPUP_KEY)) {
   popup.setAttribute('aria-live', 'polite');
   popup.innerHTML = `
     <button class="release-popup-close" type="button" aria-label="Close popup" data-release-popup-dismiss>×</button>
-    <p class="release-popup-copy">ALL MINE (Afterhours Edition) by SĒAN MOSIKILI is out now! His sophmore single PARKING LOT is open for early pre-save.</p>
+    <p class="release-popup-copy">LOST LOVER'S AVENUE, the debut album by SĒAN MOSIKILI, drops Friday, 12 June 2026. Join the pre-save waitlist now.</p>
     <div class="release-popup-actions">
-      <a class="release-popup-button" href="https://ditto.fm/all-mine-afterhours-edition" target="_blank" rel="noopener noreferrer">LISTEN</a>
+      <a class="release-popup-button" href="https://seanwxrld.com/releases/#lost-lovers-avenue" target="_blank" rel="noopener noreferrer">READ NOTES</a>
       <a class="release-popup-button" href="https://seanwxrld.com/presave" target="_blank" rel="noopener noreferrer">PRE-SAVE</a>
     </div>
   `;
@@ -324,4 +324,28 @@ if ('IntersectionObserver' in window) {
   document.querySelectorAll('.reveal').forEach((el) => {
     el.classList.add('is-visible');
   });
+}
+
+
+const countdownEl = document.querySelector('[data-countdown]');
+if (countdownEl) {
+  const target = new Date(countdownEl.dataset.countdownTarget).getTime();
+  const d = countdownEl.querySelector('[data-days]');
+  const h = countdownEl.querySelector('[data-hours]');
+  const m = countdownEl.querySelector('[data-minutes]');
+  const sec = countdownEl.querySelector('[data-seconds]');
+  const pad = (n) => String(n).padStart(2, '0');
+  const tick = () => {
+    const diff = Math.max(0, target - Date.now());
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const minutes = Math.floor((diff % 3600000) / 60000);
+    const seconds = Math.floor((diff % 60000) / 1000);
+    if (d) d.textContent = pad(days);
+    if (h) h.textContent = pad(hours);
+    if (m) m.textContent = pad(minutes);
+    if (sec) sec.textContent = pad(seconds);
+  };
+  tick();
+  setInterval(tick, 1000);
 }
