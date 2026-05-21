@@ -1300,3 +1300,10 @@ body, .card, .panel, .hero-stat, .release-card, .gallery-tile, .form, .store-ite
   border: 1px solid #fff;
   color: #fff;
 }
+
+
+.countdown-card{border:1px solid var(--line);padding:28px;border-radius:20px;background:rgba(255,255,255,.02);}
+.countdown-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:18px;}
+.countdown-grid div{border:1px solid var(--line);border-radius:14px;padding:14px 8px;background:#050505;}
+.countdown-grid span{display:block;font-size:1.8rem;letter-spacing:.08em;font-family:"Archivo Black",sans-serif;}
+.countdown-grid small{color:var(--muted);font-size:.72rem;letter-spacing:.2em;}
