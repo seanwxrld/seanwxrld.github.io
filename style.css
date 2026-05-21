@@ -2,8 +2,8 @@
   color-scheme: dark;
   --black: #000000;
   --black-soft: #050505;
-  --red: #ffffff;
-  --red-soft: rgba(255, 255, 255, 0.18);
+  --red: #e06ccb;
+  --red-soft: rgba(224, 108, 203, 0.24);
   --white: #f7f5f1;
   --muted: #b7b2aa;
   --muted-strong: #d5d0c8;
@@ -83,7 +83,7 @@ input:focus-visible,
 select:focus-visible,
 textarea:focus-visible,
 video:focus-visible {
-  outline: 2px solid rgba(216, 15, 29, 0.85);
+  outline: 2px solid rgba(224, 108, 203, 0.85);
   outline-offset: 3px;
 }
 
@@ -106,6 +106,10 @@ video {
 .page section {
   width: 100%;
   max-width: 1100px;
+}
+
+.page section + section {
+  margin-top: 12px;
 }
 
 .page.light,
@@ -352,20 +356,20 @@ video {
 .main-release,
 .album-art-glow,
 .tracklist-panel {
-  border-color: rgba(216, 15, 29, 0.35);
-  box-shadow: 0 28px 100px rgba(216, 15, 29, 0.12), var(--shadow);
+  border-color: rgba(224, 108, 203, 0.35);
+  box-shadow: 0 28px 100px rgba(224, 108, 203, 0.12), var(--shadow);
 }
 
 .hero-stat.highlight {
-  background: linear-gradient(180deg, rgba(216, 15, 29, 0.14), rgba(255, 255, 255, 0.03));
+  background: linear-gradient(180deg, rgba(224, 108, 203, 0.14), rgba(255, 255, 255, 0.03));
 }
 
 .main-release {
   padding: 32px;
-  border: 1px solid rgba(216, 15, 29, 0.26);
+  border: 1px solid rgba(224, 108, 203, 0.26);
   border-radius: 32px;
   background:
-    radial-gradient(circle at top, rgba(216, 15, 29, 0.16), transparent 52%),
+    radial-gradient(circle at top, rgba(224, 108, 203, 0.16), transparent 52%),
     rgba(255, 255, 255, 0.02);
   box-shadow: 0 32px 120px rgba(0, 0, 0, 0.48);
 }
@@ -400,7 +404,7 @@ video {
   content: "";
   position: absolute;
   inset: 12%;
-  background: rgba(216, 15, 29, 0.22);
+  background: rgba(224, 108, 203, 0.22);
   filter: blur(38px);
   z-index: 0;
 }
@@ -545,7 +549,7 @@ h3 {
   padding: 26px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 20px;
   align-items: center;
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
@@ -561,7 +565,7 @@ h3 {
 
 .split {
   display: grid;
-  gap: 28px;
+  gap: 40px;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   align-items: stretch;
   width: 100%;
@@ -580,7 +584,7 @@ h3 {
 .stack {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 20px;
   align-items: center;
 }
 
@@ -887,8 +891,8 @@ h3 {
 .marquee {
   width: 100%;
   overflow: hidden;
-  border-top: 1px solid rgba(216, 15, 29, 0.55);
-  border-bottom: 1px solid rgba(216, 15, 29, 0.55);
+  border-top: 1px solid rgba(224, 108, 203, 0.55);
+  border-bottom: 1px solid rgba(224, 108, 203, 0.55);
   background: rgba(0, 0, 0, 0.88);
 }
 
@@ -983,7 +987,7 @@ h3 {
 .shop-body .page-store {
   color: var(--black-soft);
   background:
-    radial-gradient(circle at top, rgba(216, 15, 29, 0.12), transparent 32%),
+    radial-gradient(circle at top, rgba(224, 108, 203, 0.12), transparent 32%),
     linear-gradient(180deg, #ffffff 0%, #f7f5f1 100%);
 }
 
@@ -1033,8 +1037,8 @@ h3 {
 
 .store-stat.highlight,
 .store-card-featured {
-  border-color: rgba(216, 15, 29, 0.24);
-  box-shadow: 0 24px 64px rgba(216, 15, 29, 0.1), 0 18px 40px rgba(0, 0, 0, 0.08);
+  border-color: rgba(224, 108, 203, 0.24);
+  box-shadow: 0 24px 64px rgba(224, 108, 203, 0.1), 0 18px 40px rgba(0, 0, 0, 0.08);
 }
 
 .store-gate,
@@ -1096,7 +1100,7 @@ h3 {
   padding: 22px;
   border-radius: 22px;
   background: rgba(247, 245, 241, 0.9);
-  border: 1px solid rgba(216, 15, 29, 0.14);
+  border: 1px solid rgba(224, 108, 203, 0.14);
 }
 
 .store-password-form label {
@@ -1170,8 +1174,8 @@ h3 {
 
 .store-link-pill,
 .store-chip {
-  border: 1px solid rgba(216, 15, 29, 0.18);
-  background: rgba(216, 15, 29, 0.08);
+  border: 1px solid rgba(224, 108, 203, 0.18);
+  background: rgba(224, 108, 203, 0.08);
   border-radius: 999px;
   padding: 8px 12px;
   font-family: "JetBrains Mono", "Courier New", monospace;
@@ -1267,8 +1271,8 @@ h3 {
 }
 
 .store-shop-item-live {
-  border-color: rgba(216, 15, 29, 0.22);
-  box-shadow: 0 22px 56px rgba(216, 15, 29, 0.08), 0 16px 38px rgba(0, 0, 0, 0.08);
+  border-color: rgba(224, 108, 203, 0.22);
+  box-shadow: 0 22px 56px rgba(224, 108, 203, 0.08), 0 16px 38px rgba(0, 0, 0, 0.08);
 }
 
 .store-item-meta {
