@@ -349,3 +349,141 @@ if (countdownEl) {
   tick();
   setInterval(tick, 1000);
 }
+
+const requestModal = document.querySelector('[data-request-modal]');
+const requestForm = document.querySelector('[data-shop-request-form]');
+const requestItemInput = document.querySelector('[data-request-item]');
+const requestPriceInput = document.querySelector('[data-request-price]');
+const requestSizeInput = document.querySelector('[data-request-size]');
+const requestOpenButtons = document.querySelectorAll('[data-request-open]');
+const requestCloseButtons = document.querySelectorAll('[data-request-close]');
+
+const setRequestSizeState = (needsSize) => {
+  if (!requestSizeInput) {
+    return;
+  }
+
+  requestSizeInput.required = needsSize;
+  requestSizeInput.value = needsSize ? 'M' : 'Not applicable';
+};
+
+const openRequestModal = (button) => {
+  if (!requestModal) {
+    return;
+  }
+
+  const product = button.dataset.product || 'SĒAN Layered Shirt';
+  const price = button.dataset.price || '$30';
+  const needsSize = button.dataset.needsSize === 'true';
+
+  if (requestItemInput) {
+    requestItemInput.value = product;
+  }
+  if (requestPriceInput) {
+    requestPriceInput.value = price;
+  }
+  setRequestSizeState(needsSize);
+
+  requestModal.classList.add('is-open');
+  requestModal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('shop-request-open');
+
+  const firstField = requestModal.querySelector('input, select, textarea, button');
+  if (firstField) {
+    firstField.focus();
+  }
+};
+
+const closeRequestModal = () => {
+  if (!requestModal) {
+    return;
+  }
+
+  requestModal.classList.remove('is-open');
+  requestModal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('shop-request-open');
+};
+
+requestOpenButtons.forEach((button) => {
+  button.addEventListener('click', () => openRequestModal(button));
+});
+
+requestCloseButtons.forEach((button) => {
+  button.addEventListener('click', closeRequestModal);
+});
+
+if (requestItemInput) {
+  requestItemInput.addEventListener('change', () => {
+    const item = requestItemInput.value;
+    const isCd = item === 'SĒAN CDs';
+    if (requestPriceInput) {
+      requestPriceInput.value = isCd ? '$8' : '$30';
+    }
+    setRequestSizeState(!isCd);
+  });
+}
+
+if (requestModal) {
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && requestModal.classList.contains('is-open')) {
+      closeRequestModal();
+    }
+  });
+}
+
+if (requestForm) {
+  requestForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    if (!requestForm.reportValidity()) {
+      return;
+    }
+
+    const submitButton = requestForm.querySelector('button[type="submit"]');
+    const originalLabel = requestForm.dataset.submitLabel || (submitButton ? submitButton.textContent : 'Submit request');
+    const formData = new FormData(requestForm);
+    const payload = {
+      item: (formData.get('item') || '').toString(),
+      price: (formData.get('price') || '').toString(),
+      name: (formData.get('name') || '').toString().trim(),
+      email: (formData.get('email') || '').toString().trim().toLowerCase(),
+      size: (formData.get('size') || '').toString(),
+      quantity: Number(formData.get('quantity') || 1),
+      shippingAddress: (formData.get('shippingAddress') || '').toString().trim(),
+      notes: (formData.get('notes') || '').toString().trim(),
+      page: window.location.pathname,
+      createdAt: null
+    };
+
+    if (!payload.email || !payload.email.includes('@')) {
+      setFormStatus(requestForm, 'Please enter a valid email address.', 'error');
+      return;
+    }
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+    }
+    setFormStatus(requestForm, 'Sending your request...', 'pending');
+
+    try {
+      const firebase = await getFirebaseDb();
+      await firebase.addDoc(firebase.collection(firebase.db, 'shop_requests'), {
+        ...payload,
+        createdAt: firebase.serverTimestamp()
+      });
+
+      requestForm.reset();
+      setRequestSizeState(false);
+      setFormStatus(requestForm, 'You will be notified on the status of your order. Thank you. While you wait, check the other products in the shop.', 'success');
+    } catch (error) {
+      console.error('Shop request failed', error);
+      setFormStatus(requestForm, 'Request failed. Please try again in a moment.', 'error');
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = originalLabel;
+      }
+    }
+  });
+}
