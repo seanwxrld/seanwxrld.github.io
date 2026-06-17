@@ -1311,3 +1311,177 @@ body, .card, .panel, .hero-stat, .release-card, .gallery-tile, .form, .store-ite
 .countdown-grid div{border:1px solid var(--line);border-radius:14px;padding:14px 8px;background:#050505;}
 .countdown-grid span{display:block;font-size:1.8rem;letter-spacing:.08em;font-family:"Archivo Black",sans-serif;}
 .countdown-grid small{color:var(--muted);font-size:.72rem;letter-spacing:.2em;}
+
+/* Request-based shop redesign */
+.shop-body,
+.shop-body .card,
+.shop-body .panel,
+.shop-body .hero-stat,
+.shop-body .release-card,
+.shop-body .gallery-tile,
+.shop-body .form,
+.shop-body .store-item-card {
+  background: var(--white);
+  color: var(--black-soft);
+}
+
+.shop-body .page-store {
+  gap: 88px;
+}
+
+.shop-body .card,
+.shop-body .panel,
+.shop-body .store-product-panel,
+.shop-body .shop-modal-card,
+.shop-body .shop-request-form {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(224, 108, 203, 0.22);
+  box-shadow: 0 24px 60px rgba(224, 108, 203, 0.11), 0 18px 42px rgba(0, 0, 0, 0.08);
+}
+
+.shop-body .lead,
+.shop-body .eyebrow,
+.shop-body .meta-note,
+.shop-body .notice,
+.shop-body .footer,
+.shop-body .form small,
+.shop-body .store-item-meta {
+  color: rgba(21, 21, 21, 0.64);
+}
+
+.shop-body .button.primary,
+.shop-body .hero-actions .button.primary,
+.shop-body .store-actions .button.primary,
+.shop-body .shop-request-form .button.primary,
+.shop-body .cookie-actions .button.primary {
+  background: var(--red);
+  border-color: var(--red);
+  color: var(--white);
+}
+
+.shop-body .button.ghost,
+.shop-body .hero-actions .button.ghost,
+.shop-body .store-actions .button.ghost,
+.shop-body .cookie-actions .button.ghost {
+  background: transparent;
+  border-color: rgba(224, 108, 203, 0.58);
+  color: var(--red);
+}
+
+.store-price {
+  color: var(--red);
+  font-size: 1.25rem;
+  letter-spacing: 0.12em;
+}
+
+.store-item-art,
+.store-product-image {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(224, 108, 203, 0.18);
+  border-radius: 22px;
+  background: #fff;
+}
+
+.store-item-art img,
+.store-product-image img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.store-product-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.95fr) minmax(280px, 1.05fr);
+  gap: 28px;
+  align-items: stretch;
+}
+
+.store-product-panel {
+  padding: 30px;
+  border-radius: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.store-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.shop-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.shop-modal.is-open {
+  display: flex;
+}
+
+.shop-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.62);
+  backdrop-filter: blur(10px);
+}
+
+.shop-modal-card {
+  position: relative;
+  width: min(720px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow: auto;
+  border-radius: 28px;
+  padding: 28px;
+  text-align: center;
+}
+
+.shop-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(224, 108, 203, 0.4);
+  border-radius: 999px;
+  color: var(--red);
+  cursor: pointer;
+}
+
+.shop-request-form {
+  margin-top: 18px;
+  max-width: none;
+  align-items: stretch;
+}
+
+.shop-request-form textarea {
+  min-height: 96px;
+}
+
+.shop-body .form input,
+.shop-body .form textarea,
+.shop-body .form select {
+  background: #fff;
+  border-color: rgba(224, 108, 203, 0.22);
+  color: var(--black-soft);
+}
+
+body.shop-request-open {
+  overflow: hidden;
+}
+
+@media (max-width: 800px) {
+  .store-product-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .shop-modal-card {
+    padding: 24px 18px;
+  }
+}

@@ -58,14 +58,167 @@
 
     <main class="page page-store" data-store-root>
       <section class="hero reveal store-hero store-page-header">
-        <p class="eyebrow">STORE</p>
-        <h1>[MERCH & MUSIC]</h1>
-        <p class="lead">JOIN THE WAITLIST.</p>
+        <p class="eyebrow">OFFICIAL SHOP</p>
+        <h1>[REQUEST-BASED SHOP]</h1>
+        <p class="lead">
+          Browse the current SĒAN MOSIKILI pieces, open an item page, and submit a request.
+          We will review availability, shipping details, and next steps before confirming your order.
+        </p>
         <div class="hero-actions">
-          <a class="button ghost" href="/releases/#afterhours">NEW MUSIC</a>
-          <a class="button primary" href="/#newsletter">JOIN WAITLIST</a>
+          <a class="button primary" href="#catalog">SHOP PRODUCTS</a>
+          <a class="button ghost" href="#how-it-works">HOW REQUESTS WORK</a>
         </div>
       </section>
+
+      <section class="store-collection reveal" id="catalog" aria-labelledby="catalog-title">
+        <div class="section-intro">
+          <p class="eyebrow">CATALOG</p>
+          <h2 id="catalog-title">AVAILABLE TO REQUEST</h2>
+          <p class="lead">Three official products. Shirts are available in all sizes; CDs are available while stock lasts.</p>
+        </div>
+        <div class="section-grid store-catalog-grid">
+          <article class="card store-shop-item store-shop-item-live">
+            <a class="store-item-art" href="#sean-layered-shirt" aria-label="Open SĒAN Layered Shirt item page">
+              <img src="/assets/LAYERED_SHIRT.PNG" alt="SĒAN Layered Shirt" />
+            </a>
+            <p class="store-item-meta">SHIRT · ALL SIZES</p>
+            <h3>SĒAN LAYERED SHIRT</h3>
+            <p class="lead">A layered statement tee built around the SĒAN visual world.</p>
+            <strong class="store-price">$30</strong>
+            <div class="store-actions">
+              <a class="button ghost" href="#sean-layered-shirt">VIEW ITEM</a>
+              <button class="button primary" type="button" data-request-open data-product="SĒAN Layered Shirt" data-price="$30" data-needs-size="true">REQUEST</button>
+            </div>
+          </article>
+
+          <article class="card store-shop-item store-shop-item-live">
+            <a class="store-item-art" href="#sean-retro-shirt" aria-label="Open SĒAN Retro Shirt item page">
+              <img src="/assets/RETRO_SHIRT.PNG" alt="SĒAN Retro Shirt" />
+            </a>
+            <p class="store-item-meta">SHIRT · ALL SIZES</p>
+            <h3>SĒAN RETRO SHIRT</h3>
+            <p class="lead">A retro-inspired tee with clean tour-table energy.</p>
+            <strong class="store-price">$30</strong>
+            <div class="store-actions">
+              <a class="button ghost" href="#sean-retro-shirt">VIEW ITEM</a>
+              <button class="button primary" type="button" data-request-open data-product="SĒAN Retro Shirt" data-price="$30" data-needs-size="true">REQUEST</button>
+            </div>
+          </article>
+
+          <article class="card store-shop-item store-shop-item-live">
+            <a class="store-item-art" href="#sean-cds" aria-label="Open SĒAN CDs item page">
+              <img src="/assets/CD's.PNG" alt="SĒAN CDs" />
+            </a>
+            <p class="store-item-meta">MUSIC · PHYSICAL CD</p>
+            <h3>SĒAN CDs</h3>
+            <p class="lead">Physical music for collectors, supporters, and the archive.</p>
+            <strong class="store-price">$8</strong>
+            <div class="store-actions">
+              <a class="button ghost" href="#sean-cds">VIEW ITEM</a>
+              <button class="button primary" type="button" data-request-open data-product="SĒAN CDs" data-price="$8" data-needs-size="false">REQUEST</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="store-product-detail reveal" id="sean-layered-shirt" aria-labelledby="layered-title">
+        <div class="store-product-layout">
+          <figure class="store-product-image"><img src="/assets/LAYERED_SHIRT.PNG" alt="SĒAN Layered Shirt product image" /></figure>
+          <article class="store-product-panel">
+            <p class="eyebrow">ITEM PAGE</p>
+            <h2 id="layered-title">SĒAN LAYERED SHIRT</h2>
+            <strong class="store-price">$30</strong>
+            <p class="lead">A soft everyday shirt with layered SĒAN styling, made for fans who want the music world in wearable form.</p>
+            <ul class="store-bullet-list">
+              <li>All sizes available: XS, S, M, L, XL, 2XL, 3XL.</li>
+              <li>Request-based checkout so availability and shipping can be confirmed personally.</li>
+              <li>You will be notified with status updates after submitting.</li>
+            </ul>
+            <div class="store-actions"><button class="button primary" type="button" data-request-open data-product="SĒAN Layered Shirt" data-price="$30" data-needs-size="true">REQUEST THIS ITEM</button></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="store-product-detail reveal" id="sean-retro-shirt" aria-labelledby="retro-title">
+        <div class="store-product-layout">
+          <figure class="store-product-image"><img src="/assets/RETRO_SHIRT.PNG" alt="SĒAN Retro Shirt product image" /></figure>
+          <article class="store-product-panel">
+            <p class="eyebrow">ITEM PAGE</p>
+            <h2 id="retro-title">SĒAN RETRO SHIRT</h2>
+            <strong class="store-price">$30</strong>
+            <p class="lead">A throwback-styled shirt designed with a bold SĒAN identity and classic merch-table feel.</p>
+            <ul class="store-bullet-list">
+              <li>All sizes available: XS, S, M, L, XL, 2XL, 3XL.</li>
+              <li>Submit your details and preferred size before any order confirmation.</li>
+              <li>Requests are reviewed before payment or delivery arrangements are finalized.</li>
+            </ul>
+            <div class="store-actions"><button class="button primary" type="button" data-request-open data-product="SĒAN Retro Shirt" data-price="$30" data-needs-size="true">REQUEST THIS ITEM</button></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="store-product-detail reveal" id="sean-cds" aria-labelledby="cds-title">
+        <div class="store-product-layout">
+          <figure class="store-product-image"><img src="/assets/CD's.PNG" alt="SĒAN CDs product image" /></figure>
+          <article class="store-product-panel">
+            <p class="eyebrow">ITEM PAGE</p>
+            <h2 id="cds-title">SĒAN CDs</h2>
+            <strong class="store-price">$8</strong>
+            <p class="lead">Physical SĒAN music for anyone building the collection beyond streaming.</p>
+            <ul class="store-bullet-list">
+              <li>CD request includes shipping review and availability confirmation.</li>
+              <li>No size required for CDs; just share quantity and delivery details.</li>
+              <li>You will receive a follow-up with the status of your request.</li>
+            </ul>
+            <div class="store-actions"><button class="button primary" type="button" data-request-open data-product="SĒAN CDs" data-price="$8" data-needs-size="false">REQUEST THIS ITEM</button></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="store-info-grid reveal" id="how-it-works">
+        <article class="panel">
+          <p class="eyebrow">HOW IT WORKS</p>
+          <h2>REQUEST FIRST</h2>
+          <p class="lead">This shop does not use instant buy-now checkout. Submit a request and the team will contact you about availability, shipping, payment, and order status.</p>
+        </article>
+        <article class="panel">
+          <p class="eyebrow">RECOMMENDED</p>
+          <h2>PAIR IT UP</h2>
+          <p class="lead">If you request a shirt, consider adding a CD. If you request a CD, check the Layered and Retro shirts before sending.</p>
+        </article>
+      </section>
+
+      <div class="shop-modal" data-request-modal aria-hidden="true">
+        <div class="shop-modal-backdrop" data-request-close></div>
+        <section class="shop-modal-card" role="dialog" aria-modal="true" aria-labelledby="request-title">
+          <button class="shop-modal-close" type="button" data-request-close aria-label="Close request form">×</button>
+          <p class="eyebrow">SHOP REQUEST</p>
+          <h2 id="request-title">REQUEST AN ITEM</h2>
+          <form class="form shop-request-form" data-shop-request-form data-submit-label="Submit request">
+            <label>Item
+              <select name="item" data-request-item required>
+                <option value="SĒAN Layered Shirt">SĒAN Layered Shirt — $30</option>
+                <option value="SĒAN Retro Shirt">SĒAN Retro Shirt — $30</option>
+                <option value="SĒAN CDs">SĒAN CDs — $8</option>
+              </select>
+            </label>
+            <input type="hidden" name="price" data-request-price value="$30" />
+            <label>Name <input name="name" autocomplete="name" required /></label>
+            <label>Email <input type="email" name="email" autocomplete="email" required /></label>
+            <label>Size
+              <select name="size" data-request-size>
+                <option value="Not applicable">Not applicable</option>
+                <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>2XL</option><option>3XL</option>
+              </select>
+            </label>
+            <label>Quantity <input type="number" name="quantity" min="1" value="1" required /></label>
+            <label>Shipping address <textarea name="shippingAddress" autocomplete="shipping street-address" required placeholder="Street, apartment/suite, city, state, ZIP, country"></textarea></label>
+            <label>Notes <textarea name="notes" placeholder="Any fit notes, delivery notes, or extra items you want to add?"></textarea></label>
+            <button class="button primary" type="submit">SUBMIT REQUEST</button>
+            <p class="form-status" data-form-status aria-live="polite"></p>
+          </form>
+        </section>
+      </div>
     </main>
 
     <footer class="footer shop-footer">
