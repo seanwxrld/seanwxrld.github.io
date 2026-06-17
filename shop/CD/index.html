@@ -1,1 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SĒAN MOSIKILI · SĒAN CDs</title>
+    <meta name="description" content="Physical SĒAN music for anyone building the collection beyond streaming." />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <link rel="shortcut icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/FRAGILE EXHBITION (Mixtape by SEAN album art).png" />
+    <meta name="theme-color" content="#f7f5f1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@300;500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body class="shop-body">
+    <header class="site-header shop-header">
+      <div class="header-inner">
+        <button class="menu-button" type="button" data-menu-button aria-label="Open navigation" aria-expanded="false">Menu</button>
+        <a class="logo" href="/">SĒAN MOSIKILI</a>
+        <span class="header-spacer" aria-hidden="true"></span>
+      </div>
+      <nav class="nav-drawer shop-nav-drawer" data-nav-drawer aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/music/">Music</a>
+        <a href="/releases/">Releases</a>
+        <a href="/tour/">Tour</a>
+        <a href="/gallery/">Visuals</a>
+        <a href="/about/">About</a>
+        <a href="/swarm/">Swarm</a>
+        <a class="active" href="/shop/">Shop</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+    </header>
 
+    <main class="page page-store" data-store-root>
+      <section class="store-product-detail reveal" aria-labelledby="product-title">
+        <div class="store-product-layout">
+          <figure class="store-product-image"><img src="/assets/CD's.PNG" alt="SĒAN CDs product image" /></figure>
+          <article class="store-product-panel">
+            <p class="eyebrow">ITEM PAGE</p>
+            <h1 id="product-title">SĒAN CDs</h1>
+            <p class="store-item-meta">MUSIC · PHYSICAL CD</p>
+            <strong class="store-price">$8</strong>
+            <p class="lead">Physical SĒAN music for anyone building the collection beyond streaming.</p>
+            <ul class="store-bullet-list">
+              <li>CD request includes shipping review and availability confirmation.</li>
+              <li>No size required for CDs; just share quantity and delivery details.</li>
+              <li>You will receive a follow-up with the status of your request.</li>
+            </ul>
+            <div class="store-actions">
+              <button class="button primary" type="button" data-request-open data-product="SĒAN CDs" data-price="$8" data-needs-size="false">REQUEST THIS ITEM</button>
+              <a class="button ghost" href="/shop/">BACK TO SHOP</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <div class="shop-modal" data-request-modal aria-hidden="true">
+        <div class="shop-modal-backdrop" data-request-close></div>
+        <section class="shop-modal-card" role="dialog" aria-modal="true" aria-labelledby="request-title">
+          <button class="shop-modal-close" type="button" data-request-close aria-label="Close request form">×</button>
+          <p class="eyebrow">SHOP REQUEST</p>
+          <h2 id="request-title">REQUEST AN ITEM</h2>
+          <form class="form shop-request-form" data-shop-request-form data-submit-label="Submit request">
+            <label>Item
+              <select name="item" data-request-item required>
+                <option value="SĒAN Layered Shirt">SĒAN Layered Shirt — $30</option>
+                <option value="SĒAN Retro Shirt">SĒAN Retro Shirt — $30</option>
+                <option value="SĒAN CDs">SĒAN CDs — $8</option>
+              </select>
+            </label>
+            <input type="hidden" name="price" data-request-price value="$8" />
+            <label>Name <input name="name" autocomplete="name" required /></label>
+            <label>Email <input type="email" name="email" autocomplete="email" required /></label>
+            <label>Size
+              <select name="size" data-request-size>
+                <option value="Not applicable">Not applicable</option>
+                <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>2XL</option><option>3XL</option>
+              </select>
+            </label>
+            <label>Quantity <input type="number" name="quantity" min="1" value="1" required /></label>
+            <label>Shipping address <textarea name="shippingAddress" autocomplete="shipping street-address" required placeholder="Street, apartment/suite, city, state, ZIP, country"></textarea></label>
+            <label>Notes <textarea name="notes" placeholder="Any fit notes, delivery notes, or extra items you want to add?"></textarea></label>
+            <button class="button primary" type="submit">SUBMIT REQUEST</button>
+            <p class="form-status" data-form-status aria-live="polite"></p>
+          </form>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer shop-footer">
+      <strong>SĒAN MOSIKILI</strong>
+      <p>Copyright © 2026 SĒAN MOSIKILI — All Rights Reserved.</p>
+      <div class="footer-links"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div>
+    </footer>
+    <script src="/script.js"></script>
+  </body>
+</html>
