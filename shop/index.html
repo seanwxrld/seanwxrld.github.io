@@ -61,12 +61,11 @@
         <p class="eyebrow">OFFICIAL SHOP</p>
         <h1>[REQUEST-BASED SHOP]</h1>
         <p class="lead">
-          Browse the current SĒAN MOSIKILI pieces, open an item page, and submit a request.
-          We will review availability, shipping details, and next steps before confirming your order.
+          Browse the featured SĒAN MOSIKILI products below. Open an item to view details on its own page, then request it from there.
         </p>
         <div class="hero-actions">
           <a class="button primary" href="#catalog">SHOP PRODUCTS</a>
-          <a class="button ghost" href="#how-it-works">HOW REQUESTS WORK</a>
+          <button class="button ghost" type="button" data-request-open>REQUEST POPUP</button>
         </div>
       </section>
 
@@ -74,11 +73,11 @@
         <div class="section-intro">
           <p class="eyebrow">CATALOG</p>
           <h2 id="catalog-title">AVAILABLE TO REQUEST</h2>
-          <p class="lead">Three official products. Shirts are available in all sizes; CDs are available while stock lasts.</p>
+          <p class="lead">Featured official products only. Select an item to open its dedicated page instead of stacking every product detail here.</p>
         </div>
         <div class="section-grid store-catalog-grid">
           <article class="card store-shop-item store-shop-item-live">
-            <a class="store-item-art" href="#sean-layered-shirt" aria-label="Open SĒAN Layered Shirt item page">
+            <a class="store-item-art" href="/shop/SeanLayeredShirt/" aria-label="Open SĒAN Layered Shirt item page">
               <img src="/assets/LAYERED_SHIRT.PNG" alt="SĒAN Layered Shirt" />
             </a>
             <p class="store-item-meta">SHIRT · ALL SIZES</p>
@@ -86,13 +85,13 @@
             <p class="lead">A layered statement tee built around the SĒAN visual world.</p>
             <strong class="store-price">$30</strong>
             <div class="store-actions">
-              <a class="button ghost" href="#sean-layered-shirt">VIEW ITEM</a>
+              <a class="button ghost" href="/shop/SeanLayeredShirt/">VIEW ITEM</a>
               <button class="button primary" type="button" data-request-open data-product="SĒAN Layered Shirt" data-price="$30" data-needs-size="true">REQUEST</button>
             </div>
           </article>
 
           <article class="card store-shop-item store-shop-item-live">
-            <a class="store-item-art" href="#sean-retro-shirt" aria-label="Open SĒAN Retro Shirt item page">
+            <a class="store-item-art" href="/shop/SeanRetoShirt/" aria-label="Open SĒAN Retro Shirt item page">
               <img src="/assets/RETRO_SHIRT.PNG" alt="SĒAN Retro Shirt" />
             </a>
             <p class="store-item-meta">SHIRT · ALL SIZES</p>
@@ -100,13 +99,13 @@
             <p class="lead">A retro-inspired tee with clean tour-table energy.</p>
             <strong class="store-price">$30</strong>
             <div class="store-actions">
-              <a class="button ghost" href="#sean-retro-shirt">VIEW ITEM</a>
+              <a class="button ghost" href="/shop/SeanRetoShirt/">VIEW ITEM</a>
               <button class="button primary" type="button" data-request-open data-product="SĒAN Retro Shirt" data-price="$30" data-needs-size="true">REQUEST</button>
             </div>
           </article>
 
           <article class="card store-shop-item store-shop-item-live">
-            <a class="store-item-art" href="#sean-cds" aria-label="Open SĒAN CDs item page">
+            <a class="store-item-art" href="/shop/CD/" aria-label="Open SĒAN CDs item page">
               <img src="/assets/CD's.PNG" alt="SĒAN CDs" />
             </a>
             <p class="store-item-meta">MUSIC · PHYSICAL CD</p>
@@ -114,63 +113,9 @@
             <p class="lead">Physical music for collectors, supporters, and the archive.</p>
             <strong class="store-price">$8</strong>
             <div class="store-actions">
-              <a class="button ghost" href="#sean-cds">VIEW ITEM</a>
+              <a class="button ghost" href="/shop/CD/">VIEW ITEM</a>
               <button class="button primary" type="button" data-request-open data-product="SĒAN CDs" data-price="$8" data-needs-size="false">REQUEST</button>
             </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="store-product-detail reveal" id="sean-layered-shirt" aria-labelledby="layered-title">
-        <div class="store-product-layout">
-          <figure class="store-product-image"><img src="/assets/LAYERED_SHIRT.PNG" alt="SĒAN Layered Shirt product image" /></figure>
-          <article class="store-product-panel">
-            <p class="eyebrow">ITEM PAGE</p>
-            <h2 id="layered-title">SĒAN LAYERED SHIRT</h2>
-            <strong class="store-price">$30</strong>
-            <p class="lead">A soft everyday shirt with layered SĒAN styling, made for fans who want the music world in wearable form.</p>
-            <ul class="store-bullet-list">
-              <li>All sizes available: XS, S, M, L, XL, 2XL, 3XL.</li>
-              <li>Request-based checkout so availability and shipping can be confirmed personally.</li>
-              <li>You will be notified with status updates after submitting.</li>
-            </ul>
-            <div class="store-actions"><button class="button primary" type="button" data-request-open data-product="SĒAN Layered Shirt" data-price="$30" data-needs-size="true">REQUEST THIS ITEM</button></div>
-          </article>
-        </div>
-      </section>
-
-      <section class="store-product-detail reveal" id="sean-retro-shirt" aria-labelledby="retro-title">
-        <div class="store-product-layout">
-          <figure class="store-product-image"><img src="/assets/RETRO_SHIRT.PNG" alt="SĒAN Retro Shirt product image" /></figure>
-          <article class="store-product-panel">
-            <p class="eyebrow">ITEM PAGE</p>
-            <h2 id="retro-title">SĒAN RETRO SHIRT</h2>
-            <strong class="store-price">$30</strong>
-            <p class="lead">A throwback-styled shirt designed with a bold SĒAN identity and classic merch-table feel.</p>
-            <ul class="store-bullet-list">
-              <li>All sizes available: XS, S, M, L, XL, 2XL, 3XL.</li>
-              <li>Submit your details and preferred size before any order confirmation.</li>
-              <li>Requests are reviewed before payment or delivery arrangements are finalized.</li>
-            </ul>
-            <div class="store-actions"><button class="button primary" type="button" data-request-open data-product="SĒAN Retro Shirt" data-price="$30" data-needs-size="true">REQUEST THIS ITEM</button></div>
-          </article>
-        </div>
-      </section>
-
-      <section class="store-product-detail reveal" id="sean-cds" aria-labelledby="cds-title">
-        <div class="store-product-layout">
-          <figure class="store-product-image"><img src="/assets/CD's.PNG" alt="SĒAN CDs product image" /></figure>
-          <article class="store-product-panel">
-            <p class="eyebrow">ITEM PAGE</p>
-            <h2 id="cds-title">SĒAN CDs</h2>
-            <strong class="store-price">$8</strong>
-            <p class="lead">Physical SĒAN music for anyone building the collection beyond streaming.</p>
-            <ul class="store-bullet-list">
-              <li>CD request includes shipping review and availability confirmation.</li>
-              <li>No size required for CDs; just share quantity and delivery details.</li>
-              <li>You will receive a follow-up with the status of your request.</li>
-            </ul>
-            <div class="store-actions"><button class="button primary" type="button" data-request-open data-product="SĒAN CDs" data-price="$8" data-needs-size="false">REQUEST THIS ITEM</button></div>
           </article>
         </div>
       </section>
@@ -179,12 +124,12 @@
         <article class="panel">
           <p class="eyebrow">HOW IT WORKS</p>
           <h2>REQUEST FIRST</h2>
-          <p class="lead">This shop does not use instant buy-now checkout. Submit a request and the team will contact you about availability, shipping, payment, and order status.</p>
+          <p class="lead">This shop does not use instant buy-now checkout. Open a featured product, click request, and the request form appears as a popup only when you need it.</p>
         </article>
         <article class="panel">
-          <p class="eyebrow">RECOMMENDED</p>
-          <h2>PAIR IT UP</h2>
-          <p class="lead">If you request a shirt, consider adding a CD. If you request a CD, check the Layered and Retro shirts before sending.</p>
+          <p class="eyebrow">CLEAN SHOP</p>
+          <h2>ONE PAGE PER ITEM</h2>
+          <p class="lead">Product details now live on dedicated item pages so the shop page stays focused, simple, and easy to browse.</p>
         </article>
       </section>
 

@@ -388,7 +388,7 @@ const openRequestModal = (button) => {
   requestModal.setAttribute('aria-hidden', 'false');
   document.body.classList.add('shop-request-open');
 
-  const firstField = requestModal.querySelector('input, select, textarea, button');
+  const firstField = requestModal.querySelector('[data-request-item], input, select, textarea, button');
   if (firstField) {
     firstField.focus();
   }
