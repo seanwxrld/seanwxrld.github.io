@@ -1,0 +1,71 @@
+/* Shared warm-neutral palette, drawn from the official store. */
+:root {
+  color-scheme: light;
+  --paper: #f7f5f1;
+  --ink: #171717;
+  --accent: #9b3b85;
+  --muted: #69645e;
+  --muted-strong: #504b46;
+  --line: #d8d3ca;
+  --line-strong: #bcb5ab;
+  --glass: rgba(247,245,241,.97);
+  --glass-border: #d8d3ca;
+  --shadow: 0 18px 48px rgba(38,28,20,.07);
+}
+body.site-theme { background: var(--paper); color: var(--ink); color-scheme: light; }
+.site-theme .page, .site-theme .page.light, .site-theme .page.red { color: var(--ink); background: var(--paper); }
+body.site-theme .site-header { background: rgba(247,245,241,.96); color: var(--ink); border-bottom-color: var(--line); }
+.site-theme .nav-drawer { background: var(--glass); color: var(--ink); border-color: var(--line); box-shadow: var(--shadow); }
+.site-theme .nav-drawer a.active, .site-theme .menu-button::after { color: var(--accent); }
+.site-theme .footer { background: var(--paper); color: var(--muted); border-color: var(--line); }
+.site-theme .footer strong { color: var(--ink); }
+.site-theme .lead, .site-theme .eyebrow, .site-theme .meta-note, .site-theme .notice, .site-theme .album-date { color: var(--muted); }
+.site-theme .kicker, .site-theme .tag { color: var(--accent); }
+.site-theme:not(.premium-store) :is(.card,.panel,.hero-stat,.release-card,.media-card,.gallery-tile,.form,.legal-copy,.countdown-card) {
+  background: #fffdfa; color: var(--ink); border-color: var(--line); border-radius: 3px; box-shadow: none;
+}
+.site-theme:not(.premium-store) .main-release-copy { background: transparent; }
+.site-theme:not(.premium-store):not(.home-refresh) .hero h1 { font-family: 'Archivo Black',sans-serif; letter-spacing: -.045em; line-height: 1.12; }
+.site-theme:not(.premium-store) .release-copy h2 { font-family: 'Archivo Black',sans-serif; letter-spacing: -.03em; line-height: 1.15; }
+.site-theme .button.primary, .site-theme .page.light .button.primary, .site-theme .page.red .button.primary { background: var(--ink); color: #fff; border-color: var(--ink); }
+.site-theme .button.ghost, .site-theme .page.light .button.ghost, .site-theme .page.red .button.ghost { color: var(--ink); background: transparent; border-color: var(--line-strong); }
+.site-theme .button.primary:hover { background: #35202f; }
+.site-theme:not(.premium-store):not(.home-refresh) .button { border-radius: 2px; }
+.site-theme .form input, .site-theme .form select, .site-theme .form textarea,
+.site-theme .newsletter-form input, .site-theme .newsletter-form select {
+  background: #fffdfa; color: var(--ink); border-color: var(--line-strong); color-scheme: light;
+}
+.site-theme input::placeholder, .site-theme textarea::placeholder { color: #77716a; opacity: 1; }
+.site-theme .form-status[data-status-type="success"], .site-theme .form-status.success { color: #27643e; }
+.site-theme .form-status[data-status-type="error"], .site-theme .form-status.error { color: #a32b3b; }
+.site-theme .newsletter { background: #eeeae3; border-color: var(--line); color: var(--ink); }
+.site-theme .newsletter .lead, .site-theme .newsletter-form small, .site-theme .form small { color: var(--muted); }
+.site-theme .release-media, .site-theme .embed, .site-theme .video-frame { background: #e9e4dc; border-color: var(--line); box-shadow: none; border-radius: 3px; }
+.site-theme .album-art-glow::after { content: none; }
+.site-theme .countdown-grid div { background: #eeeae3; border-color: var(--line); }
+.site-theme .marquee { background: #eeeae3; border-color: var(--line); }
+.site-theme .marquee-content { color: var(--accent); }
+body.site-theme .cookie-banner { background: var(--paper); color: var(--ink); color-scheme: light; border-color: var(--line); }
+.site-theme .cookie-banner p { color: var(--muted); }
+.site-theme .release-popup { background: var(--paper); color: var(--ink); border-color: var(--line); }
+.site-theme .release-popup-close { color: var(--ink); }
+.site-theme .release-popup-button { background: transparent; color: var(--ink); border-color: var(--line-strong); }
+.site-theme a:focus-visible, .site-theme button:focus-visible, .site-theme input:focus-visible, .site-theme select:focus-visible, .site-theme textarea:focus-visible { outline-color: var(--accent); }
+/* Homepage retains its composition, with a typographic MONACO feature. */
+.site-theme.home-refresh .home-cover { background: #eeeae3; color: var(--ink); }
+.site-theme.home-refresh .home-cover::after { content: none; }
+.site-theme.home-refresh .home-cover-copy > p:not(.eyebrow) { color: var(--muted); }
+.site-theme.home-refresh .home-cover-foot, .site-theme.home-refresh .home-section-heading { border-color: var(--line-strong); }
+.site-theme.home-refresh .home-section-heading > span { color: var(--muted); }
+.site-theme.home-refresh .home-feature-tile h3 span { color: var(--accent); }
+.site-theme.home-refresh .newsletter { background: #eeeae3; border-color: var(--line); }
+/* Tour accents match the store; original poster artwork is preserved. */
+.site-theme .tour-intro h1 span, .site-theme .tour-program h2 span { color: var(--accent); }
+.site-theme .tour-dot { background: var(--accent); }
+.site-theme .tour-request-button { background: var(--ink); color: #fff; }
+.site-theme .tour-request-button:hover { background: #35202f; }
+.site-theme .tour-description, .site-theme .tour-details-note, .site-theme .tour-date-info p, .site-theme .tour-request p:last-child { color: var(--muted); }
+.site-theme .tour-topline, .site-theme .tour-date, .site-theme .tour-online { border-color: var(--line-strong); }
+#monaco { scroll-margin-top: 100px; }
+.monaco-release .release-copy { text-align: left; align-items: flex-start; }
+.monaco-release h2 { font-size: clamp(36px,5vw,72px); }
