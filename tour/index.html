@@ -9,7 +9,7 @@
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
     <link rel="shortcut icon" href="/assets/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/assets/FRAGILE EXHBITION (Mixtape by SEAN album art).png" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#ffffff" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,11 +17,11 @@
       rel="stylesheet"
     />
   </head>
-  <body>
+  <body class="tour-body">
     <header class="site-header">
       <div class="header-inner">
         <button class="menu-button" type="button" data-menu-button aria-label="Open navigation" aria-expanded="false">Menu</button>
-        <a class="logo" href="/">SĒAN MOSIKILI</a>
+        <a class="logo" href="/" aria-label="SĒAN MOSIKILI — Home"><img src="/assets/Apple_Music_Artist_Logo.png" alt="SĒAN MOSIKILI" width="3120" height="1200" /></a>
         <span class="header-spacer" aria-hidden="true"></span>
       </div>
       <nav class="nav-drawer" data-nav-drawer aria-label="Primary">
@@ -46,46 +46,42 @@
 </script>
     </header>
 
-    <main class="page">
-      <section class="hero reveal">
-        <p class="eyebrow">Tour &amp; Events</p>
-        <h1>Upcoming performances</h1>
+    <main class="page tour-page">
+      <section class="tour-intro" aria-labelledby="tour-title">
+        <div class="tour-topline"><p>Tour &amp; live sessions</p><span>2026 / Online</span></div>
+        <h1 id="tour-title">SEE YOU <span>LIVE.</span></h1>
+        <div class="tour-intro-bottom"><p>Two dates. Wherever you are.</p><a href="#tour-dates">Explore the dates <span aria-hidden="true">↓</span></a></div>
       </section>
 
-      <section class="section-grid reveal" aria-label="TOUR DATES">
-        <article class="card">
-          <span class="tag">TOUR</span>
-          <h2>NO TOUR DATES</h2>
-          <p>Sorry we are currently not on tour, contact us if you'd love us to come to your city.</p>
-          <a class="button ghost" href="seanwxrld.com/#newsletter">TOUR UPDATES</a>
-        </article>
-        <article class="card">
-          <span class="tag">LIVE SESSIONS</span>
-          <h2>$ONIC LAB LIVE</h2>
-          <p>SONIC LAB - Acoustic Live sessions are coming to you.</p>
-          <a class="button ghost" href="seanwxrld.com/#newsletter">SONIC LAB UPDATES</a>
-        </article>
-        <article class="card">
-          <span class="tag">FESTIVALS</span>
-          <h2>NO FESTIVAL APPEARANCES</h2>
-          <p>We have no festivals on our calendar yet, join our newsletter for festival updates.</p>
-          <a class="button ghost" href="seanwxrld.com/#newsletter">FESTIVAL UPDATES</a>
-        </article>
+      <section class="tour-feature" aria-labelledby="sessions-title">
+        <figure class="tour-poster">
+          <img src="/assets/TOUR%20POSTER.PNG" alt="SĒAN MOSIKILI $ONIC LAB Live Sessions tour poster, 3 October and 10 October." width="1400" height="1400" fetchpriority="high" />
+          <figcaption>$ONIC LAB <span>LIVE SESSIONS / 2026</span></figcaption>
+        </figure>
+        <div class="tour-program" id="tour-dates">
+          <p class="tour-label"><span class="tour-dot" aria-hidden="true"></span> Upcoming performances</p>
+          <h2 id="sessions-title">$ONIC LAB<br /><span>Live sessions.</span></h2>
+          <p class="tour-description">Step inside the sound. Join SĒAN MOSIKILI for two online live sessions this October.</p>
+          <ol class="tour-dates">
+            <li class="tour-date">
+              <time datetime="2026-10-03"><span class="tour-day">03</span><span>OCT / 2026</span></time>
+              <div class="tour-date-info"><h3>Live session 01</h3><p>Saturday · Online</p></div>
+              <span class="tour-online">Online</span>
+            </li>
+            <li class="tour-date">
+              <time datetime="2026-10-10"><span class="tour-day">10</span><span>OCT / 2026</span></time>
+              <div class="tour-date-info"><h3>Live session 02</h3><p>Saturday · Online</p></div>
+              <span class="tour-online">Online</span>
+            </li>
+          </ol>
+          <p class="tour-details-note">Streaming details and start times to be announced.</p>
+          <a class="tour-link" href="/#newsletter">Get live updates <span aria-hidden="true">↗</span></a>
+        </div>
       </section>
 
-      <section class="split reveal">
-        <article class="panel">
-          <p class="kicker">Ticketing</p>
-          <h2>TICKETS</h2>
-          <p>Follow our official Bandsintown page for public dates, reminders, and future live announcements.</p>
-          <a class="button primary" href="https://www.bandsintown.com/a/15631874-sean-mosikili?came_from=210&utm_medium=web&utm_source=artist_event_streaming_page&utm_campaign=artist&noindex=1" target="_blank" rel="noopener noreferrer">GET TICKETS</a>
-        </article>
-        <article class="panel">
-          <p class="kicker">Booking</p>
-          <h2>Do you have a booking request?</h2>
-          <p>Use the contact page for performances, sync, private events, and bookings.</p>
-          <a class="button primary" href="/contact/">CONTACT</a>
-        </article>
+      <section class="tour-request" aria-labelledby="request-title">
+        <div><p class="tour-label">The next stop could be yours</p><h2 id="request-title">YOUR CITY.<br />OUR NEXT STAGE.</h2><p>Tell us where you want to see SĒAN MOSIKILI live.</p></div>
+        <a class="tour-request-button" href="/contact/#contact-form">Request your city <span aria-hidden="true">↗</span></a>
       </section>
     </main>
 

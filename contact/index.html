@@ -30,7 +30,7 @@
     <header class="site-header">
       <div class="header-inner">
         <button class="menu-button" type="button" data-menu-button aria-label="Open navigation" aria-expanded="false">Menu</button>
-        <a class="logo" href="/">SĒAN MOSIKILI</a>
+        <a class="logo" href="/" aria-label="SĒAN MOSIKILI — Home"><img src="/assets/Apple_Music_Artist_Logo.png" alt="SĒAN MOSIKILI" width="3120" height="1200" /></a>
         <span class="header-spacer" aria-hidden="true"></span>
       </div>
       <nav class="nav-drawer" data-nav-drawer aria-label="Primary">
@@ -57,7 +57,7 @@
       </section>
 
       <section class="split reveal">
-        <form class="form" data-contact-form>
+        <form class="form" id="contact-form" data-contact-form>
           <h2>Start a conversation</h2>
           <label>
             Name
@@ -72,6 +72,7 @@
             <select name="interest" required>
               <option value="">Choose one</option>
               <option value="Booking">Booking</option>
+              <option value="Request your city">Request your city</option>
               <option value="Collaboration">Collaboration</option>
               <option value="Press / Interview">Press / Interview</option>
               <option value="Sync / Licensing">Sync / Licensing</option>
