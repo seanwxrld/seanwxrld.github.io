@@ -3,7 +3,7 @@
   color-scheme: light;
   --paper: #f7f5f1;
   --ink: #171717;
-  --accent: #9b3b85;
+  --accent: #79543b;
   --muted: #69645e;
   --muted-strong: #504b46;
   --line: #d8d3ca;
@@ -29,7 +29,7 @@ body.site-theme .site-header { background: rgba(247,245,241,.96); color: var(--i
 .site-theme:not(.premium-store) .release-copy h2 { font-family: 'Archivo Black',sans-serif; letter-spacing: -.03em; line-height: 1.15; }
 .site-theme .button.primary, .site-theme .page.light .button.primary, .site-theme .page.red .button.primary { background: var(--ink); color: #fff; border-color: var(--ink); }
 .site-theme .button.ghost, .site-theme .page.light .button.ghost, .site-theme .page.red .button.ghost { color: var(--ink); background: transparent; border-color: var(--line-strong); }
-.site-theme .button.primary:hover { background: #35202f; }
+.site-theme .button.primary:hover { background: #3e2b20; }
 .site-theme:not(.premium-store):not(.home-refresh) .button { border-radius: 2px; }
 .site-theme .form input, .site-theme .form select, .site-theme .form textarea,
 .site-theme .newsletter-form input, .site-theme .newsletter-form select {
@@ -63,7 +63,7 @@ body.site-theme .cookie-banner { background: var(--paper); color: var(--ink); co
 .site-theme .tour-intro h1 span, .site-theme .tour-program h2 span { color: var(--accent); }
 .site-theme .tour-dot { background: var(--accent); }
 .site-theme .tour-request-button { background: var(--ink); color: #fff; }
-.site-theme .tour-request-button:hover { background: #35202f; }
+.site-theme .tour-request-button:hover { background: #3e2b20; }
 .site-theme .tour-description, .site-theme .tour-details-note, .site-theme .tour-date-info p, .site-theme .tour-request p:last-child { color: var(--muted); }
 .site-theme .tour-topline, .site-theme .tour-date, .site-theme .tour-online { border-color: var(--line-strong); }
 #monaco { scroll-margin-top: 100px; }

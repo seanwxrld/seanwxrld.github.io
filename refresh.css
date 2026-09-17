@@ -11,7 +11,7 @@
 .editorial-link { font-size: .68rem; text-transform: uppercase; letter-spacing: .07em; border-bottom: 1px solid currentColor; padding: 8px 0; display: inline-block; }
 .collection-nav { display: flex; gap: 26px; padding-bottom: 22px; border-bottom: 1px solid #cdc9c1; font-size: .68rem; text-transform: uppercase; letter-spacing: .08em; }
 .collection-nav a { padding: 8px 0; color: #68645e; }
-.collection-nav a[aria-current] { color: #171717; box-shadow: 0 2px #b6479f; }
+.collection-nav a[aria-current] { color: #171717; box-shadow: 0 2px #79543b; }
 .collection-heading { margin: 28px 0; }
 .collection-heading h2 { font-size: .9rem; letter-spacing: .06em; }
 .collection-heading > span { font-size: .6rem; color: #68645e; letter-spacing: .06em; }
@@ -44,13 +44,13 @@
 .premium-store .store-product-panel h1 { font-family: 'Archivo Black', sans-serif; font-size: clamp(28px,3.5vw,48px); line-height: 1.08; letter-spacing: -.035em; }
 .premium-store .store-price { color: #171717; font-size: 1.65rem; letter-spacing: -.03em; }
 .premium-store .store-product-panel .lead { font-size: .84rem; line-height: 1.8; }
-.premium-store .store-item-meta { font-size: .6rem; color: #765369; letter-spacing: .07em; }
+.premium-store .store-item-meta { font-size: .6rem; color: #735b48; letter-spacing: .07em; }
 .premium-store .store-bullet-list { margin: 0; padding: 20px 0 20px 18px; border-top: 1px solid #cdc9c1; border-bottom: 1px solid #cdc9c1; font-size: .7rem; color: #68645e; }
 .premium-store .store-actions { width: 100%; display: flex; flex-direction: column; gap: 10px; }
 .premium-store .button { border-radius: 2px; min-height: 46px; letter-spacing: .1em; }
 .premium-store .store-actions .button.primary, .premium-store .shop-request-form .button.primary { background: #171717; color: #fff; border-color: #171717; }
 .premium-store .store-actions .button.ghost { color: #171717; border-color: #cdc9c1; }
-.premium-store .button.primary:hover { background: #35202f; }
+.premium-store .button.primary:hover { background: #3e2b20; }
 .premium-store .request-note { font-size: .64rem; color: #68645e; line-height: 1.7; }
 .premium-store .shop-modal-card { border-radius: 4px; background: #f7f5f1; color: #171717; border: 1px solid #cdc9c1; box-shadow: 0 24px 80px #0004; padding: 36px; text-align: left; }
 .premium-store .shop-modal-card h2 { font-family: 'Archivo Black', sans-serif; font-size: 1.7rem; letter-spacing: -.025em; margin: 12px 42px 10px 0; }

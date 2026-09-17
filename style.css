@@ -2,8 +2,8 @@
   color-scheme: dark;
   --black: #000000;
   --black-soft: #050505;
-  --red: #e06ccb;
-  --red-soft: rgba(224, 108, 203, 0.24);
+  --red: #79543b;
+  --red-soft: rgba(121, 84, 59, 0.24);
   --white: #f7f5f1;
   --muted: #b7b2aa;
   --muted-strong: #d5d0c8;
@@ -83,7 +83,7 @@ input:focus-visible,
 select:focus-visible,
 textarea:focus-visible,
 video:focus-visible {
-  outline: 2px solid rgba(224, 108, 203, 0.85);
+  outline: 2px solid rgba(121, 84, 59, 0.85);
   outline-offset: 3px;
 }
 
@@ -356,20 +356,20 @@ video {
 .main-release,
 .album-art-glow,
 .tracklist-panel {
-  border-color: rgba(224, 108, 203, 0.35);
-  box-shadow: 0 28px 100px rgba(224, 108, 203, 0.12), var(--shadow);
+  border-color: rgba(121, 84, 59, 0.35);
+  box-shadow: 0 28px 100px rgba(121, 84, 59, 0.12), var(--shadow);
 }
 
 .hero-stat.highlight {
-  background: linear-gradient(180deg, rgba(224, 108, 203, 0.14), rgba(255, 255, 255, 0.03));
+  background: linear-gradient(180deg, rgba(121, 84, 59, 0.14), rgba(255, 255, 255, 0.03));
 }
 
 .main-release {
   padding: 32px;
-  border: 1px solid rgba(224, 108, 203, 0.26);
+  border: 1px solid rgba(121, 84, 59, 0.26);
   border-radius: 32px;
   background:
-    radial-gradient(circle at top, rgba(224, 108, 203, 0.16), transparent 52%),
+    radial-gradient(circle at top, rgba(121, 84, 59, 0.16), transparent 52%),
     rgba(255, 255, 255, 0.02);
   box-shadow: 0 32px 120px rgba(0, 0, 0, 0.48);
 }
@@ -404,7 +404,7 @@ video {
   content: "";
   position: absolute;
   inset: 12%;
-  background: rgba(224, 108, 203, 0.22);
+  background: rgba(121, 84, 59, 0.22);
   filter: blur(38px);
   z-index: 0;
 }
@@ -891,8 +891,8 @@ h3 {
 .marquee {
   width: 100%;
   overflow: hidden;
-  border-top: 1px solid rgba(224, 108, 203, 0.55);
-  border-bottom: 1px solid rgba(224, 108, 203, 0.55);
+  border-top: 1px solid rgba(121, 84, 59, 0.55);
+  border-bottom: 1px solid rgba(121, 84, 59, 0.55);
   background: rgba(0, 0, 0, 0.88);
 }
 
@@ -987,7 +987,7 @@ h3 {
 .shop-body .page-store {
   color: var(--black-soft);
   background:
-    radial-gradient(circle at top, rgba(224, 108, 203, 0.12), transparent 32%),
+    radial-gradient(circle at top, rgba(121, 84, 59, 0.12), transparent 32%),
     linear-gradient(180deg, #ffffff 0%, #f7f5f1 100%);
 }
 
@@ -1037,8 +1037,8 @@ h3 {
 
 .store-stat.highlight,
 .store-card-featured {
-  border-color: rgba(224, 108, 203, 0.24);
-  box-shadow: 0 24px 64px rgba(224, 108, 203, 0.1), 0 18px 40px rgba(0, 0, 0, 0.08);
+  border-color: rgba(121, 84, 59, 0.24);
+  box-shadow: 0 24px 64px rgba(121, 84, 59, 0.1), 0 18px 40px rgba(0, 0, 0, 0.08);
 }
 
 .store-gate,
@@ -1100,7 +1100,7 @@ h3 {
   padding: 22px;
   border-radius: 22px;
   background: rgba(247, 245, 241, 0.9);
-  border: 1px solid rgba(224, 108, 203, 0.14);
+  border: 1px solid rgba(121, 84, 59, 0.14);
 }
 
 .store-password-form label {
@@ -1174,8 +1174,8 @@ h3 {
 
 .store-link-pill,
 .store-chip {
-  border: 1px solid rgba(224, 108, 203, 0.18);
-  background: rgba(224, 108, 203, 0.08);
+  border: 1px solid rgba(121, 84, 59, 0.18);
+  background: rgba(121, 84, 59, 0.08);
   border-radius: 999px;
   padding: 8px 12px;
   font-family: "JetBrains Mono", "Courier New", monospace;
@@ -1271,8 +1271,8 @@ h3 {
 }
 
 .store-shop-item-live {
-  border-color: rgba(224, 108, 203, 0.22);
-  box-shadow: 0 22px 56px rgba(224, 108, 203, 0.08), 0 16px 38px rgba(0, 0, 0, 0.08);
+  border-color: rgba(121, 84, 59, 0.22);
+  box-shadow: 0 22px 56px rgba(121, 84, 59, 0.08), 0 16px 38px rgba(0, 0, 0, 0.08);
 }
 
 .store-item-meta {
@@ -1335,8 +1335,8 @@ body, .card, .panel, .hero-stat, .release-card, .gallery-tile, .form, .store-ite
 .shop-body .shop-modal-card,
 .shop-body .shop-request-form {
   background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(224, 108, 203, 0.22);
-  box-shadow: 0 24px 60px rgba(224, 108, 203, 0.11), 0 18px 42px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(121, 84, 59, 0.22);
+  box-shadow: 0 24px 60px rgba(121, 84, 59, 0.11), 0 18px 42px rgba(0, 0, 0, 0.08);
 }
 
 .shop-body .lead,
@@ -1364,7 +1364,7 @@ body, .card, .panel, .hero-stat, .release-card, .gallery-tile, .form, .store-ite
 .shop-body .store-actions .button.ghost,
 .shop-body .cookie-actions .button.ghost {
   background: transparent;
-  border-color: rgba(224, 108, 203, 0.58);
+  border-color: rgba(121, 84, 59, 0.58);
   color: var(--red);
 }
 
@@ -1378,7 +1378,7 @@ body, .card, .panel, .hero-stat, .release-card, .gallery-tile, .form, .store-ite
 .store-product-image {
   width: 100%;
   overflow: hidden;
-  border: 1px solid rgba(224, 108, 203, 0.18);
+  border: 1px solid rgba(121, 84, 59, 0.18);
   border-radius: 22px;
   background: #fff;
 }
@@ -1448,7 +1448,7 @@ body, .card, .panel, .hero-stat, .release-card, .gallery-tile, .form, .store-ite
   right: 18px;
   width: 38px;
   height: 38px;
-  border: 1px solid rgba(224, 108, 203, 0.4);
+  border: 1px solid rgba(121, 84, 59, 0.4);
   border-radius: 999px;
   color: var(--red);
   cursor: pointer;
@@ -1468,7 +1468,7 @@ body, .card, .panel, .hero-stat, .release-card, .gallery-tile, .form, .store-ite
 .shop-body .form textarea,
 .shop-body .form select {
   background: #fff;
-  border-color: rgba(224, 108, 203, 0.22);
+  border-color: rgba(121, 84, 59, 0.22);
   color: var(--black-soft);
 }
 
