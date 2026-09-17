@@ -1486,9 +1486,6 @@ body.shop-request-open {
   }
 }
 
-/* Official artist mark, shared by every page header. */
-.site-header .logo { display: block; width: clamp(140px, 18vw, 180px); line-height: 0; }
-.site-header .logo img { width: 100%; height: auto; object-fit: contain; }
 #contact-form { scroll-margin-top: 120px; }
 
 /* Tour: poster-led, white editorial layout. */
@@ -1532,8 +1529,6 @@ body.shop-request-open {
 .tour-body .footer strong { color: #111; }
 .tour-body .cookie-banner { color: #f7f5f1; color-scheme: dark; }
 @media (max-width: 760px) {
-  .site-header .header-inner { grid-template-columns: minmax(56px, 1fr) auto minmax(56px, 1fr); gap: 8px; }
-  .site-header .logo { width: 140px; }
   .tour-page { padding-top: 130px; gap: 40px; padding-bottom: 64px; }
   .tour-topline { font-size: .58rem; }
   .tour-intro-bottom { font-size: .65rem; align-items: flex-start; }
