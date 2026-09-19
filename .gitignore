@@ -1,0 +1,7 @@
+node_modules/
+.firebase/
+*-debug.log
+functions/.env*
+!functions/.env.example
+functions/.secret*
+playwright-results/

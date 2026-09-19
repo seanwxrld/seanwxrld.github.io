@@ -21,13 +21,13 @@
       href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@300;500&family=Poppins:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
-  </head>
+  <link rel="stylesheet" href="/app/ui.css"></head>
   <body class="site-theme shop-body premium-store">
     <header class="site-header shop-header">
       <div class="header-inner">
         <button class="menu-button" type="button" data-menu-button aria-label="Open navigation" aria-expanded="false">Menu</button>
         <a class="logo" href="/">SĒAN MOSIKILI</a>
-        <span class="header-spacer" aria-hidden="true"></span>
+        <nav class="store-tools" aria-label="Your shopping"><a href="/account/">Account</a><a href="/cart/">Cart (<span data-cart-count>0</span>)</a></nav>
       </div>
       <nav class="nav-drawer shop-nav-drawer" data-nav-drawer aria-label="Primary">
         <a href="/">Home</a>
@@ -38,12 +38,12 @@
         <a href="/about/">About</a>
         <a href="/swarm/">Swarm</a>
         <a class="active" href="/shop/">Shop</a>
-        <a href="/contact/">Contact</a>
+        <a href="/contact/">Contact</a><a href="/account/">My account</a>
       </nav>
     </header>
 
     <main class="page page-store" data-store-root>
-<section class="store-editorial-hero category-hero"><p class="eyebrow">Official store / Apparel</p><h1>WEAR THE WORLD.</h1><p class="category-intro">Signature SĒAN pieces. Find your fit.</p></section><section id="catalog" class="store-collection" aria-labelledby="catalog-title"><nav class="collection-nav" aria-label="Store collections"><a href="/shop/">All objects</a><a href="/shop/merch/" aria-current="page">Apparel</a><a href="/shop/music/">Music</a></nav><div class="collection-heading"><h2 id="catalog-title">APPAREL</h2><span>02 OBJECTS</span></div><div class="premium-grid"><article class="premium-item"><a class="premium-art" href="/shop/SeanLayeredShirt/"><img src="/assets/LAYERED_SHIRT.PNG" alt="SĒAN LAYERED SHIRT" loading="lazy" width="1600" height="1600" /><span class="object-index">APPAREL / 01</span></a><div class="item-heading"><h3><a href="/shop/SeanLayeredShirt/">SĒAN LAYERED SHIRT</a></h3><span>$30</span></div><p>100% cotton. Unisex. Layered silhouette.</p><div class="item-bottom"><span>Out of stock · Requests open</span><a href="/shop/SeanLayeredShirt/" aria-label="View SĒAN LAYERED SHIRT">View item ↗</a></div></article><article class="premium-item"><a class="premium-art" href="/shop/SeanRetoShirt/"><img src="/assets/RETRO_SHIRT.PNG" alt="SĒAN RETRO SHIRT" loading="lazy" width="1600" height="1600" /><span class="object-index">APPAREL / 02</span></a><div class="item-heading"><h3><a href="/shop/SeanRetoShirt/">SĒAN RETRO SHIRT</a></h3><span>$30</span></div><p>100% cotton. Unisex. A retro signature.</p><div class="item-bottom"><span>Out of stock · Requests open</span><a href="/shop/SeanRetoShirt/" aria-label="View SĒAN RETRO SHIRT">View item ↗</a></div></article></div></section><section class="store-service"><h2>MORE TO COME.</h2><a class="editorial-link" href="/#newsletter">Join the Swarm for updates ↗</a></section>
+<section class="store-editorial-hero category-hero"><p class="eyebrow">Official store / Apparel</p><h1>WEAR THE WORLD.</h1><p class="category-intro">Signature SĒAN pieces. Find your fit.</p></section><section id="catalog" class="store-collection" aria-labelledby="catalog-title"><nav class="collection-nav" aria-label="Store collections"><a href="/shop/">All objects</a><a href="/shop/merch/" aria-current="page">Apparel</a><a href="/shop/music/">Music</a></nav><div class="collection-heading"><h2 id="catalog-title">APPAREL</h2><span>02 OBJECTS</span></div><p class="dynamic-message" data-catalog-status role="status"></p><div class="premium-grid"><article class="premium-item"><a class="premium-art" href="/shop/SeanLayeredShirt/"><img src="/assets/LAYERED_SHIRT.PNG" alt="SĒAN LAYERED SHIRT" loading="lazy" width="1600" height="1600" /><span class="object-index">APPAREL / 01</span></a><div class="item-heading"><h3><a href="/shop/SeanLayeredShirt/">SĒAN LAYERED SHIRT</a></h3><span>$30</span></div><p>100% cotton. Unisex. Layered silhouette.</p><div class="item-bottom"><span>Out of stock · Requests open</span><a href="/shop/SeanLayeredShirt/" aria-label="View SĒAN LAYERED SHIRT">View item ↗</a></div></article><article class="premium-item"><a class="premium-art" href="/shop/SeanRetoShirt/"><img src="/assets/RETRO_SHIRT.PNG" alt="SĒAN RETRO SHIRT" loading="lazy" width="1600" height="1600" /><span class="object-index">APPAREL / 02</span></a><div class="item-heading"><h3><a href="/shop/SeanRetoShirt/">SĒAN RETRO SHIRT</a></h3><span>$30</span></div><p>100% cotton. Unisex. A retro signature.</p><div class="item-bottom"><span>Out of stock · Requests open</span><a href="/shop/SeanRetoShirt/" aria-label="View SĒAN RETRO SHIRT">View item ↗</a></div></article></div></section><section class="store-service"><h2>MORE TO COME.</h2><a class="editorial-link" href="/#newsletter">Join the Swarm for updates ↗</a></section>
     </main>
 
     <footer class="footer shop-footer">
@@ -78,5 +78,5 @@
     </div>
 
     <script src="/script.js"></script>
-  </body>
+  <script type="module" src="/app/store.js"></script></body>
 </html>

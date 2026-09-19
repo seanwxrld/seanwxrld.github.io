@@ -43,7 +43,7 @@
         <a href="/about/">About</a>
         <a href="/swarm/">Swarm</a>
         <a href="/shop/">Shop</a>
-        <a href="/contact/">Contact</a>
+        <a href="/contact/">Contact</a><a href="/account/">My account</a>
       </nav>
     </header>
  <body class="site-theme">
@@ -62,7 +62,7 @@
  <p class="lead">
  Join our mailing list and get the official pre-save link as soon as it opens.
  </p>
- <form class="newsletter-form" data-subscribe-form data-source="presave" data-submit-label="Join the SWARM">
+ <form class="newsletter-form" data-subscribe-form data-source="presave" data-submit-label="Join the SWARM"><label style="display:flex;gap:10px;align-items:center;font-size:12px"><input type="checkbox" name="consent" required style="width:auto"> I agree to receive email updates from SĒAN MOSIKILI. I can unsubscribe anytime.</label>
  <label>
  Email
  <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required />
@@ -85,5 +85,6 @@
  </main>
 
  <script src="/script.js"></script>
- </body>
+ <script type="module" src="/app/forms.js"></script>
+</body>
 </html>

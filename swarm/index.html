@@ -43,7 +43,7 @@
         <a href="/about/">About</a>
         <a class="active" href="/swarm/">Swarm</a>
         <a href="/shop/">Shop</a>
-        <a href="/contact/">Contact</a>
+        <a href="/contact/">Contact</a><a href="/account/">My account</a>
       </nav>
     </header>
 
@@ -57,7 +57,7 @@
       </section>
 
       <section class="split reveal">
-        <form class="form" data-subscribe-form data-source="swarm" data-submit-label="Join the SWARM">
+        <form class="form" data-subscribe-form data-source="swarm" data-submit-label="Join the SWARM"><label style="display:flex;gap:10px;align-items:center;font-size:12px"><input type="checkbox" name="consent" required style="width:auto"> I agree to receive email updates from SĒAN MOSIKILI. I can unsubscribe anytime.</label>
           <h2>Join the waitlist</h2>
           <label>
             Email
@@ -113,5 +113,6 @@
     </div>
 
     <script src="/script.js"></script>
-  </body>
+  <script type="module" src="/app/forms.js"></script>
+</body>
 </html>

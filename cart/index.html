@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="/assets/favicon.svg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/app/ui.css" />
+    <title>Your cart · SĒAN MOSIKILI</title>
+  </head>
+  <body class="workspace">
+    <header class="app-header">
+      <a class="brand" href="/">SĒAN MOSIKILI</a>
+      <nav class="row">
+        <a href="/shop/">Store</a
+        ><a href="/cart/">Cart <span data-cart-count>0</span></a
+        ><a href="/account/">Account</a>
+      </nav>
+    </header>
+    <main class="public-main">
+      <div class="page-head">
+        <p class="eyebrow">THE COLLECTION / YOUR SELECTION</p>
+        <h1>Make it yours.</h1>
+        <p class="muted">
+          A few favourites. One request. We’ll take it from here.
+        </p>
+      </div>
+      <div class="cart-layout">
+        <section>
+          <div id="cart-items"></div>
+          <p id="cart-sync" class="muted"></p>
+          <div class="row spread">
+            <h2>Item total</h2>
+            <h2 id="cart-total">$0.00</h2>
+          </div>
+          <p class="fine-print">
+            USD. Shipping is confirmed separately. Requests do not reserve
+            stock, take payment, or guarantee availability.
+          </p>
+          <a href="/shop/">Keep exploring ↗</a>
+        </section>
+        <section class="panel">
+          <p class="eyebrow">REQUEST DETAILS</p>
+          <h2>Where can we reach you?</h2>
+          <p class="muted">
+            You can request as a guest, or <a href="/account/">sign in</a> to
+            track it in your account.
+          </p>
+          <form id="checkout">
+            <label
+              >Name<input
+                name="name"
+                autocomplete="name"
+                maxlength="120"
+                required /></label
+            ><label
+              >Email<input
+                name="email"
+                type="email"
+                autocomplete="email"
+                maxlength="254"
+                required /></label
+            ><label
+              >Shipping address<textarea
+                name="shippingAddress"
+                autocomplete="street-address"
+                maxlength="1500"
+                required
+                placeholder="Street, city, postal code and country"
+              ></textarea></label
+            ><label
+              >Notes (optional)<textarea
+                name="notes"
+                maxlength="2000"
+              ></textarea></label
+            ><button class="solid" type="submit" disabled>
+              Send my request ↗
+            </button>
+            <p class="status" role="status"></p>
+          </form>
+        </section>
+      </div>
+    </main>
+    <script type="module" src="/app/store.js"></script>
+  </body>
+</html>
