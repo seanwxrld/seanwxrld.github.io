@@ -5,10 +5,6 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
-import {
-  getFunctions,
-  httpsCallable,
-} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-functions.js";
 const config = {
   apiKey: "AIzaSyCg8ESTI4q5NSlzG_pm_5wZPNEdSqQR4kU",
   authDomain: "sean-mosikili-official-website.firebaseapp.com",
@@ -20,6 +16,3 @@ const config = {
 export const app = getApps().length ? getApp() : initializeApp(config);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
-const functions = getFunctions(app, "us-central1");
-export const call = async (name, data = {}) =>
-  (await httpsCallable(functions, name)(data)).data;
