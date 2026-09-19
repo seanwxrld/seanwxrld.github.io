@@ -1,15 +1,14 @@
-import { auth, db, app, call } from "./firebase.js";
+import { auth, db } from "./firebase.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 import {
   collection,
   onSnapshot,
+  doc,
+  setDoc,
+  addDoc,
+  updateDoc,
+  serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
-import {
-  getStorage,
-  ref,
-  uploadBytes,
-  getDownloadURL,
-} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-storage.js";
 import { wireAuth, logOut } from "./auth.js";
 import { escapeHtml as e, money, safeUrl, newsletterHtml } from "./core.js";
 const $ = (s) => document.querySelector(s);
@@ -17,6 +16,7 @@ let state = {
   shop_requests: [],
   products: [],
   newsletter_signups: [],
+  newsletter_members: [],
   contact_messages: [],
   campaigns: [],
 };
@@ -69,6 +69,7 @@ onAuthStateChanged(auth, async (user) => {
     shop_requests: [],
     products: [],
     newsletter_signups: [],
+    newsletter_members: [],
     contact_messages: [],
     campaigns: [],
   };
@@ -150,9 +151,9 @@ function openRequest(key) {
     const b = $("#save-request");
     b.disabled = true;
     try {
-      await call("updateRequest", {
-        id: key,
+      await updateDoc(doc(db, "shop_requests", key), {
         status: $("#detail-status").value,
+        updatedAt: serverTimestamp(),
       });
       $("#request-status").textContent = "Status saved.";
     } catch (err) {
@@ -224,22 +225,22 @@ $("#product-form").onsubmit = async (event) => {
   status.textContent = "Saving…";
   try {
     const d = Object.fromEntries(new FormData(f));
-    await call("saveProduct", {
-      id: d.id || null,
-      product: {
-        name: d.name,
-        description: d.description,
-        image: d.image,
-        category: d.category,
-        priceCents: Math.round(Number(d.price) * 100),
-        options: d.options
-          .split(",")
-          .map((s) => s.trim())
-          .filter(Boolean),
-        status: d.status,
-        stock: d.stock === "" ? null : Number(d.stock),
-      },
-    });
+    const payload = {
+      name: d.name,
+      description: d.description,
+      image: d.image,
+      category: d.category,
+      priceCents: Math.round(Number(d.price) * 100),
+      options: d.options
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean),
+      status: d.status,
+      stock: d.stock === "" ? null : Number(d.stock),
+      updatedAt: serverTimestamp(),
+    };
+    if (d.id) await setDoc(doc(db, "products", d.id), payload, { merge: true });
+    else await addDoc(collection(db, "products"), payload);
     $("#product-dialog").close();
     message("Product saved. The store will update automatically.");
   } catch (err) {
@@ -248,35 +249,14 @@ $("#product-form").onsubmit = async (event) => {
     button.disabled = false;
   }
 };
-$("#product-image").onchange = async (event) => {
-  const file = event.target.files[0];
-  if (!file) return;
-  const status = $("#product-form [role=status]");
-  const button = $("#product-form [type=submit]");
-  if (
-    !["image/png", "image/jpeg", "image/webp"].includes(file.type) ||
-    file.size >= 5 * 1024 * 1024
-  ) {
-    status.textContent = "Choose a PNG, JPEG or WebP smaller than 5 MB.";
-    return;
-  }
-  button.disabled = true;
-  status.textContent = "Uploading image…";
-  try {
-    const path = ref(getStorage(app), `product-images/${crypto.randomUUID()}`);
-    await uploadBytes(path, file, { contentType: file.type });
-    $("#product-form").elements.image.value = await getDownloadURL(path);
-    status.textContent = "Image uploaded. Save the product to use it.";
-  } catch {
-    status.textContent =
-      "Upload failed. Check Firebase Storage setup, or use an existing image URL.";
-  } finally {
-    button.disabled = false;
-  }
+$("#product-image").onchange = () => {
+  $("#product-form [role=status]").textContent =
+    "Image upload is disabled in the free setup. Use an existing /assets/ path or an HTTPS image URL.";
+  $("#product-image").value = "";
 };
 function renderContacts() {
   const term = $("#contact-search").value.toLowerCase();
-  const rows = state.newsletter_signups.filter((c) =>
+  const rows = [...state.newsletter_signups, ...state.newsletter_members].filter((c) =>
     `${c.email} ${c.interest}`.toLowerCase().includes(term),
   );
   $("#subscriber-list").innerHTML = rows.length
@@ -296,7 +276,10 @@ function renderContacts() {
             (c) => c.id === b.dataset.suppress,
           );
           if (confirm(`Unsubscribe ${c.email} from future newsletters?`))
-            await call("suppressSubscriber", { email: c.email });
+            await updateDoc(
+              doc(db, state.newsletter_members.some((x) => x.id === c.id) ? "newsletter_members" : "newsletter_signups", c.id),
+              { status: "unsubscribed", consent: false, updatedAt: serverTimestamp() },
+            );
         })),
   );
   const messages = state.contact_messages.filter((c) =>
@@ -318,9 +301,9 @@ function renderContacts() {
           const c = state.contact_messages.find(
             (c) => c.id === b.dataset.handle,
           );
-          await call("updateContact", {
-            id: c.id,
+          await updateDoc(doc(db, "contact_messages", c.id), {
             status: c.status === "handled" ? "new" : "handled",
+            updatedAt: serverTimestamp(),
           });
         })),
   );
@@ -343,7 +326,7 @@ $("#export-contacts").onclick = () => {
     '"';
   const rows = [
     ["Email", "Interest", "Source", "Status"],
-    ...state.newsletter_signups.map((c) => [
+    ...[...state.newsletter_signups, ...state.newsletter_members].map((c) => [
       c.email,
       c.interest,
       c.source,
@@ -369,10 +352,18 @@ preview();
 async function saveDraft() {
   if (!$("#newsletter-form").reportValidity())
     throw new Error("Complete your subject, headline and message.");
-  const result = await call("saveCampaign", { id: campaignId, draft: draft() });
-  campaignId = result.id;
+  const data = { ...draft(), status: "draft", updatedAt: serverTimestamp() };
+  if (campaignId) {
+    await setDoc(doc(db, "campaigns", campaignId), data, { merge: true });
+  } else {
+    const ref = await addDoc(collection(db, "campaigns"), {
+      ...data,
+      createdAt: serverTimestamp(),
+    });
+    campaignId = ref.id;
+  }
   $("#email-status").textContent = "Draft saved.";
-  return result.id;
+  return campaignId;
 }
 $("#newsletter-form").onsubmit = async (event) => {
   event.preventDefault();
@@ -396,52 +387,13 @@ $("#download-html").onclick = () => {
   $("#email-status").textContent =
     "HTML exported. Your sending service must replace {{unsubscribe_url}} with a recipient unsubscribe link.";
 };
-$("#test-email").onclick = async () => {
-  if (!$("#newsletter-form").reportValidity()) return;
-  const b = $("#test-email");
-  b.disabled = true;
-  $("#email-status").textContent = "Sending test…";
-  try {
-    await call("testCampaign", { draft: draft() });
-    $("#email-status").textContent = "Test sent to your admin email.";
-  } catch (err) {
-    $("#email-status").textContent = err.message;
-  } finally {
-    b.disabled = false;
-  }
+$("#test-email").onclick = () => {
+  $("#email-status").textContent =
+    "Email sending is disabled in the free setup. Export the HTML and send it with your preferred email service.";
 };
-$("#queue-email").onclick = async () => {
-  const b = $("#queue-email");
-  b.disabled = true;
-  try {
-    const id = await saveDraft();
-    const d = draft();
-    const when = $("#send-time").value;
-    const eligible = new Set(
-      state.newsletter_signups
-        .filter((c) => c.consent === true && c.status === "subscribed")
-        .map((c) => c.email),
-    ).size;
-    if (
-      !confirm(
-        `Queue “${d.subject}” ${when ? "for " + new Date(when).toLocaleString() : "for the next delivery run"}? Up to ${eligible} currently eligible subscribers. Unsubscribed addresses are excluded again at send time.`,
-      )
-    )
-      return;
-    await call("queueCampaign", {
-      id,
-      scheduledAt: when ? new Date(when).toISOString() : null,
-    });
-    $("#email-status").textContent =
-      "Newsletter queued. Watch its progress below.";
-    campaignId = null;
-    $("#newsletter-form").reset();
-    preview();
-  } catch (err) {
-    $("#email-status").textContent = err.message;
-  } finally {
-    b.disabled = false;
-  }
+$("#queue-email").onclick = () => {
+  $("#email-status").textContent =
+    "Scheduled sending needs a server/email provider and is disabled in the free setup. Your draft and HTML export still work.";
 };
 $("#new-draft").onclick = () => {
   if (!confirm("Start a new draft? Unsaved edits will be cleared.")) return;
@@ -482,7 +434,10 @@ function renderCampaigns() {
               "Cancel remaining sends? Emails already sent cannot be recalled.",
             )
           )
-            await call("cancelCampaign", { id: b.dataset.cancel });
+            await updateDoc(doc(db, "campaigns", b.dataset.cancel), {
+              status: "cancelled",
+              updatedAt: serverTimestamp(),
+            });
         })),
   );
 }
