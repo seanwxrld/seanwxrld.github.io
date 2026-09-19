@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="/assets/favicon.svg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/app/ui.css" />
+    <title>Backstage · SĒAN MOSIKILI</title>
+  </head>
+  <body class="workspace">
+    <section id="login" class="panel auth-card">
+      <a class="brand" href="/">SĒAN MOSIKILI</a>
+      <p class="eyebrow" style="margin-top: 32px">BACKSTAGE / PRIVATE ACCESS</p>
+      <h1>Hello, you.</h1>
+      <p class="muted">Your world, behind the scenes.</p>
+      <form id="auth-form">
+        <label
+          >Email<input
+            name="email"
+            type="email"
+            autocomplete="email"
+            required /></label
+        ><label
+          >Password<input
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            minlength="8"
+            required /></label
+        ><button class="solid" type="submit">Sign in ↗</button
+        ><button type="button" data-reset>Forgot password?</button>
+        <p class="status" role="status"></p>
+      </form>
+      <p id="access-status" class="status" role="status"></p>
+      <button id="login-signout" hidden>Use another account</button>
+    </section>
+    <div id="dashboard" class="backstage" hidden>
+      <aside class="sidebar">
+        <div>
+          <a class="brand" href="/">SĒAN MOSIKILI</a>
+          <p class="eyebrow" style="margin: 12px 0 0">BACKSTAGE</p>
+        </div>
+        <nav aria-label="Dashboard">
+          <button data-view="overview" aria-current="page">
+            01 &nbsp; Overview</button
+          ><button data-view="requests">02 &nbsp; Requests</button
+          ><button data-view="products">03 &nbsp; Products</button
+          ><button data-view="contacts">04 &nbsp; People</button
+          ><button data-view="newsletter">05 &nbsp; Newsletters</button>
+        </nav>
+        <div class="side-foot">
+          <p class="muted">Made for your world.</p>
+          <a href="/" target="_blank" rel="noopener">Visit website ↗</a>
+        </div>
+      </aside>
+      <main class="main-area">
+        <div class="topbar">
+          <span>YOUR WORLD. YOUR WAY.</span
+          ><button id="signout">Sign out</button>
+        </div>
+        <div id="global-status" class="status" role="status"></div>
+        <section data-panel="overview">
+          <div class="page-head">
+            <p class="eyebrow">THE BIG PICTURE</p>
+            <h1>A little backstage.</h1>
+            <p class="muted">
+              Everything happening in your world, in one place.
+            </p>
+          </div>
+          <div class="metrics">
+            <div class="metric">
+              <span>Pending requests</span
+              ><strong id="metric-requests">—</strong>
+            </div>
+            <div class="metric">
+              <span>Newsletter records</span
+              ><strong id="metric-people">—</strong>
+            </div>
+            <div class="metric">
+              <span>Products</span><strong id="metric-products">—</strong>
+            </div>
+          </div>
+          <div class="welcome">
+            <p class="eyebrow">A NOTE TO YOUR PEOPLE</p>
+            <h2>Something worth<br />sharing?</h2>
+            <p class="muted">New music. A fresh drop. A little hello.</p>
+            <button class="solid" data-go="newsletter">
+              Write a newsletter ↗
+            </button>
+          </div>
+          <section class="panel">
+            <div class="row spread">
+              <h2>The latest requests</h2>
+              <button data-go="requests">View all ↗</button>
+            </div>
+            <div id="recent-requests"></div>
+          </section>
+        </section>
+        <section data-panel="requests" hidden>
+          <div class="page-head">
+            <p class="eyebrow">THE INBOX</p>
+            <h1>Made for them.</h1>
+            <p class="muted">
+              Review selections, contact customers, and keep requests moving.
+            </p>
+          </div>
+          <div class="row">
+            <input
+              id="request-search"
+              placeholder="Search name, email or item"
+              aria-label="Search requests"
+            /><select id="request-filter" aria-label="Filter status">
+              <option value="">All statuses</option>
+              <option>pending</option>
+              <option>reviewing</option>
+              <option>confirmed</option>
+              <option>completed</option>
+              <option>cancelled</option>
+            </select>
+          </div>
+          <div id="request-list"></div>
+        </section>
+        <section data-panel="products" hidden>
+          <div class="page-head">
+            <p class="eyebrow">THE COLLECTION</p>
+            <h1>Objects of affection.</h1>
+            <div class="row spread">
+              <p class="muted">
+                Add a piece, change a price, or open up requests.
+              </p>
+              <button class="solid" id="add-product">Add product +</button>
+            </div>
+          </div>
+          <div id="product-list" class="product-list"></div>
+        </section>
+        <section data-panel="contacts" hidden>
+          <div class="page-head">
+            <p class="eyebrow">YOUR PEOPLE</p>
+            <h1>A little closer.</h1>
+            <p class="muted">
+              Newsletter sign-ups and messages, with room for everyone.
+            </p>
+          </div>
+          <div class="row">
+            <input
+              id="contact-search"
+              placeholder="Search contacts"
+              aria-label="Search contacts"
+            /><button id="export-contacts">Export subscribers CSV ↗</button>
+          </div>
+          <h2>Newsletter sign-ups</h2>
+          <p class="muted">
+            Legacy records stay visible. Only confirmed opt-ins marked
+            subscribed are eligible for campaigns.
+          </p>
+          <div id="subscriber-list"></div>
+          <h2>Messages</h2>
+          <div id="message-list"></div>
+        </section>
+        <section data-panel="newsletter" hidden>
+          <div class="page-head">
+            <p class="eyebrow">FROM YOUR WORLD TO THEIR INBOX</p>
+            <h1>Dear Swarm,</h1>
+            <p class="muted">
+              A note with your name, your colours, your voice.
+            </p>
+          </div>
+          <div class="grid-two">
+            <section class="panel">
+              <form id="newsletter-form">
+                <label
+                  >Subject<input
+                    name="subject"
+                    maxlength="150"
+                    required
+                    placeholder="Something new, just for you." /></label
+                ><label
+                  >Inbox preview<input
+                    name="preheader"
+                    maxlength="200" /></label
+                ><label
+                  >Headline<input
+                    name="heading"
+                    maxlength="200"
+                    required
+                    placeholder="Welcome to my world." /></label
+                ><label
+                  >Your message<textarea
+                    name="body"
+                    maxlength="15000"
+                    required
+                    placeholder="Hey Swarm…"
+                  ></textarea></label
+                ><label
+                  >Image URL (optional)<input
+                    name="image"
+                    type="url"
+                    placeholder="https://…" /></label
+                ><label
+                  >Button text<input
+                    name="button"
+                    value="EXPLORE THE WORLD"
+                    maxlength="80" /></label
+                ><label
+                  >Button link<input
+                    name="link"
+                    type="url"
+                    value="https://seanwxrld.com"
+                /></label>
+                <details>
+                  <summary>Custom HTML (optional)</summary>
+                  <p class="muted">
+                    Leave blank for the branded template. Include
+                    {{unsubscribe_url}} in custom HTML. The preview is isolated.
+                  </p>
+                  <textarea
+                    name="html"
+                    id="newsletter-html"
+                    maxlength="80000"
+                    aria-label="Custom email HTML"
+                  ></textarea>
+                </details>
+                <div class="actions">
+                  <button class="solid" type="submit">Save draft</button
+                  ><button type="button" id="download-html">
+                    Download HTML</button
+                  ><button type="button" id="test-email">
+                    Sending unavailable on free setup
+                  </button>
+                </div>
+                <p class="status" id="email-status" role="status"></p>
+              </form>
+              <hr />
+              <label
+                >Send time (optional, your local time)<input
+                  type="datetime-local"
+                  id="send-time"
+              /></label>
+              <p class="fine-print">
+                Draft and export are available on the free setup. Automated
+                sending and scheduling require a separate email backend.
+              </p>
+              <button id="queue-email" class="solid">
+                Scheduling unavailable on free setup</button
+              ><button id="new-draft">New draft</button>
+            </section>
+            <section>
+              <p class="eyebrow">LIVE EMAIL PREVIEW</p>
+              <iframe
+                id="email-preview"
+                class="email-preview"
+                title="Newsletter preview"
+                sandbox=""
+                referrerpolicy="no-referrer"
+              ></iframe>
+            </section>
+          </div>
+          <h2>Your drafts & campaigns</h2>
+          <div id="campaign-list"></div>
+        </section>
+      </main>
+    </div>
+    <dialog id="product-dialog">
+      <div class="row spread">
+        <h2 id="product-dialog-title">Add a piece.</h2>
+        <button
+          type="button"
+          data-close="product-dialog"
+          aria-label="Close product editor"
+        >
+          ×
+        </button>
+      </div>
+      <form id="product-form">
+        <input name="id" type="hidden" /><label
+          >Name<input name="name" maxlength="120" required /></label
+        ><label
+          >Description<textarea
+            name="description"
+            maxlength="2000"
+            required
+          ></textarea>
+        </label>
+        <div class="grid-two">
+          <label
+            >Price (USD)<input
+              name="price"
+              type="number"
+              step="0.01"
+              min="0"
+              max="100000"
+              required /></label
+          ><label
+            >Category<select name="category">
+              <option value="apparel">Apparel</option>
+              <option value="music">Music</option>
+            </select></label
+          >
+        </div>
+        <label>Image URL or /assets/ path<input name="image" required /></label
+        ><label
+          >Image uploads<input
+            type="file"
+            id="product-image"
+            accept="image/png,image/jpeg,image/webp"
+            disabled /></label
+        ><p class="fine-print">Free setup: use an existing /assets/ path or HTTPS image URL.</p>
+        ><label
+          >Options (comma separated)<input
+            name="options"
+            value="One size"
+            required
+            placeholder="XS, S, M, L, XL"
+        /></label>
+        <div class="grid-two">
+          <label
+            >Availability<select name="status">
+              <option value="requests">
+                Requests open (availability unconfirmed)
+              </option>
+              <option value="available">Available</option>
+              <option value="soldout">Sold out (requests closed)</option>
+              <option value="hidden">Hidden from store</option>
+            </select></label
+          ><label
+            >Stock count (blank = untracked)<input
+              name="stock"
+              type="number"
+              min="0"
+              max="1000000"
+          /></label>
+        </div>
+        <p class="fine-print">
+          Requests don’t reserve or deduct stock. Update this count as orders
+          are fulfilled.
+        </p>
+        <button type="submit" class="solid">Save product ↗</button>
+        <p class="status" role="status"></p>
+      </form>
+    </dialog>
+    <dialog id="request-dialog">
+      <div class="row spread">
+        <h2>Request details</h2>
+        <button data-close="request-dialog" aria-label="Close request details">
+          ×
+        </button>
+      </div>
+      <div id="request-detail"></div>
+    </dialog>
+    <script type="module" src="/app/admin.js"></script>
+  </body>
+</html>

@@ -1,0 +1,120 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function admin() {
+      return signedIn() && request.auth.token.admin == true;
+    }
+
+    function validStatus(value) {
+      return value in ['pending', 'reviewing', 'confirmed', 'completed', 'cancelled'];
+    }
+
+    match /products/{id} {
+      allow read: if admin() || resource.data.status != 'hidden';
+      allow create, update, delete: if admin();
+    }
+
+    match /shop_requests/{id} {
+      allow read: if admin() ||
+        (signedIn() && resource.data.userId == request.auth.uid);
+
+      allow create: if
+        request.resource.data.keys().hasOnly([
+          'name', 'email', 'shippingAddress', 'notes', 'items',
+          'totalCents', 'userId', 'status', 'createdAt'
+        ]) &&
+        request.resource.data.name is string &&
+        request.resource.data.name.size() > 0 &&
+        request.resource.data.name.size() <= 120 &&
+        request.resource.data.email is string &&
+        request.resource.data.email.size() > 3 &&
+        request.resource.data.email.size() <= 320 &&
+        request.resource.data.shippingAddress is string &&
+        request.resource.data.shippingAddress.size() > 0 &&
+        request.resource.data.shippingAddress.size() <= 1500 &&
+        request.resource.data.notes is string &&
+        request.resource.data.notes.size() <= 2000 &&
+        request.resource.data.items is list &&
+        request.resource.data.items.size() > 0 &&
+        request.resource.data.items.size() <= 20 &&
+        request.resource.data.totalCents is int &&
+        request.resource.data.totalCents >= 0 &&
+        request.resource.data.status == 'pending' &&
+        (
+          (signedIn() && request.resource.data.userId == request.auth.uid) ||
+          (!signedIn() && request.resource.data.userId == null)
+        );
+
+      allow update, delete: if admin();
+    }
+
+    match /member_carts/{uid} {
+      allow read, create, update, delete: if signedIn() && request.auth.uid == uid;
+    }
+
+    match /newsletter_signups/{id} {
+      allow read: if admin();
+      allow create: if
+        request.resource.data.keys().hasOnly([
+          'email', 'interest', 'source', 'consent', 'status', 'createdAt'
+        ]) &&
+        request.resource.data.email is string &&
+        request.resource.data.email.size() > 3 &&
+        request.resource.data.email.size() <= 320 &&
+        request.resource.data.interest is string &&
+        request.resource.data.interest.size() <= 200 &&
+        request.resource.data.source is string &&
+        request.resource.data.source.size() <= 100 &&
+        request.resource.data.consent == true &&
+        request.resource.data.status == 'subscribed';
+      allow update, delete: if admin();
+    }
+
+    match /newsletter_members/{uid} {
+      allow read: if admin() || (signedIn() && request.auth.uid == uid);
+      allow create, update: if admin() || (
+        signedIn() &&
+        request.auth.uid == uid &&
+        request.auth.token.email_verified == true &&
+        request.resource.data.email == request.auth.token.email &&
+        request.resource.data.status in ['subscribed', 'unsubscribed'] &&
+        request.resource.data.consent is bool &&
+        request.resource.data.source == 'member'
+      );
+      allow delete: if admin() || (signedIn() && request.auth.uid == uid);
+    }
+
+    match /contact_messages/{id} {
+      allow read: if admin();
+      allow create: if
+        request.resource.data.keys().hasOnly([
+          'name', 'email', 'interest', 'message', 'status', 'createdAt'
+        ]) &&
+        request.resource.data.name is string &&
+        request.resource.data.name.size() > 0 &&
+        request.resource.data.name.size() <= 120 &&
+        request.resource.data.email is string &&
+        request.resource.data.email.size() > 3 &&
+        request.resource.data.email.size() <= 320 &&
+        request.resource.data.interest is string &&
+        request.resource.data.interest.size() <= 100 &&
+        request.resource.data.message is string &&
+        request.resource.data.message.size() > 0 &&
+        request.resource.data.message.size() <= 5000 &&
+        request.resource.data.status == 'new';
+      allow update, delete: if admin();
+    }
+
+    match /campaigns/{id} {
+      allow read, create, update, delete: if admin();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

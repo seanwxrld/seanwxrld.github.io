@@ -21,13 +21,13 @@
       href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@300;500&family=Poppins:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
-  </head>
+  <link rel="stylesheet" href="/app/ui.css"></head>
   <body class="site-theme shop-body premium-store">
     <header class="site-header shop-header">
       <div class="header-inner">
         <button class="menu-button" type="button" data-menu-button aria-label="Open navigation" aria-expanded="false">Menu</button>
         <a class="logo" href="/">SĒAN MOSIKILI</a>
-        <span class="header-spacer" aria-hidden="true"></span>
+        <nav class="store-tools" aria-label="Your shopping"><a href="/account/">Account</a><a href="/cart/">Cart (<span data-cart-count>0</span>)</a></nav>
       </div>
       <nav class="nav-drawer shop-nav-drawer" data-nav-drawer aria-label="Primary">
         <a href="/">Home</a>
@@ -38,12 +38,12 @@
         <a href="/about/">About</a>
         <a href="/swarm/">Swarm</a>
         <a class="active" href="/shop/">Shop</a>
-        <a href="/contact/">Contact</a>
+        <a href="/contact/">Contact</a><a href="/account/">My account</a>
       </nav>
     </header>
 
     <main class="page page-store" data-store-root>
-<section class="store-editorial-hero category-hero"><p class="eyebrow">Official store / Music</p><h1>KEEP THE SOUND.</h1><p class="category-intro">For the collection beyond streaming.</p></section><section id="catalog" class="store-collection" aria-labelledby="catalog-title"><nav class="collection-nav" aria-label="Store collections"><a href="/shop/">All objects</a><a href="/shop/merch/">Apparel</a><a href="/shop/music/" aria-current="page">Music</a></nav><div class="collection-heading"><h2 id="catalog-title">PHYSICAL MUSIC</h2><span>01 OBJECTS</span></div><div class="premium-grid"><article class="premium-item"><a class="premium-art" href="/shop/CD/"><img src="/assets/CD's.PNG" alt="LOST LOVER’S AVENUE CD" loading="lazy" width="1600" height="1600" /><span class="object-index">MUSIC / 03</span></a><div class="item-heading"><h3><a href="/shop/CD/">LOST LOVER’S AVENUE CD</a></h3><span>$8</span></div><p>The physical edition, including a bonus track.</p><div class="item-bottom"><span>Out of stock · Requests open</span><a href="/shop/CD/" aria-label="View LOST LOVER’S AVENUE CD">View item ↗</a></div></article></div></section><section class="store-service"><h2>MORE TO COME.</h2><a class="editorial-link" href="/#newsletter">Join the Swarm for updates ↗</a></section>
+<section class="store-editorial-hero category-hero"><p class="eyebrow">Official store / Music</p><h1>KEEP THE SOUND.</h1><p class="category-intro">For the collection beyond streaming.</p></section><section id="catalog" class="store-collection" aria-labelledby="catalog-title"><nav class="collection-nav" aria-label="Store collections"><a href="/shop/">All objects</a><a href="/shop/merch/">Apparel</a><a href="/shop/music/" aria-current="page">Music</a></nav><div class="collection-heading"><h2 id="catalog-title">PHYSICAL MUSIC</h2><span>01 OBJECTS</span></div><p class="dynamic-message" data-catalog-status role="status"></p><div class="premium-grid"><article class="premium-item"><a class="premium-art" href="/shop/CD/"><img src="/assets/CD's.PNG" alt="LOST LOVER’S AVENUE CD" loading="lazy" width="1600" height="1600" /><span class="object-index">MUSIC / 03</span></a><div class="item-heading"><h3><a href="/shop/CD/">LOST LOVER’S AVENUE CD</a></h3><span>$8</span></div><p>The physical edition, including a bonus track.</p><div class="item-bottom"><span>Out of stock · Requests open</span><a href="/shop/CD/" aria-label="View LOST LOVER’S AVENUE CD">View item ↗</a></div></article></div></section><section class="store-service"><h2>MORE TO COME.</h2><a class="editorial-link" href="/#newsletter">Join the Swarm for updates ↗</a></section>
     </main>
 
     <footer class="footer shop-footer">
@@ -78,5 +78,5 @@
     </div>
 
     <script src="/script.js"></script>
-  </body>
+  <script type="module" src="/app/store.js"></script></body>
 </html>

@@ -1,0 +1,554 @@
+/* Shared shopping and backstage controls, with the site's warm editorial palette. */
+[hidden] {
+  display: none !important;
+}
+.workspace {
+  --paper: #f7f5f1;
+  --ink: #171717;
+  --accent: #79543b;
+  --line: #d8d3ca;
+  --muted: #69645e;
+  background: var(--paper);
+  color: var(--ink);
+  margin: 0;
+  font-family: "Poppins", Arial, sans-serif;
+  line-height: 1.6;
+}
+.workspace * {
+  box-sizing: border-box;
+}
+.workspace a {
+  color: inherit;
+}
+.workspace button,
+.workspace input,
+.workspace select,
+.workspace textarea,
+.cart-controls select,
+.cart-controls input {
+  font: inherit;
+}
+.workspace button,
+.workspace .action,
+.cart-controls button {
+  cursor: pointer;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  padding: 12px 18px;
+  border-radius: 3px;
+  text-decoration: none;
+  font-size: 13px;
+  display: inline-block;
+}
+.workspace button:hover,
+.workspace .action:hover {
+  background: #eee7de;
+}
+.workspace .solid,
+.cart-controls .solid {
+  background: #79543b;
+  color: #fff;
+  border-color: #79543b;
+}
+.workspace .solid:hover {
+  background: #543923;
+}
+.workspace button:disabled,
+.cart-controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.workspace input,
+.workspace select,
+.workspace textarea,
+.cart-controls select,
+.cart-controls input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #bcb5ab;
+  border-radius: 3px;
+  color: #171717;
+  background: #fffdfa;
+  min-width: 0;
+}
+.workspace textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+.workspace label {
+  display: grid;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.workspace form {
+  display: grid;
+  gap: 18px;
+}
+.workspace .check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.workspace input[type="checkbox"] {
+  width: auto;
+}
+.workspace :focus-visible,
+.cart-controls :focus-visible {
+  outline: 2px solid #79543b;
+  outline-offset: 4px;
+}
+.workspace h1,
+.workspace h2,
+.workspace h3 {
+  line-height: 1.1;
+  letter-spacing: -0.045em;
+  font-weight: 600;
+}
+.workspace h1 {
+  font-size: clamp(40px, 6vw, 74px);
+  margin: 12px 0 24px;
+}
+.workspace h2 {
+  font-size: 28px;
+}
+.workspace h3 {
+  font-size: 20px;
+}
+.workspace p {
+  margin-top: 0;
+}
+.workspace .eyebrow {
+  font:
+    11px "JetBrains Mono",
+    monospace;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #79543b;
+}
+.workspace .muted {
+  color: var(--muted);
+  font-size: 13px;
+}
+.workspace .row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.workspace .spread {
+  justify-content: space-between;
+}
+.workspace .grid-two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.workspace .panel {
+  padding: 28px;
+  background: #fffdfa;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  min-width: 0;
+}
+.workspace .status {
+  font-size: 13px;
+  padding: 8px 0;
+  min-height: 28px;
+  overflow-wrap: anywhere;
+}
+.workspace .status[data-error="true"] {
+  color: #a32b3b;
+}
+.workspace .pill {
+  display: inline-block;
+  font:
+    10px "JetBrains Mono",
+    monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: #eee7de;
+  padding: 6px 9px;
+  border-radius: 2px;
+  color: #654832;
+}
+.workspace .page-head {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 24px;
+  margin-bottom: 28px;
+}
+.workspace .app-header {
+  padding: 24px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  gap: 20px;
+}
+.workspace .brand {
+  font-size: 17px;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+.workspace .public-main {
+  max-width: 1120px;
+  margin: auto;
+  padding: 60px 24px 100px;
+}
+.workspace .auth-card {
+  max-width: 500px;
+  margin: 60px auto;
+  padding: 40px;
+}
+.workspace .backstage {
+  display: grid;
+  grid-template-columns: 235px minmax(0, 1fr);
+  min-height: 100vh;
+}
+.workspace .sidebar {
+  background: #eeeae3;
+  border-right: 1px solid var(--line);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.workspace .sidebar nav {
+  display: grid;
+  gap: 8px;
+}
+.workspace .sidebar nav button {
+  text-align: left;
+  border: 0;
+  padding: 14px;
+}
+.workspace .sidebar nav button[aria-current="page"] {
+  background: #79543b;
+  color: white;
+}
+.workspace .sidebar .side-foot {
+  margin-top: auto;
+}
+.workspace .main-area {
+  padding: 36px 4vw 70px;
+  max-width: 1550px;
+  width: 100%;
+}
+.workspace .topbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 40px;
+  font-size: 12px;
+  color: #69645e;
+}
+.workspace .metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin: 24px 0 34px;
+}
+.workspace .metric {
+  border: 1px solid var(--line);
+  padding: 24px;
+  background: #fffdfa;
+}
+.workspace .metric strong {
+  display: block;
+  font-size: 44px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+.workspace .metric span {
+  font-size: 12px;
+  color: #69645e;
+}
+.workspace .welcome {
+  background: #e7ded2;
+  padding: 32px;
+  border: 1px solid #d5c7b8;
+  position: relative;
+  margin: 24px 0;
+}
+.workspace .welcome h2 {
+  max-width: 500px;
+  font-size: 38px;
+  margin: 8px 0 16px;
+}
+.workspace .table-wrap {
+  overflow: auto;
+}
+.workspace table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13px;
+}
+.workspace th {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #69645e;
+  font-weight: 500;
+}
+.workspace td,
+.workspace th {
+  padding: 17px 12px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.workspace td {
+  max-width: 360px;
+  overflow-wrap: anywhere;
+}
+.workspace .product-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+.workspace .product-card {
+  border: 1px solid var(--line);
+  background: #fffdfa;
+}
+.workspace .product-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  background: #eeeae3;
+}
+.workspace .product-card .copy {
+  padding: 20px;
+}
+.workspace .empty {
+  padding: 40px 20px;
+  text-align: center;
+  border: 1px dashed #bcb5ab;
+  color: #69645e;
+}
+.workspace .email-preview {
+  width: 100%;
+  height: 680px;
+  border: 1px solid var(--line);
+  background: #f7f5f1;
+}
+.workspace dialog {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 32px;
+  background: #fffdfa;
+  color: #171717;
+  width: min(660px, 94vw);
+  max-height: 90vh;
+  overflow: auto;
+}
+.workspace dialog::backdrop {
+  background: rgba(25, 17, 10, 0.45);
+}
+.workspace .line-item {
+  display: grid;
+  grid-template-columns: 1fr 90px 90px;
+  gap: 14px;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  padding: 22px 0;
+}
+.workspace .line-item:first-child {
+  padding-top: 0;
+}
+.workspace .line-item input {
+  max-width: 80px;
+}
+.workspace .cart-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 30px;
+}
+.workspace .fine-print {
+  font-size: 12px;
+  color: #69645e;
+}
+.workspace .receipt {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 14px;
+}
+.store-tools {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  font-size: 12px;
+}
+.store-tools a {
+  text-decoration: none;
+}
+.cart-controls {
+  display: grid;
+  grid-template-columns: 1fr 90px;
+  gap: 14px;
+  margin: 24px 0;
+  font-size: 13px;
+}
+.cart-controls label {
+  display: grid;
+  gap: 8px;
+}
+.cart-controls button,
+.cart-controls p {
+  grid-column: 1/-1;
+}
+.cart-controls p {
+  font-size: 12px;
+  min-height: 20px;
+}
+.dynamic-message {
+  font-size: 13px;
+  color: #69645e;
+}
+.workspace .actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.workspace .danger {
+  color: #a32b3b;
+}
+.workspace .pre {
+  white-space: pre-wrap;
+}
+.workspace #newsletter-html {
+  font-family: monospace;
+  font-size: 12px;
+  min-height: 200px;
+}
+@media (max-width: 1050px) {
+  .workspace .product-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .workspace .grid-two {
+    grid-template-columns: 1fr;
+  }
+  .workspace .backstage {
+    grid-template-columns: 190px 1fr;
+  }
+  .workspace .sidebar {
+    padding: 24px 14px;
+  }
+  .workspace .metrics {
+    gap: 10px;
+  }
+  .workspace .metric {
+    padding: 15px;
+  }
+  .workspace .cart-layout {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 700px) {
+  .workspace .backstage {
+    display: block;
+  }
+  .workspace .sidebar {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    padding: 18px;
+    gap: 18px;
+  }
+  .workspace .sidebar nav {
+    display: flex;
+    overflow: auto;
+    gap: 4px;
+  }
+  .workspace .sidebar nav button {
+    white-space: nowrap;
+    padding: 10px;
+  }
+  .workspace .side-foot {
+    display: none;
+  }
+  .workspace .main-area {
+    padding: 24px 18px;
+  }
+  .workspace .topbar {
+    margin-bottom: 24px;
+  }
+  .workspace .metrics {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .workspace .metric strong {
+    font-size: 30px;
+  }
+  .workspace .metric span {
+    font-size: 10px;
+  }
+  .workspace .product-list {
+    grid-template-columns: 1fr;
+  }
+  .workspace .panel {
+    padding: 20px;
+  }
+  .workspace .public-main {
+    padding: 36px 18px;
+  }
+  .workspace .auth-card {
+    margin: 25px 15px;
+    padding: 25px;
+  }
+  .workspace .line-item {
+    grid-template-columns: 1fr 65px 75px;
+    gap: 8px;
+  }
+  .workspace .line-item button {
+    padding: 10px 8px;
+  }
+  .workspace .app-header {
+    padding: 20px;
+  }
+  .workspace .app-header .brand {
+    font-size: 13px;
+  }
+  .workspace .welcome {
+    padding: 24px;
+  }
+  .workspace .welcome h2 {
+    font-size: 30px;
+  }
+  .store-tools {
+    gap: 10px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 700px) {
+  .workspace .sidebar nav {
+    flex-wrap: wrap;
+    overflow: visible;
+  }
+  .workspace .sidebar nav button {
+    font-size: 11px;
+  }
+  .workspace .table-wrap table,
+  .workspace .table-wrap tbody {
+    display: block;
+  }
+  .workspace .table-wrap thead {
+    display: none;
+  }
+  .workspace .table-wrap tr {
+    display: block;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .workspace .table-wrap td {
+    display: block;
+    border: 0;
+    padding: 5px 0;
+    max-width: none;
+  }
+  .workspace .table-wrap td button,
+  .workspace .pill {
+    white-space: nowrap;
+  }
+}

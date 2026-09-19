@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="/assets/favicon.svg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/app/ui.css" />
+    <title>Your space · SĒAN MOSIKILI</title>
+  </head>
+  <body class="workspace">
+    <header class="app-header">
+      <a class="brand" href="/">SĒAN MOSIKILI</a>
+      <nav class="row">
+        <a href="/shop/">Store</a
+        ><a href="/cart/">Cart <span data-cart-count>0</span></a
+        ><a href="/account/">Account</a>
+      </nav>
+    </header>
+    <main class="public-main">
+      <div id="signed-out" class="panel auth-card">
+        <p class="eyebrow">A LITTLE CLOSER / SWARM</p>
+        <h1>Your space.</h1>
+        <p class="muted">
+          Save your cart across devices and follow your requests.
+        </p>
+        <form id="auth-form">
+          <label
+            >Email<input
+              name="email"
+              type="email"
+              autocomplete="email"
+              required /></label
+          ><label
+            >Password<input
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              minlength="8"
+              required /></label
+          ><button class="solid" type="submit">Sign in ↗</button
+          ><button type="button" data-signup>Create an account</button
+          ><button type="button" data-reset>Forgot password?</button>
+          <p class="status" role="status"></p>
+        </form>
+        <p class="fine-print">
+          Creating an account doesn’t subscribe you to newsletters.
+          <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a>
+        </p>
+      </div>
+      <section id="member" hidden>
+        <div class="page-head">
+          <p class="eyebrow">YOUR WORLD / MEMBER SPACE</p>
+          <h1>Good to see you.</h1>
+          <div class="row spread">
+            <span id="member-email"></span
+            ><button id="signout">Sign out</button>
+          </div>
+        </div>
+        <div class="welcome">
+          <h2>Your next piece is waiting.</h2>
+          <a class="action solid" href="/cart/">Open saved cart ↗</a>
+        </div>
+        <div class="grid-two">
+          <section class="panel">
+            <h2>Your requests</h2>
+            <p class="muted">
+              Requests submitted while signed in appear here. Guest requests
+              remain with the team.
+            </p>
+            <div id="member-requests"></div>
+          </section>
+          <section class="panel">
+            <h2>Stay in the loop.</h2>
+            <p class="muted">
+              Choose whether you receive music and store newsletters.
+            </p>
+            <div class="actions">
+              <button id="opt-in">Subscribe</button
+              ><button id="opt-out">Unsubscribe</button
+              ><button id="verify">Send verification email</button>
+            </div>
+            <p class="status" role="status" id="member-status"></p>
+          </section>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="/app/account.js"></script>
+    <script type="module" src="/app/store.js"></script>
+  </body>
+</html>
