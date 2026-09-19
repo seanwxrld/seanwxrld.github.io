@@ -1,4 +1,4 @@
-import { auth, db, call } from "./firebase.js";
+import { auth, db } from "./firebase.js";
 import {
   onAuthStateChanged,
   sendEmailVerification,
@@ -8,11 +8,16 @@ import {
   query,
   where,
   onSnapshot,
+  doc,
+  setDoc,
+  serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 import { wireAuth, logOut } from "./auth.js";
 import { escapeHtml as e, money } from "./core.js";
+
 wireAuth(document.querySelector("#auth-form"), { signup: true });
 let stop;
+
 onAuthStateChanged(auth, (user) => {
   stop?.();
   document.querySelector("#signed-out").hidden = !!user;
@@ -35,7 +40,7 @@ onAuthStateChanged(auth, (user) => {
         ? rows
             .map(
               (r) =>
-                `<article><p class="eyebrow">${e(r.id.slice(0, 10).toUpperCase())} / ${e(r.status)}</p><p>${(r.items || []).map((l) => `${e(l.name)} · ${e(l.option)} × ${l.quantity}`).join("<br>")}</p><p class="muted">${money(r.totalCents)} · shipping confirmed separately</p><hr></article>`,
+                `<article><p class="eyebrow">${e(r.id.slice(0, 10).toUpperCase())} / ${e(r.status)}</p><p>${(r.items || []).map((l) => `${e(l.name || l.productId)} · ${e(l.option)} × ${Number(l.quantity) || 1}`).join("<br>")}</p><p class="muted">${money(r.totalCents || 0)} · shipping confirmed separately</p><hr></article>`,
             )
             .join("")
         : '<p class="muted">No requests yet. Find your next piece in the store.</p>';
@@ -45,19 +50,33 @@ onAuthStateChanged(auth, (user) => {
         "Could not load your requests. Please try again later."),
   );
 });
+
 document.querySelector("#signout").onclick = async () => {
   localStorage.removeItem("sean-cart-v1");
   localStorage.removeItem("sean-cart-v1-sync");
   await logOut();
   location.reload();
 };
+
 const status = document.querySelector("#member-status");
 async function preferences(subscribed) {
   status.textContent = "Saving…";
   try {
     await auth.currentUser.reload();
+    if (!auth.currentUser.emailVerified)
+      throw new Error("Verify your email before changing newsletter preferences.");
     await auth.currentUser.getIdToken(true);
-    await call("memberNewsletter", { subscribed });
+    await setDoc(
+      doc(db, "newsletter_members", auth.currentUser.uid),
+      {
+        email: auth.currentUser.email.toLowerCase(),
+        consent: subscribed,
+        status: subscribed ? "subscribed" : "unsubscribed",
+        source: "member",
+        updatedAt: serverTimestamp(),
+      },
+      { merge: true },
+    );
     status.textContent = subscribed
       ? "You’re subscribed."
       : "You’re unsubscribed.";
