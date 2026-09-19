@@ -1,4 +1,4 @@
-import { auth, db, call } from "./firebase.js";
+import { auth, db } from "./firebase.js";
 import {
   collection,
   query,
@@ -6,6 +6,9 @@ import {
   onSnapshot,
   doc,
   getDoc,
+  setDoc,
+  addDoc,
+  serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 import { cleanCart, escapeHtml as e, money, safeUrl } from "./core.js";
@@ -50,7 +53,7 @@ function save() {
       .catch(() => {})
       .then(async () => {
         if (auth.currentUser?.uid === uid) {
-          await call("saveCart", { items: copy });
+          await setDoc(doc(db, "member_carts", uid), { items: copy, updatedAt: serverTimestamp() });
           if (version === revision) syncMeta({ owner: uid, dirty: false });
         }
       })
@@ -236,7 +239,6 @@ function renderCart() {
       }),
   );
 }
-let requestId = crypto.randomUUID();
 document
   .querySelector("#checkout")
   ?.addEventListener("submit", async (event) => {
@@ -249,17 +251,46 @@ document
     status.textContent = "Sending your request…";
     const data = Object.fromEntries(new FormData(form));
     try {
-      const result = await call("submitCart", { ...data, items, requestId });
+      const lines = items.map((line) => {
+        const p = products.get(line.productId);
+        if (!p || !["available", "requests"].includes(p.status))
+          throw new Error("One of your items is no longer available.");
+        if (!p.options.includes(line.option))
+          throw new Error("One of your selected options is no longer available.");
+        if (!Number.isInteger(line.quantity) || line.quantity < 1 || line.quantity > 20)
+          throw new Error("Invalid quantity.");
+        return {
+          productId: p.id,
+          name: p.name,
+          option: line.option,
+          quantity: line.quantity,
+          priceCents: p.priceCents,
+        };
+      });
+      const totalCents = lines.reduce(
+        (sum, line) => sum + line.priceCents * line.quantity,
+        0,
+      );
+      const payload = {
+        name: String(data.name || "").trim().slice(0, 120),
+        email: String(data.email || "").trim().toLowerCase().slice(0, 320),
+        shippingAddress: String(data.shippingAddress || "").trim().slice(0, 1500),
+        notes: String(data.notes || "").trim().slice(0, 2000),
+        items: lines,
+        totalCents,
+        userId: auth.currentUser?.uid || null,
+        status: "pending",
+        createdAt: serverTimestamp(),
+      };
+      const ref = await addDoc(collection(db, "shop_requests"), payload);
       items = [];
       save();
       renderCart();
       form.reset();
-      status.textContent = `Request received. Reference ${result.id.slice(0, 10).toUpperCase()}. Item total: ${money(result.totalCents)}. We’ll contact you to confirm availability and shipping.`;
-      requestId = crypto.randomUUID();
+      status.textContent = `Request received. Reference ${ref.id.slice(0, 10).toUpperCase()}. Item total: ${money(totalCents)}. We’ll contact you to confirm availability and shipping.`;
     } catch (err) {
       status.textContent =
-        err.message?.replace("Firebase: ", "") ||
-        "Could not send. Your cart is saved; please try again.";
+        err.message || "Could not send. Your cart is saved; please try again.";
       status.dataset.error = "true";
       button.disabled = false;
     }
