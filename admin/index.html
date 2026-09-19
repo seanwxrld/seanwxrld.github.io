@@ -230,7 +230,7 @@
                   ><button type="button" id="download-html">
                     Download HTML</button
                   ><button type="button" id="test-email">
-                    Send test to me
+                    Sending unavailable on free setup
                   </button>
                 </div>
                 <p class="status" id="email-status" role="status"></p>
@@ -242,11 +242,11 @@
                   id="send-time"
               /></label>
               <p class="fine-print">
-                Leave blank to queue for the next delivery run. Save your latest
-                changes first.
+                Draft and export are available on the free setup. Automated
+                sending and scheduling require a separate email backend.
               </p>
               <button id="queue-email" class="solid">
-                Review & queue newsletter ↗</button
+                Scheduling unavailable on free setup</button
               ><button id="new-draft">New draft</button>
             </section>
             <section>
@@ -304,10 +304,12 @@
         </div>
         <label>Image URL or /assets/ path<input name="image" required /></label
         ><label
-          >Or upload an image (PNG, JPEG, WebP; under 5 MB)<input
+          >Image uploads<input
             type="file"
             id="product-image"
-            accept="image/png,image/jpeg,image/webp" /></label
+            accept="image/png,image/jpeg,image/webp"
+            disabled /></label
+        ><p class="fine-print">Free setup: use an existing /assets/ path or HTTPS image URL.</p>
         ><label
           >Options (comma separated)<input
             name="options"
