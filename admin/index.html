@@ -51,7 +51,8 @@
           ><button data-view="requests">02 &nbsp; Requests</button
           ><button data-view="products">03 &nbsp; Products</button
           ><button data-view="contacts">04 &nbsp; People</button
-          ><button data-view="newsletter">05 &nbsp; Newsletters</button>
+          ><button data-view="newsletter">05 &nbsp; Newsletters</button
+          ><button data-view="insights">06 &nbsp; Insights</button>
         </nav>
         <div class="side-foot">
           <p class="muted">Made for your world.</p>
@@ -262,6 +263,44 @@
           </div>
           <h2>Your drafts & campaigns</h2>
           <div id="campaign-list"></div>
+        </section>
+        <section data-panel="insights" hidden>
+          <div class="page-head">
+            <p class="eyebrow">WHAT THE WORLD IS DOING</p>
+            <h1>Insights.</h1>
+            <p class="muted">
+              Website performance, audience behaviour and Google Search visibility
+              in one place.
+            </p>
+          </div>
+          <section class="panel insights-shell">
+            <div class="row spread insights-head">
+              <div>
+                <p class="eyebrow">GOOGLE ANALYTICS + SEARCH CONSOLE</p>
+                <h2>Your website, in motion.</h2>
+              </div>
+              <a
+                class="insights-link"
+                href="https://datastudio.google.com/embed/reporting/a6d52aee-f119-4e27-894c-67f1bcfc8e6d/page/g6J9F"
+                target="_blank"
+                rel="noopener"
+                >Open full report ↗</a
+              >
+            </div>
+            <div class="insights-frame-wrap">
+              <iframe
+                class="insights-frame"
+                src="https://datastudio.google.com/embed/reporting/a6d52aee-f119-4e27-894c-67f1bcfc8e6d/page/g6J9F"
+                title="SĒAN MOSIKILI website insights"
+                loading="lazy"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <p class="fine-print">
+              Data comes from the Google account connected to this Looker Studio
+              report. Use the report controls to change dates and views.
+            </p>
+          </section>
         </section>
       </main>
     </div>

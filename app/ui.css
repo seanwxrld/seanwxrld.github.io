@@ -552,3 +552,61 @@
     white-space: nowrap;
   }
 }
+
+
+/* Backstage Insights */
+.workspace .insights-shell {
+  padding: 0;
+  overflow: hidden;
+}
+.workspace .insights-head {
+  padding: 24px 24px 18px;
+  border-bottom: 1px solid var(--line);
+  gap: 18px;
+}
+.workspace .insights-head h2 {
+  margin: 4px 0 0;
+}
+.workspace .insights-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  text-decoration: none;
+  white-space: nowrap;
+  background: #fffdfa;
+}
+.workspace .insights-frame-wrap {
+  width: 100%;
+  background: #eeeae3;
+  overflow: hidden;
+}
+.workspace .insights-frame {
+  display: block;
+  width: 100%;
+  height: min(980px, 80vh);
+  min-height: 720px;
+  border: 0;
+  background: #fffdfa;
+}
+.workspace .insights-shell > .fine-print {
+  margin: 0;
+  padding: 14px 24px 20px;
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 700px) {
+  .workspace .insights-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .workspace .insights-link {
+    width: 100%;
+    justify-content: center;
+  }
+  .workspace .insights-frame {
+    min-height: 640px;
+    height: 75vh;
+  }
+}
