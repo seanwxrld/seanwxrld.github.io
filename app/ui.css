@@ -11,8 +11,8 @@
   background: var(--paper);
   color: var(--ink);
   margin: 0;
-  font-family: "Poppins", Arial, sans-serif;
-  line-height: 1.6;
+  font-family: "JetBrains Mono", "Courier New", monospace;
+  line-height: 1.65;
 }
 .workspace * {
   box-sizing: border-box;
@@ -102,9 +102,11 @@
 .workspace h1,
 .workspace h2,
 .workspace h3 {
-  line-height: 1.1;
-  letter-spacing: -0.045em;
-  font-weight: 600;
+  font-family: "JetBrains Mono", "Courier New", monospace;
+  line-height: 1.12;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
 }
 .workspace h1 {
   font-size: clamp(40px, 6vw, 74px);
@@ -187,10 +189,12 @@
   gap: 20px;
 }
 .workspace .brand {
-  font-size: 17px;
-  font-weight: 600;
+  font-family: "JetBrains Mono", "Courier New", monospace;
+  font-size: 1rem;
+  font-weight: 500;
   text-decoration: none;
-  letter-spacing: 1px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
 }
 .workspace .public-main {
   max-width: 1120px;
@@ -237,6 +241,9 @@
   width: 100%;
 }
 .workspace .topbar {
+  font-family: "JetBrains Mono", "Courier New", monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
   display: flex;
   justify-content: space-between;
   gap: 10px;
@@ -609,4 +616,27 @@
     min-height: 640px;
     height: 75vh;
   }
+}
+
+
+/* Keep Backstage typography aligned with the public site. */
+.workspace .sidebar nav button,
+.workspace .app-header nav,
+.workspace .topbar,
+.workspace table,
+.workspace label,
+.workspace input,
+.workspace select,
+.workspace textarea {
+  font-family: "JetBrains Mono", "Courier New", monospace;
+}
+
+.workspace .sidebar nav button,
+.workspace .app-header nav {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.workspace .sidebar .brand {
+  line-height: 1.55;
 }
