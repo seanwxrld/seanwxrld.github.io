@@ -48,8 +48,12 @@ document
           : "Thank you for signing up <3.";
         status.dataset.statusType = "success";
       } catch (e) {
-        status.textContent =
-          e.message || "Could not send. Please try again shortly.";
+        const permissionError =
+          e?.code === "permission-denied" ||
+          String(e?.message || "").toLowerCase().includes("permission");
+        status.textContent = permissionError
+          ? "This form is temporarily blocked by the website database permissions. Please try again after the site update."
+          : e.message || "Could not send. Please try again shortly.";
         status.dataset.statusType = "error";
       } finally {
         button.disabled = false;
