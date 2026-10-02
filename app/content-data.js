@@ -1,21 +1,12 @@
 // Bundled public content. Backstage changes override these defaults in Firestore.
 export const defaults = {
   home: {
-    eyebrow: "SOUND / VISION / FEELING",
-    heading: "SĒAN\nMOSIKILI",
-    intro: "Enter the sound. Stay for the feeling.",
-    image: "/assets/SEAN MOSIKILI picture.png",
-    imageCaption: "SINGER / SONGWRITER / PRODUCER",
     featuredRelease: "monaco",
     announcementRelease: "lost-lovers-avenue-deluxe",
-    showAnnouncement: true,
-    newsletterTitle: "STAY IN THE LOOP.",
-    newsletterText:
-      "New music, live moments and things worth keeping. Straight from my world to your inbox.",
   },
   releases: {
-    title: "THE RECORDS.",
-    intro: "The singles. The projects. Every chapter.",
+    title: "Releases",
+    intro: "",
     items: [
       {
         id: "monaco",
@@ -24,7 +15,7 @@ export const defaults = {
         status: "released",
         date: "",
         image: "/assets/monaco_coverart.PNG",
-        description: "Enter the sound. Stay for the feeling.",
+        description: "",
         link: "https://unitedmasters.com/m/monaco-15",
         linkLabel: "Listen now",
         tracks: "",
@@ -163,8 +154,8 @@ export const defaults = {
     ],
   },
   visuals: {
-    title: "IN FRAME.",
-    intro: "The moving image. The moments between.",
+    title: "Visuals",
+    intro: "",
     items: [
       {
         id: "all-mine-video",

@@ -159,34 +159,44 @@ const releaseStatus = (r) =>
       : "Out now";
 
 export function renderHome(data) {
-  const h = data.home;
   const releases = ordered(data.releases.items);
-  const feature = releases.find((r) => r.id === h.featuredRelease);
-  const announcement = releases.find((r) => r.id === h.announcementRelease);
-  const nextShow = [...data.tour.items]
-    .filter((x) => x.status !== "hidden" && x.status !== "cancelled")
-    .sort((a, b) => a.date.localeCompare(b.date))[0];
-  return `<section class="world-opening"><div class="index-line"><span>THE OFFICIAL WEBSITE</span><span>${e(h.eyebrow)}</span></div><div class="world-title"><h1>${e(h.heading).replaceAll("\n", "<br> ")}</h1><span class="edition-mark" aria-hidden="true">SM<br>©26</span></div><div class="world-intro"><p>${e(h.intro)}</p><a href="#current" class="text-link">Explore the world <span>↓</span></a></div></section>
-  <section id="current" class="current-world"><figure class="artist-frame">${image(h.image, data.settings.artistName, "", true)}<figcaption><span>01 / PORTRAIT</span><span>${e(h.imageCaption)}</span></figcaption></figure><div class="current-notes">${feature ? `<article class="now-playing"><div class="index-line"><span>ON REPEAT</span><span>${e(kindLabel(feature.kind))}</span></div><h2>${e(feature.title)}</h2><p>${e(feature.description)}</p>${link(feature.link, feature.linkLabel || "Explore release")}<a class="record-index" href="/releases/#${e(feature.id)}">View release notes ↗</a></article>` : ""}${h.showAnnouncement && announcement ? `<article class="announcement"><p class="eyebrow">NEXT CHAPTER / ${e(releaseStatus(announcement))}</p><h2>${e(announcement.title)}</h2><div class="announcement-foot"><span class="release-day">${announcement.date ? e(announcement.date.slice(8, 10) + "." + announcement.date.slice(5, 7)) : "SOON"}</span><a class="text-link" href="/releases/#${e(announcement.id)}">The details ↗</a></div></article>` : ""}</div></section>
-  <section class="world-directory" aria-label="Explore"><a href="/tour/"><span class="eyebrow">02 / IN PERSON & ONLINE</span><h2>SEE YOU LIVE.</h2><p>${nextShow ? e(data.tour.series) : "The next moment."}</p><span aria-hidden="true">↗</span></a><a href="/gallery/"><span class="eyebrow">03 / THE MOVING IMAGE</span><h2>IN FRAME.</h2><p>Watch the world unfold.</p><span aria-hidden="true">↗</span></a><a href="/shop/"><span class="eyebrow">04 / OBJECTS TO KEEP</span><h2>THE STORE.</h2><p>A piece of the world.</p><span aria-hidden="true">↗</span></a></section>`;
+  const feature =
+    releases.find((r) => r.id === data.home.featuredRelease) ||
+    releases.find((r) => r.status === "released") ||
+    releases[0];
+  if (!feature)
+    return `<section class="home-feature"><h1>Music</h1><a class="listen-button" href="/releases/">View releases</a></section>`;
+  return `<section class="home-feature" aria-label="Featured release">
+    ${image(feature.image, `${feature.title} cover art`, "home-cover-art", true)}
+    <div class="home-release-copy"><h1>${e(feature.title)}</h1>
+    <p class="home-release-status">${e(releaseStatus(feature))}</p>
+    ${contentUrl(feature.link) ? `<a class="listen-button" href="${e(contentUrl(feature.link))}">${e(feature.linkLabel || "Listen now")}</a>` : `<a class="listen-button" href="/releases/#${e(feature.id)}">View release</a>`}</div>
+  </section>`;
 }
 
 export function renderReleases(data) {
   const releases = ordered(data.releases.items);
-  return `<section class="archive-heading"><div class="index-line"><span>AUDIO / THE CATALOGUE</span><span>${String(releases.length).padStart(2, "0")} RECORDS</span></div><h1>${e(data.releases.title)}</h1><p>${e(data.releases.intro)}</p></section><section class="record-grid" aria-label="Music releases">${releases
+  return `<section class="archive-heading"><h1>${e(data.releases.title)}</h1>${data.releases.intro ? `<p>${e(data.releases.intro)}</p>` : ""}</section><section class="record-grid" aria-label="Music releases">${releases
     .map(
-      (r, i) =>
-        `<article class="record-entry ${r.status === "upcoming" ? "record-upcoming" : ""}" id="${e(r.id)}"><div class="record-art">${r.image ? image(r.image, `${r.title} cover art`) : `<div class="record-placeholder"><span>FORTHCOMING</span><strong>${r.date ? e(r.date.slice(8, 10) + "." + r.date.slice(5, 7)) : "SOON"}</strong><span>${e(r.date.slice(0, 4))}</span></div>`}<span class="record-number">${String(i + 1).padStart(2, "0")}</span></div>${r.id === "genie" ? '<span id="dopamine-high"></span>' : ""}<div class="record-meta"><span>${e(kindLabel(r.kind))}</span><span>${e(releaseStatus(r))}</span></div><h2>${e(r.title)}</h2><p>${e(r.description)}</p>${link(r.link, r.linkLabel || "Listen now")}${
-          r.tracks || r.credits
-            ? `<details class="record-details"><summary>Tracklist & credits <span>+</span></summary>${
-                r.tracks
-                  ? `<ol>${lines(r.tracks)
-                      .map((t) => `<li>${e(t)}</li>`)
-                      .join("")}</ol>`
-                  : ""
-              }${r.credits ? `<p>${e(r.credits)}</p>` : ""}</details>`
-            : ""
-        }</article>`,
+      (
+        r,
+      ) => `<article class="record-entry ${r.status === "upcoming" ? "record-upcoming" : ""}" id="${e(r.id)}">
+      <div class="record-art">${r.image ? image(r.image, `${r.title} cover art`) : `<div class="record-placeholder"><span>Coming</span><strong>${r.date ? e(r.date.slice(8, 10) + "." + r.date.slice(5, 7)) : "Soon"}</strong><span>${e((r.date || "").slice(0, 4))}</span></div>`}</div>
+      ${r.id === "genie" ? '<span id="dopamine-high"></span>' : ""}
+      <h2>${e(r.title)}</h2><p class="record-status">${e(kindLabel(r.kind))} · ${e(releaseStatus(r))}</p>
+      ${link(r.link, r.linkLabel || "Listen now")}
+      ${
+        r.description || r.tracks || r.credits
+          ? `<details class="record-details"><summary>Details <span>+</span></summary>${r.description ? `<p>${e(r.description)}</p>` : ""}${
+              r.tracks
+                ? `<ol>${lines(r.tracks)
+                    .map((t) => `<li>${e(t)}</li>`)
+                    .join("")}</ol>`
+                : ""
+            }${r.credits ? `<p>${e(r.credits)}</p>` : ""}</details>`
+          : ""
+      }
+    </article>`,
     )
     .join("")}</section>`;
 }
@@ -214,14 +224,29 @@ export function renderTour(
 }
 
 export function renderVisuals(data) {
-  return `<section class="archive-heading"><div class="index-line"><span>VIDEO / STILLS / MOMENTS</span><span>THE VISUAL ARCHIVE</span></div><h1>${e(data.visuals.title)}</h1><p>${e(data.visuals.intro)}</p></section><section class="visual-archive">${ordered(
+  return `<section class="archive-heading"><h1>${e(data.visuals.title)}</h1>${data.visuals.intro ? `<p>${e(data.visuals.intro)}</p>` : ""}</section><section class="visual-archive">${ordered(
     data.visuals.items,
   )
     .map(
-      (v, i) =>
-        `<article class="visual-entry"><div class="visual-screen">${youtubeId(v.url) ? `<iframe src="https://www.youtube-nocookie.com/embed/${youtubeId(v.url)}?rel=0" title="${e(v.title)}" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>` : image(v.image, v.title)}</div><div class="visual-caption"><span class="eyebrow">${String(i + 1).padStart(2, "0")} / ${e(v.kind)}</span><h2>${e(v.title)}</h2><p>${e(v.description)}</p>${link(v.url, "Watch")}</div></article>`,
+      (v) =>
+        `<article class="visual-entry"><div class="visual-screen">${youtubeId(v.url) ? `<iframe src="https://www.youtube-nocookie.com/embed/${youtubeId(v.url)}?rel=0" title="${e(v.title)}" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>` : image(v.image, v.title)}</div><div class="visual-caption"><h2>${e(v.title)}</h2><p>${e(v.description || v.kind)}</p>${!youtubeId(v.url) ? link(v.url, "View") : ""}</div></article>`,
     )
     .join("")}</section>`;
+}
+
+export function renderFooter(data) {
+  const socials = data.settings.socials
+    .filter((s) => contentUrl(s.url))
+    .map(
+      (s) =>
+        `<a href="${e(contentUrl(s.url))}" target="_blank" rel="noopener noreferrer">${e(s.label)}</a>`,
+    )
+    .join("");
+  return `<footer class="footer"><div class="footer-inner">
+    <nav class="footer-site-links" aria-label="Information"><a href="/swarm/">Join Swarm</a><a href="/contact/">Contact</a><a href="/account/">My account</a></nav>
+    <nav class="footer-links" data-social-links aria-label="Social and music links">${socials}</nav>
+    <div class="footer-bottom"><p>© 2026 <span data-artist-name>${e(data.settings.artistName)}</span></p><nav class="footer-legal" aria-label="Legal"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></nav></div>
+  </div></footer>`;
 }
 
 export function structuredData(data, path = "/") {

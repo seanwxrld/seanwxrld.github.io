@@ -13,12 +13,14 @@ import {
   youtubeId,
 } from "../app/content-model.js";
 
-test("old album feature is retired; Monaco and the dated Deluxe announcement remain", () => {
+test("homepage focuses on one release; Deluxe stays in the catalogue", () => {
   const home = renderHome(defaults);
   assert.match(home, /MONACO/);
-  assert.match(home, /30\.10/);
-  assert.match(home, /Deluxe/);
-  assert.doesNotMatch(home, /home-tracklist|debut album|pre-save waitlist/);
+  assert.match(home, /monaco_coverart\.PNG/);
+  assert.doesNotMatch(
+    home,
+    /Deluxe|PORTRAIT|world-directory|Enter the sound|home-tracklist|debut album|pre-save waitlist/,
+  );
   const catalog = renderReleases(defaults);
   assert.match(catalog, /id="monaco"/);
   assert.match(catalog, /id="lost-lovers-avenue"/);

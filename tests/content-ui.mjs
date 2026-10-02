@@ -56,7 +56,7 @@ async function app(route, entry) {
         ? "tests/fixtures/firebase.js"
         : path.relative(
             process.cwd(),
-            path.resolve(path.dirname(parent.identifier), spec),
+            path.resolve(path.dirname(parent.identifier), spec.split("?")[0]),
           ),
     );
   }
@@ -141,10 +141,10 @@ test("failed saves retain input and sign-out clears private editors", async () =
   try {
     a.click("[data-view=content]");
     a.click("[data-content-section=home]");
-    a.fill("#section-form [name=intro]", "A new introduction");
+    a.fill("#section-form [name=featuredRelease]", "genie");
     a.w.__fixture.fail = "transaction";
     await a.submit("#section-form");
-    assert.equal(a.$("#section-form [name=intro]").value, "A new introduction");
+    assert.equal(a.$("#section-form [name=featuredRelease]").value, "genie");
     assert.match(a.$("#content-status").textContent, /unavailable/);
     assert.equal(a.$("#content-unsaved").hidden, false);
     a.w.__fixture.setUser("member");

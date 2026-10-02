@@ -1,4 +1,4 @@
-import { defaults } from "./content-data.js";
+import { defaults } from "./content-data.js?v=20261002b";
 import {
   clone,
   sectionNames,
@@ -10,7 +10,7 @@ import {
   contentUrl,
   validateSection,
   dateLabel,
-} from "./content-model.js";
+} from "./content-model.js?v=20261002b";
 import { escapeHtml as e } from "./core.js";
 const data = clone(defaults);
 const path = location.pathname;

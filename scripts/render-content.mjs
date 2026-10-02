@@ -6,6 +6,7 @@ import {
   renderReleases,
   renderTour,
   renderVisuals,
+  renderFooter,
   structuredData,
 } from "../app/content-model.js";
 import { escapeHtml as e } from "../app/core.js";
@@ -37,6 +38,7 @@ async function walk(dir = ".") {
 }
 for (const file of await walk()) {
   let html = await fs.readFile(file, "utf8");
+  html = html.replace(/<footer\b[^>]*>[\s\S]*?<\/footer>/, renderFooter(defaults));
   const route = file === "index.html" ? "/" : "/" + path.dirname(file) + "/";
   for (const [name, render] of Object.entries(renderers)) {
     html = html.replace(
@@ -59,6 +61,6 @@ for (const file of await walk()) {
     (_, start, tag, group, key, end) =>
       start + e(defaults[group]?.[key] || "") + end,
   );
-  await fs.writeFile(file, html);
+  await fs.writeFile(file, html.replace(/[ \t]+$/gm, ""));
 }
 console.log("Static content and structured data refreshed.");

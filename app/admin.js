@@ -4,7 +4,7 @@ import {
   canLeaveContent,
   openContentSection,
   resetContentEditor,
-} from "./content-admin.js";
+} from "./content-admin.js?v=20261002b";
 import { auth, db } from "./firebase.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 import {

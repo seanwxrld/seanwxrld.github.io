@@ -6,8 +6,12 @@ import {
   runTransaction,
   serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
-import { defaults } from "./content-data.js";
-import { clone, validateSection, contentUrl } from "./content-model.js";
+import { defaults } from "./content-data.js?v=20261002b";
+import {
+  clone,
+  validateSection,
+  contentUrl,
+} from "./content-model.js?v=20261002b";
 import { escapeHtml as e } from "./core.js";
 
 const $ = (s) => document.querySelector(s);
@@ -28,16 +32,12 @@ const field = (name, label, type = "text", extra = {}) => ({
 });
 const pageFields = {
   home: [
-    field("eyebrow", "Small heading"),
-    field("heading", "Main title", "textarea"),
-    field("intro", "Introduction", "textarea"),
-    field("image", "Artist photograph", "image"),
-    field("imageCaption", "Photo caption"),
     field("featuredRelease", "Featured release", "release"),
-    field("showAnnouncement", "Show the release announcement", "checkbox"),
-    field("announcementRelease", "Announcement release", "release"),
-    field("newsletterTitle", "Newsletter heading"),
-    field("newsletterText", "Newsletter invitation", "textarea"),
+    field(
+      "announcementRelease",
+      "Release featured on the updates page",
+      "release",
+    ),
   ],
   releases: [
     field("title", "Page title"),
