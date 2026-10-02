@@ -91,6 +91,8 @@ const data = {
   },
   campaigns: {},
   member_carts: {},
+  site_content: {},
+  site_content_private: {},
 };
 window.__fixture = { data, calls: [], auth };
 const watchers = [];
@@ -183,4 +185,50 @@ window.__fixture.setUser = (role) => {
   auth.currentUser =
     role === "admin" ? owner : role === "member" ? member : null;
   authListeners.forEach((cb) => cb(auth.currentUser));
+};
+
+// Direct Firestore writes used by the current free-plan application.
+const notify = () => watchers.forEach((w) => w.cb(snapshot(w.r)));
+window.__fixture.publishContent = (name, content) => {
+  data.site_content[name] = { content, revision: 1 };
+  notify();
+};
+export const serverTimestamp = () => ({
+  seconds: Math.floor(Date.now() / 1000),
+});
+export const setDoc = async (r, value, options = {}) => {
+  if (window.__fixture.fail === r.name)
+    throw new Error("Test service unavailable");
+  data[r.name] ||= {};
+  data[r.name][r.id] = options.merge
+    ? { ...data[r.name][r.id], ...value }
+    : value;
+  window.__fixture.calls.push({
+    name: "setDoc",
+    collection: r.name,
+    id: r.id,
+    payload: value,
+  });
+  notify();
+};
+export const addDoc = async (r, value) => {
+  const id = "new-" + Math.random().toString(36).slice(2, 10);
+  await setDoc({ ...r, id }, value);
+  return { id };
+};
+export const updateDoc = (r, value) => setDoc(r, value, { merge: true });
+export const runTransaction = async (_, fn) => {
+  if (window.__fixture.fail === "transaction")
+    throw new Error("Test service unavailable");
+  const pending = [];
+  await fn({
+    get: async (r) => snap(r.id, data[r.name]?.[r.id]),
+    set: (ref, value) => pending.push({ ref, value }),
+  });
+  for (const { ref, value } of pending) {
+    data[ref.name] ||= {};
+    data[ref.name][ref.id] = value;
+  }
+  window.__fixture.calls.push({ name: "transaction", writes: pending });
+  notify();
 };
