@@ -13,6 +13,7 @@ import {
   getDocs,
   query,
   where,
+  serverTimestamp,
 } from "firebase/firestore";
 const env = await initializeTestEnvironment({
   projectId: "demo-sean-backstage",
@@ -55,14 +56,40 @@ test("public catalogue excludes hidden products", async () => {
     ),
   );
 });
-test("direct writes cannot bypass callable validation or grant admin", async () => {
-  for (const db of [guest, alice, admin]) {
+test("only admins can edit products, and invalid requests cannot be created", async () => {
+  for (const db of [guest, alice]) {
     await assertFails(setDoc(doc(db, "products/public"), { priceCents: 1 }));
+  }
+  await assertSucceeds(
+    setDoc(doc(admin, "products/public"), {
+      status: "available",
+      priceCents: 100,
+    }),
+  );
+  for (const db of [guest, alice, admin]) {
     await assertFails(
       setDoc(doc(db, "shop_requests/forged"), { userId: "alice" }),
     );
   }
   await assertFails(setDoc(doc(alice, "users/alice"), { admin: true }));
   await assertFails(setDoc(doc(alice, "campaigns/spam"), { status: "queued" }));
+});
+test("published content is public; edits and hidden content require an admin", async () => {
+  const payload = {
+    content: { title: "A public title" },
+    revision: 1,
+    updatedAt: serverTimestamp(),
+  };
+  await assertFails(setDoc(doc(guest, "site_content/home"), payload));
+  await assertFails(setDoc(doc(alice, "site_content/home"), payload));
+  await assertSucceeds(setDoc(doc(admin, "site_content/home"), payload));
+  await assertSucceeds(getDoc(doc(guest, "site_content/home")));
+  await assertSucceeds(
+    setDoc(doc(admin, "site_content_private/home"), payload),
+  );
+  await assertFails(getDoc(doc(guest, "site_content_private/home")));
+  await assertFails(getDoc(doc(alice, "site_content_private/home")));
+  await assertSucceeds(getDoc(doc(admin, "site_content_private/home")));
+  await assertFails(setDoc(doc(admin, "site_content/not-a-page"), payload));
 });
 test.after(() => env.cleanup());

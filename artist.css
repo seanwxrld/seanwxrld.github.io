@@ -1,0 +1,781 @@
+/* The artist's world: the original fonts and warm palette, with a quieter frame. */
+[hidden] {
+  display: none !important;
+}
+.artist-header,
+.artist-header * {
+  box-sizing: border-box;
+}
+.artist-header {
+  position: fixed;
+  inset: 0 0 auto;
+  padding: 0 5vw;
+  height: 82px;
+  display: flex;
+  align-items: center;
+  background: #f7f5f1f7;
+  border-bottom: 1px solid #d8d3ca;
+  color: #171717;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+}
+.artist-header .header-inner {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr auto 1fr 1fr;
+  align-items: center;
+  gap: 24px;
+}
+.artist-header .logo {
+  grid-column: 3;
+  grid-row: 1;
+  letter-spacing: 0.2em;
+  font:
+    500 15px "JetBrains Mono",
+    monospace;
+  white-space: nowrap;
+  color: inherit;
+  text-decoration: none;
+}
+.artist-header .nav-drawer {
+  display: contents;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+}
+.artist-header .nav-drawer a {
+  grid-row: 1;
+  text-decoration: none;
+  color: #171717;
+  font:
+    500 11px "JetBrains Mono",
+    monospace;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  padding: 12px 0;
+  width: fit-content;
+}
+.artist-header .nav-drawer a:nth-child(1) {
+  grid-column: 1;
+}
+.artist-header .nav-drawer a:nth-child(2) {
+  grid-column: 2;
+}
+.artist-header .nav-drawer a:nth-child(3) {
+  grid-column: 4;
+  justify-self: end;
+}
+.artist-header .nav-drawer a:nth-child(4) {
+  grid-column: 5;
+  justify-self: end;
+}
+.artist-header .nav-drawer a[aria-current="page"] {
+  color: var(--accent, #79543b);
+  border-bottom: 1px solid currentColor;
+}
+.artist-header .nav-drawer a:hover {
+  color: var(--accent, #79543b);
+  opacity: 1;
+}
+.artist-header .menu-button {
+  display: none;
+}
+.site-theme .page {
+  padding-top: 128px;
+}
+.site-theme .page.artist-page {
+  padding: 122px 5vw 80px;
+  gap: 0;
+}
+.artist-page > [data-content-view] {
+  width: 100%;
+  max-width: 1440px;
+  margin: auto;
+}
+.artist-page section {
+  text-align: left;
+  max-width: none;
+}
+.artist-page section + section {
+  margin-top: 0;
+}
+.artist-page h1,
+.artist-page h2 {
+  font-family: "Archivo Black", sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.055em;
+}
+.artist-page p {
+  font-size: 12px;
+  line-height: 1.85;
+}
+.index-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 1px solid var(--line-strong);
+  padding: 0 0 15px;
+  font-size: 10px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+.world-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 24px 0 22px;
+}
+.world-title h1 {
+  font-size: clamp(64px, 10.6vw, 158px);
+  line-height: 0.88;
+  margin: 0;
+}
+.world-title h1 br {
+  display: none;
+}
+.world-title h1 {
+  white-space: pre-line;
+}
+.world-title h1 br::after {
+  content: " ";
+}
+.edition-mark {
+  font-size: 12px;
+  line-height: 1.45;
+  border: 1px solid var(--accent);
+  padding: 10px;
+  color: var(--accent);
+  margin: 0 0 8px 25px;
+}
+.world-intro {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 10px 0 42px;
+}
+.world-intro p {
+  margin: 0;
+}
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 6px;
+  text-decoration: none;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.current-world {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(24px, 5vw, 80px);
+  border-top: 1px solid var(--line-strong);
+  padding: 30px 0 66px;
+}
+.artist-frame {
+  margin: 0;
+  min-width: 0;
+}
+.artist-frame img {
+  width: 100%;
+  height: 510px;
+  object-fit: cover;
+  object-position: center 55%;
+  filter: grayscale(1) sepia(0.3);
+  background: #281e17;
+}
+.artist-frame figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  margin-top: 13px;
+}
+.current-notes {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+}
+.now-playing h2 {
+  font-size: clamp(44px, 6vw, 86px);
+  line-height: 1;
+  margin: 30px 0 18px;
+}
+.now-playing .text-link {
+  margin: 16px 0;
+}
+.record-index {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+.announcement {
+  padding: 26px;
+  border: 1px solid var(--accent);
+  background: #eeeae3;
+  color: var(--accent);
+}
+.announcement .eyebrow {
+  font-size: 9px;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+}
+.announcement h2 {
+  font-size: clamp(24px, 2.8vw, 40px);
+  line-height: 1.1;
+  margin: 14px 0 26px;
+}
+.announcement-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 20px;
+}
+.release-day {
+  font-size: 36px;
+  letter-spacing: -0.06em;
+}
+.world-directory {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-block: 1px solid var(--line-strong);
+}
+.world-directory > a {
+  padding: 30px 26px 26px;
+  position: relative;
+  transition: background 0.2s;
+}
+.world-directory > a:hover {
+  background: #eeeae3;
+  opacity: 1;
+}
+.world-directory > a:first-child {
+  padding-left: 0;
+}
+.world-directory > a + a {
+  border-left: 1px solid var(--line-strong);
+}
+.world-directory .eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.03em;
+}
+.world-directory h2 {
+  font-size: clamp(20px, 2.8vw, 38px);
+  margin: 18px 0 12px;
+}
+.world-directory > a > span:last-child {
+  position: absolute;
+  bottom: 28px;
+  right: 26px;
+  color: var(--accent);
+}
+.world-directory p {
+  font-size: 10px;
+  padding-right: 20px;
+}
+.artist-page .world-newsletter {
+  margin: 70px auto 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  text-align: left;
+  max-width: 1440px;
+}
+.world-newsletter .newsletter-inner {
+  max-width: none;
+  margin: 0;
+}
+.world-newsletter h2 {
+  font-size: clamp(34px, 5vw, 66px);
+  text-align: left;
+}
+.world-newsletter .lead {
+  font-size: 12px;
+  text-transform: none;
+  max-width: 620px;
+  margin: 20px 0;
+  text-align: left;
+}
+.world-newsletter .newsletter-form {
+  max-width: 800px;
+  margin: 28px 0 0;
+}
+.site-theme .button {
+  border-radius: 0 !important;
+}
+.site-theme .footer {
+  padding: 40px 5vw;
+  text-align: left;
+}
+.footer-site-links {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
+}
+.site-theme .footer-links {
+  justify-content: flex-start;
+  gap: 18px;
+}
+.archive-heading {
+  padding: 0 0 52px;
+}
+.archive-heading h1 {
+  font-size: clamp(50px, 9vw, 128px);
+  line-height: 1;
+  margin: 34px 0 18px;
+}
+.record-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 55px 32px;
+}
+.record-entry {
+  scroll-margin-top: 112px;
+  min-width: 0;
+}
+.record-art {
+  position: relative;
+  aspect-ratio: 1;
+  background: #e9e4dc;
+  overflow: hidden;
+}
+.record-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+.record-entry:hover .record-art img {
+  transform: scale(1.025);
+}
+.record-number {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-size: 11px;
+  background: var(--paper);
+  padding: 5px 8px;
+}
+.record-placeholder {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: var(--accent);
+  border: 1px solid currentColor;
+}
+.record-placeholder strong {
+  font-weight: 400;
+  font-size: clamp(50px, 6vw, 95px);
+  letter-spacing: -0.1em;
+}
+.record-placeholder span {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+}
+.record-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 9px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 18px 0 10px;
+}
+.record-entry h2 {
+  font-family: "JetBrains Mono", monospace;
+  letter-spacing: -0.035em;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.3;
+}
+.record-entry p {
+  font-size: 11px;
+  color: var(--muted);
+  margin: 12px 0 18px;
+}
+.record-details {
+  border-top: 1px solid var(--line-strong);
+  margin-top: 22px;
+  padding-top: 12px;
+  font-size: 11px;
+}
+.record-details summary,
+.past-shows summary {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.record-details ol {
+  margin: 20px 0 20px 26px;
+}
+.record-details li {
+  padding: 5px 0;
+}
+.tour-body {
+  --accent: #b60905;
+}
+.site-theme.tour-body .tour-intro h1 span,
+.site-theme.tour-body .tour-program h2 span,
+.tour-body .tour-label,
+.tour-body .tour-link,
+.tour-body .eyebrow,
+.tour-body .kicker {
+  color: #b60905;
+}
+.site-theme.tour-body .tour-dot,
+.site-theme.tour-body .tour-request-button {
+  background: #b60905;
+}
+.site-theme.tour-body .tour-request-button:hover {
+  background: #8c0b08;
+}
+.tour-body .artist-header .nav-drawer a[aria-current="page"],
+.site-theme.tour-body .menu-button::after {
+  color: #b60905;
+}
+.tour-page .tour-intro h1 {
+  font-size: clamp(56px, 9.3vw, 138px);
+}
+.tour-page .tour-feature {
+  margin-top: 60px;
+  align-items: start;
+}
+.tour-page .tour-program h2 {
+  margin-top: 20px;
+}
+.tour-page .tour-date {
+  padding: 24px 0;
+}
+.tour-page .tour-online {
+  border-radius: 0;
+  border-color: #b60905;
+  color: #b60905;
+  font-size: 10px;
+  padding: 10px;
+  gap: 5px;
+}
+.tour-page .tour-dates {
+  padding: 0;
+}
+.tour-state {
+  font-size: 10px;
+  color: #b60905;
+}
+.tour-page .tour-request {
+  margin-top: 70px;
+}
+.past-shows {
+  margin-top: 50px !important;
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+  font-size: 12px;
+}
+.visual-archive {
+  display: grid;
+  gap: 65px;
+}
+.visual-entry {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  align-items: center;
+  border-top: 1px solid var(--line);
+  padding-top: 28px;
+}
+.visual-screen {
+  aspect-ratio: 16/9;
+  background: #e9e4dc;
+}
+.visual-screen iframe,
+.visual-screen img {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+}
+.visual-caption h2 {
+  font-size: clamp(26px, 3vw, 46px);
+  line-height: 1.1;
+  margin: 20px 0;
+}
+.store-utility {
+  display: flex;
+  justify-content: flex-end;
+  gap: 24px;
+  font-size: 11px;
+  margin-bottom: 24px;
+}
+.preserve-lines {
+  white-space: pre-line;
+}
+.site-theme .hero {
+  text-align: left;
+}
+.site-theme .hero .lead {
+  margin-left: 0;
+}
+.site-theme .panel,
+.site-theme .form {
+  border-radius: 0;
+  box-shadow: none;
+}
+.workspace .artist-header + .public-main {
+  padding-top: 140px;
+}
+@media (max-width: 1100px) {
+  .world-title h1 {
+    font-size: 10.4vw;
+  }
+  .edition-mark {
+    display: none;
+  }
+  .artist-frame img {
+    height: 480px;
+  }
+  .record-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 760px) {
+  .artist-header {
+    height: 70px;
+    padding: 0 20px;
+  }
+  .artist-header .header-inner {
+    grid-template-columns: 1fr auto 1fr;
+    gap: 8px;
+  }
+  .artist-header .logo {
+    grid-column: 2;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+  }
+  .artist-header .menu-button {
+    display: inline-flex;
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    border: 0;
+    padding: 10px 0;
+    background: none;
+    color: inherit;
+  }
+  .artist-header .nav-drawer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    top: 69px;
+    left: 0;
+    width: 100%;
+    min-width: 0;
+    border-radius: 0;
+    padding: 22px 20px;
+    gap: 12px 24px;
+    transform: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    background: #f7f5f1;
+  }
+  .artist-header .nav-drawer.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  .artist-header .nav-drawer a:nth-child(n) {
+    grid-column: auto;
+    grid-row: auto;
+    justify-self: start;
+    width: 100%;
+    font-size: 12px;
+  }
+  .site-theme .page.artist-page {
+    padding: 102px 20px 50px;
+  }
+  .site-theme .page {
+    padding-top: 105px;
+  }
+  .index-line {
+    font-size: 8px;
+    gap: 10px;
+  }
+  .world-title {
+    padding: 25px 0;
+  }
+  .world-title h1 {
+    font-size: clamp(56px, 14vw, 110px);
+    line-height: 0.96;
+  }
+  .world-title h1 br {
+    display: block;
+  }
+  .world-intro {
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 26px;
+  }
+  .world-intro p {
+    max-width: 190px;
+    font-size: 10px;
+  }
+  .text-link {
+    font-size: 10px;
+    gap: 12px;
+  }
+  .current-world {
+    grid-template-columns: 1fr;
+    padding: 22px 0 38px;
+    gap: 28px;
+  }
+  .artist-frame img {
+    height: auto;
+    max-height: 470px;
+    aspect-ratio: 1.15;
+    object-position: center 60%;
+  }
+  .artist-frame figcaption {
+    font-size: 8px;
+  }
+  .now-playing h2 {
+    font-size: 62px;
+    margin-top: 24px;
+  }
+  .announcement {
+    margin-top: 14px;
+    padding: 22px;
+  }
+  .announcement h2 {
+    font-size: 29px;
+  }
+  .world-directory {
+    grid-template-columns: 1fr;
+  }
+  .world-directory > a,
+  .world-directory > a:first-child {
+    padding: 26px 0;
+  }
+  .world-directory > a + a {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+  .world-directory h2 {
+    font-size: 30px;
+    margin: 12px 0;
+  }
+  .world-directory > a > span:last-child {
+    right: 0;
+  }
+  .artist-page .world-newsletter {
+    margin-top: 42px;
+  }
+  .world-newsletter .newsletter-form {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .archive-heading {
+    padding-bottom: 32px;
+  }
+  .archive-heading h1 {
+    font-size: clamp(42px, 11.5vw, 70px);
+    margin: 28px 0 18px;
+  }
+  .record-grid {
+    gap: 40px 18px;
+  }
+  .record-meta {
+    display: block;
+    line-height: 1.8;
+  }
+  .record-meta span {
+    display: block;
+  }
+  .record-entry h2 {
+    font-size: 14px;
+  }
+  .record-entry p {
+    font-size: 10px;
+  }
+  .record-placeholder strong {
+    font-size: 42px;
+  }
+  .record-placeholder span {
+    font-size: 8px;
+  }
+  .record-number {
+    top: 7px;
+    left: 7px;
+    font-size: 9px;
+    padding: 3px 5px;
+  }
+  .record-details {
+    font-size: 10px;
+  }
+  .tour-page .tour-intro h1 {
+    font-size: clamp(44px, 12vw, 85px);
+    line-height: 1;
+  }
+  .tour-page .tour-feature {
+    margin-top: 30px;
+  }
+  .tour-page .tour-request {
+    margin-top: 38px;
+  }
+  .tour-page .tour-date {
+    grid-template-columns: 55px minmax(0, 1fr) auto;
+    gap: 10px;
+  }
+  .tour-page .tour-online {
+    font-size: 9px;
+    padding: 8px 6px;
+  }
+  .visual-entry {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .visual-caption h2 {
+    font-size: 28px;
+  }
+  .footer-site-links {
+    gap: 20px;
+  }
+  .site-theme .footer {
+    padding: 30px 20px;
+  }
+}
+@media (max-width: 380px) {
+  .record-grid {
+    grid-template-columns: 1fr;
+  }
+  .record-entry h2 {
+    font-size: 21px;
+  }
+  .record-placeholder strong {
+    font-size: 72px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}

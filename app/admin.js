@@ -1,3 +1,10 @@
+import {
+  startContentAdmin,
+  stopContentAdmin,
+  canLeaveContent,
+  openContentSection,
+  resetContentEditor,
+} from "./content-admin.js";
 import { auth, db } from "./firebase.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 import {
@@ -38,6 +45,9 @@ async function action(fn) {
   }
 }
 function view(name) {
+  if (!canLeaveContent()) return;
+  if (name !== "content") resetContentEditor();
+  document.querySelector("#back-workspace").hidden = name === "overview";
   document
     .querySelectorAll("[data-panel]")
     .forEach((el) => (el.hidden = el.dataset.panel !== name));
@@ -63,6 +73,7 @@ document
   );
 onAuthStateChanged(auth, async (user) => {
   const current = ++generation;
+  stopContentAdmin();
   listeners.forEach((stop) => stop());
   listeners = [];
   state = {
@@ -95,6 +106,7 @@ onAuthStateChanged(auth, async (user) => {
     }
     $("#dashboard").hidden = false;
     $("#login").hidden = true;
+    startContentAdmin();
     for (const name of Object.keys(state))
       listeners.push(
         onSnapshot(
@@ -256,15 +268,16 @@ $("#product-image").onchange = () => {
 };
 function renderContacts() {
   const term = $("#contact-search").value.toLowerCase();
-  const rows = [...state.newsletter_signups, ...state.newsletter_members].filter((c) =>
-    `${c.email} ${c.interest}`.toLowerCase().includes(term),
-  );
+  const rows = [
+    ...state.newsletter_signups,
+    ...state.newsletter_members,
+  ].filter((c) => `${c.email} ${c.interest}`.toLowerCase().includes(term));
   $("#subscriber-list").innerHTML = rows.length
     ? table(
         ["Email", "Interest / source", "Newsletter status", ""],
         rows.map(
           (c) =>
-            `<tr><td>${e(c.email)}</td><td>${e(c.interest || "—")}<br><span class="muted">${e(c.source)}</span></td><td>${e(c.status || "legacy · consent review")}</td><td>${c.status === "unsubscribed" ? "" : `<button data-suppress="${e(c.id)}">Unsubscribe</button>`}</td></tr>`,
+            `<tr><td>${e(c.email)}</td><td>${e(c.interest || "—")}<br><span class="muted">${e(c.source)}</span></td><td>${e(c.status || "legacy · consent review")}</td><td>${c.status === "unsubscribed" ? "" : `<button data-suppress="${e(c.id)}" data-member="${state.newsletter_members.includes(c)}">Unsubscribe</button>`}</td></tr>`,
         ),
       )
     : empty("No matching sign-ups.");
@@ -272,14 +285,18 @@ function renderContacts() {
     (b) =>
       (b.onclick = () =>
         action(async () => {
-          const c = state.newsletter_signups.find(
-            (c) => c.id === b.dataset.suppress,
-          );
+          const source =
+            b.dataset.member === "true"
+              ? "newsletter_members"
+              : "newsletter_signups";
+          const c = state[source].find((c) => c.id === b.dataset.suppress);
+          if (!c) return;
           if (confirm(`Unsubscribe ${c.email} from future newsletters?`))
-            await updateDoc(
-              doc(db, state.newsletter_members.some((x) => x.id === c.id) ? "newsletter_members" : "newsletter_signups", c.id),
-              { status: "unsubscribed", consent: false, updatedAt: serverTimestamp() },
-            );
+            await updateDoc(doc(db, source, c.id), {
+              status: "unsubscribed",
+              consent: false,
+              updatedAt: serverTimestamp(),
+            });
         })),
   );
   const messages = state.contact_messages.filter((c) =>
@@ -452,3 +469,8 @@ function renderAll() {
   renderContacts();
   renderCampaigns();
 }
+
+document.querySelector("#edit-store-page").onclick = () => {
+  view("content");
+  openContentSection("shop");
+};

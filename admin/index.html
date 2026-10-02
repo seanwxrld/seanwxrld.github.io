@@ -10,13 +10,14 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/app/ui.css" />
+    <link rel="stylesheet" href="/app/backstage.css" />
     <title>Backstage · SĒAN MOSIKILI</title>
   </head>
   <body class="workspace">
     <section id="login" class="panel auth-card">
       <a class="brand" href="/">SĒAN MOSIKILI</a>
       <p class="eyebrow" style="margin-top: 32px">BACKSTAGE / PRIVATE ACCESS</p>
-      <h1>Hello, you.</h1>
+      <h1>Backstage.</h1>
       <p class="muted">Your world, behind the scenes.</p>
       <form id="auth-form">
         <label
@@ -40,72 +41,97 @@
       <button id="login-signout" hidden>Use another account</button>
     </section>
     <div id="dashboard" class="backstage" hidden>
-      <aside class="sidebar">
-        <div>
-          <a class="brand" href="/">SĒAN MOSIKILI</a>
-          <p class="eyebrow" style="margin: 12px 0 0">BACKSTAGE</p>
-        </div>
-        <nav aria-label="Dashboard">
-          <button data-view="overview" aria-current="page">
-            01 &nbsp; Overview</button
-          ><button data-view="requests">02 &nbsp; Requests</button
-          ><button data-view="products">03 &nbsp; Products</button
-          ><button data-view="contacts">04 &nbsp; People</button
-          ><button data-view="newsletter">05 &nbsp; Newsletters</button
-          ><button data-view="insights">06 &nbsp; Insights</button>
-        </nav>
-        <div class="side-foot">
-          <p class="muted">Made for your world.</p>
-          <a href="/" target="_blank" rel="noopener">Visit website ↗</a>
-        </div>
-      </aside>
       <main class="main-area">
-        <div class="topbar">
-          <span>YOUR WORLD. YOUR WAY.</span
-          ><button id="signout">Sign out</button>
-        </div>
+        <header class="topbar">
+          <a href="/" class="brand">SĒAN MOSIKILI</a>
+          <div class="row">
+            <button id="back-workspace" data-view="overview" hidden>
+              ← Backstage</button
+            ><a href="/" target="_blank" rel="noopener">View site ↗</a
+            ><button id="signout">Sign out</button>
+          </div>
+        </header>
         <div id="global-status" class="status" role="status"></div>
         <section data-panel="overview">
           <div class="page-head">
-            <p class="eyebrow">THE BIG PICTURE</p>
-            <h1>A little backstage.</h1>
-            <p class="muted">
-              Everything happening in your world, in one place.
-            </p>
+            <p class="eyebrow">BACKSTAGE / YOUR WORKSPACE</p>
+            <h1>What are we working on?</h1>
+            <p class="muted">Choose one thing. Everything else can wait.</p>
           </div>
-          <div class="metrics">
-            <div class="metric">
-              <span>Pending requests</span
-              ><strong id="metric-requests">—</strong>
-            </div>
-            <div class="metric">
-              <span>Newsletter records</span
-              ><strong id="metric-people">—</strong>
-            </div>
-            <div class="metric">
-              <span>Products</span><strong id="metric-products">—</strong>
-            </div>
-          </div>
-          <div class="welcome">
-            <p class="eyebrow">A NOTE TO YOUR PEOPLE</p>
-            <h2>Something worth<br />sharing?</h2>
-            <p class="muted">New music. A fresh drop. A little hello.</p>
-            <button class="solid" data-go="newsletter">
-              Write a newsletter ↗
+          <div class="workspace-menu">
+            <button class="workspace-choice" data-view="content">
+              <span>01</span>
+              <div>
+                <strong>Website</strong
+                ><small>Homepage, releases, tour & visuals</small>
+              </div>
+              <span>↗</span>
+            </button>
+            <button class="workspace-choice" data-view="products">
+              <span>02</span>
+              <div>
+                <strong>Store</strong
+                ><small>Products, prices & availability</small>
+              </div>
+              <span>↗</span>
+            </button>
+            <button class="workspace-choice" data-view="requests">
+              <span>03</span>
+              <div>
+                <strong>Requests</strong
+                ><small
+                  ><span id="metric-requests">—</span> waiting for you</small
+                >
+              </div>
+              <span>↗</span>
+            </button>
+            <button class="workspace-choice" data-view="contacts">
+              <span>04</span>
+              <div>
+                <strong>People & messages</strong
+                ><small>Contacts and conversations</small>
+              </div>
+              <span>↗</span>
+            </button>
+            <button class="workspace-choice" data-view="newsletter">
+              <span>05</span>
+              <div>
+                <strong>Write a newsletter</strong
+                ><small>Draft, preview & export</small>
+              </div>
+              <span>↗</span>
+            </button>
+            <button class="workspace-choice" data-view="insights">
+              <span>06</span>
+              <div>
+                <strong>Insights</strong><small>Your website performance</small>
+              </div>
+              <span>↗</span>
             </button>
           </div>
-          <section class="panel">
-            <div class="row spread">
-              <h2>The latest requests</h2>
-              <button data-go="requests">View all ↗</button>
-            </div>
+          <div hidden>
+            <span id="metric-people"></span><span id="metric-products"></span>
             <div id="recent-requests"></div>
-          </section>
+          </div>
+        </section>
+        <section data-panel="content" hidden>
+          <div class="page-head" id="content-menu-heading">
+            <p class="eyebrow">WEBSITE / EDIT CONTENT</p>
+            <h1>Keep your world current.</h1>
+          </div>
+          <p id="content-status" class="status" role="status"></p>
+          <p id="content-unsaved" class="unsaved" hidden>Unsaved changes</p>
+          <div id="content-menu" class="workspace-menu"></div>
+          <div id="content-editor" hidden>
+            <button id="content-back" type="button">← Website</button>
+            <h2 id="content-heading"></h2>
+            <div id="content-body"></div>
+          </div>
         </section>
         <section data-panel="requests" hidden>
           <div class="page-head">
             <p class="eyebrow">THE INBOX</p>
-            <h1>Made for them.</h1>
+            <h1>Requests.</h1>
             <p class="muted">
               Review selections, contact customers, and keep requests moving.
             </p>
@@ -129,12 +155,15 @@
         <section data-panel="products" hidden>
           <div class="page-head">
             <p class="eyebrow">THE COLLECTION</p>
-            <h1>Objects of affection.</h1>
+            <h1>Your store.</h1>
             <div class="row spread">
               <p class="muted">
                 Add a piece, change a price, or open up requests.
               </p>
-              <button class="solid" id="add-product">Add product +</button>
+              <div class="row">
+                <button id="edit-store-page">Edit store page</button
+                ><button class="solid" id="add-product">Add product +</button>
+              </div>
             </div>
           </div>
           <div id="product-list" class="product-list"></div>
@@ -142,7 +171,7 @@
         <section data-panel="contacts" hidden>
           <div class="page-head">
             <p class="eyebrow">YOUR PEOPLE</p>
-            <h1>A little closer.</h1>
+            <h1>People & messages.</h1>
             <p class="muted">
               Newsletter sign-ups and messages, with room for everyone.
             </p>
@@ -166,7 +195,7 @@
         <section data-panel="newsletter" hidden>
           <div class="page-head">
             <p class="eyebrow">FROM YOUR WORLD TO THEIR INBOX</p>
-            <h1>Dear Swarm,</h1>
+            <h1>Write to Swarm.</h1>
             <p class="muted">
               A note with your name, your colours, your voice.
             </p>
@@ -229,28 +258,15 @@
                 <div class="actions">
                   <button class="solid" type="submit">Save draft</button
                   ><button type="button" id="download-html">
-                    Download HTML</button
-                  ><button type="button" id="test-email">
-                    Sending unavailable on free setup
+                    Download HTML
                   </button>
                 </div>
                 <p class="status" id="email-status" role="status"></p>
               </form>
-              <hr />
-              <label
-                >Send time (optional, your local time)<input
-                  type="datetime-local"
-                  id="send-time"
-              /></label>
-              <p class="fine-print">
-                Draft and export are available on the free setup. Automated
-                sending and scheduling require a separate email backend.
-              </p>
-              <button id="queue-email" class="solid">
-                Scheduling unavailable on free setup</button
-              ><button id="new-draft">New draft</button>
+              <button id="new-draft" type="button">Start a new draft</button>
             </section>
-            <section>
+            <details class="email-preview-toggle">
+              <summary>Preview email</summary>
               <p class="eyebrow">LIVE EMAIL PREVIEW</p>
               <iframe
                 id="email-preview"
@@ -259,7 +275,7 @@
                 sandbox=""
                 referrerpolicy="no-referrer"
               ></iframe>
-            </section>
+            </details>
           </div>
           <h2>Your drafts & campaigns</h2>
           <div id="campaign-list"></div>
@@ -269,8 +285,8 @@
             <p class="eyebrow">WHAT THE WORLD IS DOING</p>
             <h1>Insights.</h1>
             <p class="muted">
-              Website performance, audience behaviour and Google Search visibility
-              in one place.
+              Website performance, audience behaviour and Google Search
+              visibility in one place.
             </p>
           </div>
           <section class="panel insights-shell">
@@ -341,15 +357,9 @@
             </select></label
           >
         </div>
-        <label>Image URL or /assets/ path<input name="image" required /></label
-        ><label
-          >Image uploads<input
-            type="file"
-            id="product-image"
-            accept="image/png,image/jpeg,image/webp"
-            disabled /></label
-        ><p class="fine-print">Free setup: use an existing /assets/ path or HTTPS image URL.</p>
-        ><label
+        <label>Image URL or /assets/ path<input name="image" required /></label>
+        <input type="file" id="product-image" hidden disabled />
+        <label
           >Options (comma separated)<input
             name="options"
             value="One size"
@@ -391,6 +401,9 @@
       </div>
       <div id="request-detail"></div>
     </dialog>
+    <div hidden>
+      <button id="test-email"></button><button id="queue-email"></button>
+    </div>
     <script type="module" src="/app/admin.js"></script>
   </body>
 </html>
