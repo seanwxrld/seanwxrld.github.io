@@ -10,6 +10,11 @@ export const sectionNames = [
   "settings",
 ];
 export const clone = (value) => JSON.parse(JSON.stringify(value));
+// Filter obsolete campaign copy, including published Firebase revisions.
+export const publicAboutBody = (value = "") =>
+  String(value).split(/\n\s*\n/).filter((paragraph) =>
+    !/FRAGILE EXHIBITION|I DON'T CARE/i.test(paragraph)
+  ).join("\n\n");
 export const lines = (value = "") =>
   String(value)
     .split("\n")
@@ -43,7 +48,7 @@ export function dateLabel(value, compact = false) {
 }
 export const ordered = (items) =>
   [...items]
-    .filter((x) => x.status !== "hidden")
+    .filter((x) => x.status !== "hidden" && x.id !== "fragile-exhibition" && !/^(i-dont-care|i-don-t-care)$/.test(x.id) && !/^(FRAGILE EXHIBITION|I DON'T CARE!?)$/i.test(x.title || ""))
     .sort((a, b) => (a.order || 0) - (b.order || 0));
 export function youtubeId(value = "") {
   try {
@@ -188,7 +193,7 @@ export function renderReleases(data) {
         r,
       ) => `<article class="record-entry ${r.status === "upcoming" ? "record-upcoming" : ""}" id="${e(r.id)}">
       <div class="record-art">${r.image ? image(r.image, `${r.title} cover art`) : `<div class="record-placeholder"><span>Coming</span><strong>${r.date ? e(r.date.slice(8, 10) + "." + r.date.slice(5, 7)) : "Soon"}</strong><span>${e((r.date || "").slice(0, 4))}</span></div>`}</div>
-      ${r.id === "genie" ? '<span id="dopamine-high"></span>' : ""}
+
       <h2>${e(r.title)}</h2><p class="record-status">${e(kindLabel(r.kind))} · ${e(releaseStatus(r))}</p>
       ${link(r.link, r.linkLabel || "Listen now")}
       ${

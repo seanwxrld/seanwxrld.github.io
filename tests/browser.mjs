@@ -47,7 +47,10 @@ try {
     localStorage.setItem("seanmosikili-cookie-consent", "declined"),
   );
   await page.goto("http://127.0.0.1:8765/");
-  assert.equal(await page.locator("#site-navigation a").count(), 9);
+  assert.equal(await page.locator("#site-navigation a").count(), 8);
+  assert.equal(await page.locator('.ego-stage .ego-title').textContent(), "EGO TRIP");
+  assert.equal(await page.locator('body').evaluate(el => getComputedStyle(el).backgroundColor), "rgb(3, 20, 0)");
+  assert.equal(await page.locator('#site-navigation a[href="/about/"]').count(), 0);
   assert.equal(await page.locator(".menu-button").isVisible(), true);
   assert.equal(await page.locator("#site-navigation").isVisible(), false);
   await page.getByRole("button", { name: "Open navigation" }).click();
@@ -97,7 +100,7 @@ try {
     await page
       .locator(".tour-intro h1 span")
       .evaluate((el) => getComputedStyle(el).color),
-    "rgb(182, 9, 5)",
+    "rgb(247, 245, 241)",
   );
   await page.goto("http://127.0.0.1:8765/admin/");
   await page.locator("#dashboard").waitFor({ state: "visible" });

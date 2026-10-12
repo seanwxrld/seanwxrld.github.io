@@ -1,0 +1,270 @@
+/*
+ * EGO TRIP — an Edwardian/Victorian fairground in forest green and ivory.
+ * Layers over existing public styles; does not affect Backstage.
+ * Cambridge is a licensed typeface: use a locally installed copy when available.
+ * Cormorant Garamond/Cinzel Decorative provide web-served fallbacks until a
+ * licensed Cambridge webfont kit is supplied. No font files are redistributed.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
+@font-face { font-family:"Cambridge Display"; src:local("Cambridge"),local("Cambridge Regular"); font-display:swap; }
+:root {
+  color-scheme: dark;
+  --ego-bg:#031400;
+  --ego-cream:#f7f5f1;
+  --ego-cream-muted:rgba(247,245,241,.74);
+  --ego-rule:rgba(247,245,241,.25);
+  --ego-glaze:rgba(247,245,241,.045);
+  --ego-display:"Cambridge Display","Cormorant Garamond",Georgia,serif;
+  --ego-ornate:"Cambridge Display","Cinzel Decorative","Cormorant Garamond",serif;
+}
+html { background:var(--ego-bg); }
+body.site-theme {
+  --paper:var(--ego-bg);
+  --ink:var(--ego-cream);
+  --accent:var(--ego-cream);
+  --muted:var(--ego-cream-muted);
+  --muted-strong:var(--ego-cream);
+  --line:var(--ego-rule);
+  --line-strong:rgba(247,245,241,.44);
+  --glass:rgba(3,20,0,.98);
+  --glass-border:var(--ego-rule);
+  --shadow:0 24px 70px rgba(0,0,0,.22);
+  --red:var(--ego-cream);
+  --white:var(--ego-cream);
+  --black:var(--ego-bg);
+  color-scheme:dark;
+  background:var(--ego-bg);
+  color:var(--ego-cream);
+}
+body.site-theme :is(main,.page,.page-store,.page.light,.page.red,.public-main),
+body.site-theme.shop-body,
+body.site-theme.premium-store,
+body.site-theme.tour-body,
+body.site-theme .premium-store .page-store {
+  background:var(--ego-bg);
+  color:var(--ego-cream);
+}
+body.site-theme :is(h1,h2,h3,h4,h5,h6),
+body.site-theme .artist-page :is(h1,h2),
+body.site-theme .store-editorial-hero h1,
+body.site-theme .premium-store .store-editorial-hero h1,
+body.site-theme .premium-store .store-product-panel h1,
+body.site-theme .premium-store .store-service h2,
+body.site-theme .record-entry h2,
+body.site-theme .tour-page .tour-intro h1,
+body.site-theme .tour-page .tour-program h2,
+body.site-theme .home-page .home-newsletter h2 {
+  font-family:var(--ego-display) !important;
+  font-weight:500 !important;
+  letter-spacing:-.025em;
+  text-transform:none;
+}
+body.site-theme :is(h1,h2) { text-wrap:balance; }
+body.site-theme :is(.logo,.artist-header .logo,[data-artist-name]) {
+  font-family:"JetBrains Mono",monospace;
+}
+body.site-theme .site-header.artist-header,
+body.site-theme .artist-header {
+  background:rgba(3,20,0,.97);
+  color:var(--ego-cream);
+  border-bottom:1px solid var(--ego-rule);
+}
+body.site-theme .artist-header .menu-button,
+body.site-theme .artist-header .logo,
+body.site-theme .artist-header .menu-button::after {color:var(--ego-cream);}
+body.site-theme .artist-header .nav-drawer,
+body.site-theme .nav-drawer {
+  background:var(--ego-bg) !important;
+  color:var(--ego-cream);
+  border-color:var(--ego-rule);
+}
+body.site-theme .artist-header .nav-drawer a:nth-child(n) {color:var(--ego-cream);}
+body.site-theme .artist-header .nav-drawer a:hover,
+body.site-theme .artist-header .nav-drawer a[aria-current=page] {color:var(--ego-cream);text-decoration:underline;text-underline-offset:5px;}
+body.site-theme .artist-header .nav-divider {background:var(--ego-rule);}
+body.site-theme :is(.footer,.site-header,.artist-header) {color:var(--ego-cream);}
+body.site-theme .footer {
+  background:var(--ego-bg);
+  color:var(--ego-cream-muted);
+  border-top:1px solid var(--ego-rule);
+}
+body.site-theme :is(.footer-site-links,.footer-bottom,.footer-links,.footer-legal) a {color:var(--ego-cream);}
+body.site-theme .footer a:hover {text-decoration:underline;text-underline-offset:4px;}
+body.site-theme :is(.eyebrow,.kicker,.tag,.lead,.meta-note,.notice,.record-status,.record-meta,.record-details,.album-date,
+.tour-description,.tour-details-note,.tour-date-info p,.tour-label,.tour-state,
+.premium-item>p,.store-item-meta,.request-note,.item-bottom>span,.collection-heading>span,.store-title-line,.category-intro,
+.home-release-status,.home-section-kicker,.home-newsletter-copy>p:last-child,
+.home-section-head>span,.home-consent,.home-page .home-era-label,
+.form small,.newsletter-form small,.footer p) { color:var(--ego-cream-muted); }
+body.site-theme :is(.panel,.form,.card,.hero-stat,.release-card,.media-card,.gallery-tile,.legal-copy,
+.countdown-card,.newsletter,.store-product-panel,.shop-modal-card,.premium-store .shop-modal-card,
+.premium-store .store-product-panel,.shop-request-form) {
+  background:var(--ego-glaze);
+  color:var(--ego-cream);
+  border-color:var(--ego-rule);
+  box-shadow:none;
+}
+body.site-theme :is(.artist-page,.page-store,.page) :is(.button.primary,.tour-request-button,.button.ghost,.listen-button,.editorial-link,.text-link,.tour-online,.tour-link) {border-color:var(--ego-cream);}
+body.site-theme :is(.button.primary,.tour-request-button,.tour-link,.tour-request-button,.listen-button),
+body.site-theme .premium-store .store-actions .button.primary,
+body.site-theme .premium-store .shop-request-form .button.primary {
+  background:var(--ego-cream);
+  color:var(--ego-bg);
+  border:1px solid var(--ego-cream);
+}
+body.site-theme :is(.button.ghost,.text-link,.editorial-link,.tour-online) {
+  background:transparent;
+  color:var(--ego-cream);
+  border-color:var(--ego-rule);
+}
+body.site-theme :is(.button.primary,.tour-request-button,.listen-button):hover,
+body.site-theme .premium-store .store-actions .button.primary:hover {
+  background:transparent;
+  color:var(--ego-cream);
+  border-color:var(--ego-cream);
+}
+body.site-theme :is(input,textarea,select),
+body.site-theme :is(.form,.newsletter-form,.shop-request-form) :is(input,textarea,select),
+body.site-theme .premium-store .shop-request-form :is(input,textarea,select),
+body.site-theme .home-signup-row input {
+  background:var(--ego-bg);
+  color:var(--ego-cream);
+  border-color:var(--ego-rule);
+  color-scheme:dark;
+}
+body.site-theme :is(input,textarea)::placeholder {color:var(--ego-cream-muted);}
+body.site-theme select option {color:var(--ego-cream);background:var(--ego-bg);}
+body.site-theme input[type=checkbox] {accent-color:var(--ego-cream);}
+body.site-theme :is(a,button,input,select,textarea):focus-visible {outline:2px solid var(--ego-cream);outline-offset:4px;}
+body.site-theme .cookie-banner,
+body.site-theme .release-popup {
+  background:var(--ego-bg);
+  color:var(--ego-cream);
+  border-color:var(--ego-rule);
+}
+body.site-theme .cookie-banner :is(p,button),
+body.site-theme .release-popup :is(p,button) {color:var(--ego-cream);}
+body.site-theme .cookie-actions .button.primary {color:var(--ego-bg);}
+body.site-theme .form-status[data-status-type=error] {color:var(--ego-cream);}
+body.site-theme .form-status[data-status-type=success] {color:var(--ego-cream);}
+
+/* Archive & performance: a thin engraved grid, never boxed-in white cards. */
+body.site-theme :is(.archive-heading,.tour-intro) {border-color:var(--ego-rule);}
+body.site-theme :is(.record-grid,.visual-archive) {color:var(--ego-cream);}
+body.site-theme .record-placeholder {background:var(--ego-glaze);color:var(--ego-cream);border-color:var(--ego-rule);}
+body.site-theme .record-number {background:var(--ego-bg);color:var(--ego-cream);}
+body.site-theme :is(.record-art,.visual-screen,.premium-art,.release-media,.embed,.video-frame,.store-product-image,.premium-store .store-product-image) {
+  background:transparent;
+  border-color:var(--ego-rule);
+}
+body.site-theme .record-art {border:1px solid var(--ego-rule);}
+body.site-theme .tour-body .tour-dot,
+body.site-theme.tour-body .tour-dot {background:var(--ego-cream);}
+body.site-theme.tour-body :is(.tour-intro h1 span,.tour-program h2 span,.tour-label,.tour-link,.eyebrow,.kicker,.tour-state,.tour-online,.tour-request-button) {color:var(--ego-cream);}
+body.site-theme.tour-body :is(.tour-date,.tour-topline,.tour-online,.tour-request,.past-shows) {border-color:var(--ego-rule);}
+body.site-theme.tour-body .tour-request-button {background:var(--ego-cream);color:var(--ego-bg);}
+body.site-theme.tour-body .tour-request-button:hover {background:transparent;color:var(--ego-cream);}
+
+/* Store retains its product experience, but adopts the same emerald theatre. */
+body.site-theme.premium-store .page-store {background:var(--ego-bg);color:var(--ego-cream);}
+body.site-theme.premium-store :is(.eyebrow,.store-hero-bottom,.collection-nav,.collection-heading,.store-service,.store-product-panel,.store-item-meta,.premium-item>p,.item-bottom>span) {color:var(--ego-cream);}
+body.site-theme.premium-store :is(.store-title-line,.collection-nav,.item-bottom,.store-service,.store-bullet-list,.premium-store .store-bullet-list,.product-breadcrumb) {border-color:var(--ego-rule);}
+body.site-theme.premium-store .collection-nav a {color:var(--ego-cream-muted);}
+body.site-theme.premium-store .collection-nav a[aria-current] {color:var(--ego-cream);box-shadow:0 1px var(--ego-cream);}
+body.site-theme.premium-store .premium-art {background:transparent;border:1px solid var(--ego-rule);}
+body.site-theme.premium-store .premium-art img {object-fit:contain;}
+body.site-theme.premium-store .object-index {background:var(--ego-bg);color:var(--ego-cream);padding:4px 7px;}
+body.site-theme.premium-store :is(.store-product-image,.shop-modal-card) {background:var(--ego-bg);color:var(--ego-cream);border-color:var(--ego-rule);}
+body.site-theme.premium-store :is(.store-product-panel,.shop-request-form,.shop-modal-card,.panel,.form) {color:var(--ego-cream);box-shadow:none;}
+body.site-theme.premium-store .premium-item .item-heading span {color:var(--ego-cream);}
+body.site-theme.premium-store .item-bottom a {border-bottom-color:var(--ego-rule);}
+body.site-theme.premium-store .store-actions .button.ghost {color:var(--ego-cream);border-color:var(--ego-rule);background:transparent;}
+body.site-theme .store-utility {color:var(--ego-cream);}
+body.site-theme .store-utility a {color:var(--ego-cream);}
+
+/* Fairground marquee: an engraved ferris wheel, not a carnival collage. */
+body.site-theme .page.home-page {padding-top:96px;}
+.home-page .ego-stage {
+  position:relative;
+  width:min(100%,1070px);
+  min-height:clamp(220px,33vw,410px);
+  margin:0 auto 16px;
+  display:grid;
+  place-items:center;
+  isolation:isolate;
+  overflow:hidden;
+  border-bottom:1px solid var(--ego-rule);
+  text-align:center;
+}
+.home-page .ego-stage::before,.home-page .ego-stage::after {
+  content:"";position:absolute;top:14px;bottom:14px;width:1px;background:linear-gradient(transparent,var(--ego-rule),transparent);pointer-events:none;
+}
+.home-page .ego-stage::before {left:5%;}
+.home-page .ego-stage::after {right:5%;}
+.home-page .ego-stage-inner {position:relative;z-index:2;display:grid;justify-items:center;gap:16px;padding:48px 16px;}
+.home-page .ego-stage .ego-title {
+  margin:0;
+  color:var(--ego-cream);
+  font:500 clamp(54px,11vw,144px)/.94 var(--ego-ornate);
+  letter-spacing:-.065em;
+  text-transform:uppercase;
+  text-wrap:balance;
+}
+.home-page .ego-ornament {display:flex;align-items:center;gap:16px;width:min(300px,70vw);color:var(--ego-cream);opacity:.67;font:400 18px/1 "Cormorant Garamond",serif;}
+.home-page .ego-ornament::before,.home-page .ego-ornament::after {content:"";height:1px;background:var(--ego-rule);flex:1;}
+.home-page .ego-wheel {position:absolute;right:7%;top:50%;width:min(36vw,350px);height:auto;transform:translateY(-50%) rotate(-9deg);color:var(--ego-cream);opacity:.13;z-index:1;pointer-events:none;}
+.home-page .ego-wheel * {vector-effect:non-scaling-stroke;}
+body.site-theme .page.home-page .home-feature {padding-top:78px;padding-bottom:clamp(82px,10vw,130px);border-bottom:1px solid var(--ego-rule);}
+.home-page .home-feature .home-cover-art {border:1px solid var(--ego-rule);padding:10px;background:transparent;}
+.home-page .home-feature .home-release-copy h1 {font-size:clamp(41px,5.5vw,78px);line-height:.95;}
+.home-page .home-feature .listen-button {padding:13px 27px;letter-spacing:.16em;}
+.home-page .home-explore {padding-top:48px;border-top:0;}
+.home-page .home-section-head h2,.home-page .home-newsletter h2 {font-family:var(--ego-display)!important;letter-spacing:-.025em;text-transform:none;}
+.home-page .home-section-head h2 {font-size:clamp(27px,3vw,44px);}
+.home-page .home-explore-links a {font-size:clamp(19px,2.4vw,29px);font-family:var(--ego-display);font-weight:500;letter-spacing:-.02em;}
+.home-page .home-explore-links a span:last-child {font:12px "JetBrains Mono",monospace;}
+.home-page .home-newsletter {border-top:1px solid var(--ego-rule);}
+.home-page .home-newsletter h2 {font-size:clamp(34px,4vw,54px);}
+body.site-theme .home-signup-row input {background:transparent;color:var(--ego-cream);border-color:var(--ego-rule);}
+body.site-theme .home-signup-row button {background:var(--ego-cream);color:var(--ego-bg);border-color:var(--ego-cream);}
+body.site-theme .home-signup-row button:hover {background:transparent;color:var(--ego-cream);}
+body.site-theme .home-consent {color:var(--ego-cream-muted);}
+body.site-theme .home-explore a {border-bottom-color:var(--ego-rule);}
+body.site-theme .home-explore a:hover {color:var(--ego-cream);opacity:.7;}
+
+/* Other pages: editorial, comfortably spaced and legible. */
+body.site-theme .page.artist-page:not(.home-page) {padding-top:clamp(112px,12vw,152px);}
+body.site-theme .archive-heading h1 {font-size:clamp(48px,7vw,93px);line-height:1.02;}
+body.site-theme .tour-page .tour-intro h1 {font-size:clamp(66px,10vw,150px);line-height:.88;}
+body.site-theme .store-editorial-hero h1 {font-size:clamp(48px,9vw,116px);line-height:1;}
+body.site-theme .hero h1 {font-size:clamp(38px,6vw,72px)!important;line-height:1.05;}
+body.site-theme .page .hero {margin-inline:auto;text-align:center;align-items:center;}
+body.site-theme .page .hero .lead {margin-inline:auto;max-width:780px;}
+body.site-theme .page .split {margin-inline:auto;align-items:start;}
+body.site-theme .page .split > :is(article,div,aside) {min-width:0;}
+body.site-theme .page .panel {border-radius:0;}
+
+/* Accessible compact layout */
+@media(max-width:760px) {
+  body.site-theme .page.home-page {padding-top:86px;}
+  .home-page .ego-stage {min-height:240px;margin-bottom:8px;}
+  .home-page .ego-stage-inner {padding:44px 9px;gap:12px;}
+  .home-page .ego-stage .ego-title {font-size:clamp(47px,13vw,78px);}
+  .home-page .ego-wheel {width:240px;max-width:64vw;right:-10%;opacity:.1;}
+  .home-page .ego-stage::before {left:2%;}
+  .home-page .ego-stage::after {right:2%;}
+  body.site-theme .page.home-page .home-feature {padding:52px 0 75px;}
+  .home-page .home-feature .home-release-copy h1 {font-size:46px;}
+  body.site-theme .archive-heading h1 {font-size:clamp(42px,12vw,63px);}
+  body.site-theme .tour-page .tour-intro h1 {font-size:clamp(55px,11vw,90px);}
+  body.site-theme .page .split {grid-template-columns:minmax(0,1fr);}
+  body.site-theme .page .newsletter,.site-theme .page .form {max-width:100%;}
+}
+@media(max-width:360px) {
+  .home-page .ego-stage {min-height:205px;}
+  .home-page .ego-stage .ego-title {font-size:43px;}
+  .home-page .ego-wheel {width:190px;}
+}
+@media(prefers-reduced-motion:reduce) {
+  .home-page .ego-wheel {transform:translateY(-50%);}
+}

@@ -1,4 +1,4 @@
-import { defaults } from "./content-data.js?v=20261002b";
+import { defaults } from "./content-data.js?v=20261013e";
 import {
   clone,
   sectionNames,
@@ -12,7 +12,8 @@ import {
   dateLabel,
   featuredRelease,
   homeDescription,
-} from "./content-model.js?v=20261013d";
+  publicAboutBody,
+} from "./content-model.js?v=20261013e";
 import { escapeHtml as e } from "./core.js";
 const data = clone(defaults);
 const path = location.pathname;
@@ -57,7 +58,7 @@ function render() {
     if (data[group]?.[key] !== undefined) el.textContent = data[group][key];
   });
   document.querySelectorAll("[data-about-body]").forEach((el) => {
-    el.innerHTML = data.pages.aboutBody
+    el.innerHTML = publicAboutBody(data.pages.aboutBody)
       .split(/\n\s*\n/)
       .map((p) => `<p class="lead">${e(p)}</p>`)
       .join("");

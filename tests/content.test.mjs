@@ -34,7 +34,7 @@ test("schema retains artist identity and connects catalogue and events", () => {
   const deluxe = schema.find((x) => x.name === "LOST LOVER'S AVENUE (Deluxe)");
   assert.equal(deluxe.datePublished, "2026-10-30");
   assert.equal(deluxe.byArtist["@id"], artist["@id"]);
-  assert.ok(schema.some((x) => x.name === "FRAGILE EXHIBITION"));
+  assert.ok(!schema.some((x) => x.name === "FRAGILE EXHIBITION"));
   const events = structuredData(defaults, "/tour/")["@graph"].filter(
     (x) => x["@type"] === "MusicEvent",
   );
@@ -67,7 +67,7 @@ test("unsafe URLs, invalid dates and duplicate IDs cannot be published", () => {
   assert.throws(() => validateSection("tour", data));
   assert.equal(youtubeId("https://evil.example/watch?v=Pyn5b6m_Fac"), "");
 });
-test("all public page headers expose four links and preserve About outside navigation", () => {
+test("all public page headers expose eight links and preserve About outside navigation", () => {
   const paths = [
     "index.html",
     "releases/index.html",
@@ -83,13 +83,19 @@ test("all public page headers expose four links and preserve About outside navig
     const nav = text.match(
       /<nav[^>]*id="site-navigation"[^>]*>([\s\S]*?)<\/nav>/,
     )[1];
-    assert.equal((nav.match(/<a /g) || []).length, 4, path);
+    assert.equal((nav.match(/<a /g) || []).length, 8, path);
     assert.doesNotMatch(nav, /about\//);
+    assert.match(text, /ego-trip\.css/);
+    assert.match(text, /name="theme-color" content="#031400"/);
     const schema = JSON.parse(
       text.match(/id="site-schema">([\s\S]*?)<\/script>/)[1],
     );
     assert.equal(schema["@context"], "https://schema.org");
+    assert.doesNotMatch(JSON.stringify(schema), /fragile-exhibition/i);
   }
   assert.ok(fs.existsSync("about/index.html"));
+  assert.match(fs.readFileSync("index.html", "utf8"), /class="ego-stage"/);
+  assert.match(fs.readFileSync("index.html", "utf8"), /data-subscribe-form data-source="homepage"/);
+  assert.doesNotMatch(fs.readFileSync("about/index.html", "utf8"), /I DON.T CARE|FRAGILE EXHIBITION/i);
   assert.doesNotMatch(fs.readFileSync("script.js", "utf8"), /release-popup/);
 });
