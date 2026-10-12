@@ -49,6 +49,13 @@ try {
   await page.goto("http://127.0.0.1:8765/");
   assert.equal(await page.locator("#site-navigation a").count(), 8);
   assert.equal(await page.locator('.ego-stage .ego-title').textContent(), "EGO TRIP");
+  assert.equal(await page.locator('.ego-carousel').count(), 1);
+  assert.equal(await page.locator('.ego-wheel').count(), 0);
+  assert.equal(await page.locator('#featured-release').textContent().then(x => x.includes("FEATURED RELEASE")), true);
+  assert.equal(await page.locator('.ego-scroll-cue').getAttribute('href'), '#featured-release');
+  const stage = await page.locator('.ego-stage').boundingBox();
+  assert.ok(stage.height >= 920, "Full-screen EGO TRIP stage should fill the first desktop viewport");
+
   assert.equal(await page.locator('body').evaluate(el => getComputedStyle(el).backgroundColor), "rgb(3, 20, 0)");
   assert.equal(await page.locator('#site-navigation a[href="/about/"]').count(), 0);
   assert.equal(await page.locator(".menu-button").isVisible(), true);
@@ -70,6 +77,13 @@ try {
   });
   await page.setViewportSize({ width: 390, height: 844 });
   for (const route of ["/", "/releases/", "/tour/", "/gallery/", "/shop/"]) {
+    if (route === "/") {
+      await page.goto("http://127.0.0.1:8765/");
+      const mobileStage = await page.locator(".ego-stage").boundingBox();
+      assert.ok(mobileStage.height >= 760, "EGO TRIP stage should fill mobile first viewport");
+      assert.equal(await page.locator(".ego-carousel").count(), 1);
+      assert.equal(await page.locator("#featured-release").count(), 1);
+    }
     await page.goto("http://127.0.0.1:8765" + route);
     assert.equal(
       await page.evaluate(
