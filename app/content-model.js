@@ -158,12 +158,18 @@ const releaseStatus = (r) =>
       ? "From the archive"
       : "Out now";
 
-export function renderHome(data) {
+export function featuredRelease(data) {
   const releases = ordered(data.releases.items);
-  const feature =
-    releases.find((r) => r.id === data.home.featuredRelease) ||
+  return releases.find((r) => r.id === data.home.featuredRelease) ||
     releases.find((r) => r.status === "released") ||
     releases[0];
+}
+export function homeDescription(data) {
+  const title = featuredRelease(data)?.title || "new music";
+  return `${data.settings.artistName} — official site. Discover ${title}, explore releases, live dates, visuals and the store, and join Swarm. Enter the EGO TRIP era.`;
+}
+export function renderHome(data) {
+  const feature = featuredRelease(data);
   if (!feature)
     return `<section class="home-feature"><h1>Music</h1><a class="listen-button" href="/releases/">View releases</a></section>`;
   return `<section class="home-feature" aria-label="Featured release">
@@ -254,6 +260,7 @@ export function structuredData(data, path = "/") {
     origin = "https://seanwxrld.com";
   const artistId = `${origin}/#artist`;
   const releases = ordered(data.releases.items);
+  const feature = featuredRelease(data);
   const artist = {
     "@type": "MusicGroup",
     "@id": artistId,
@@ -283,6 +290,8 @@ export function structuredData(data, path = "/") {
       url: origin,
       name: s.artistName,
       publisher: { "@id": artistId },
+      inLanguage: "en",
+      description: s.description,
     },
     {
       "@type":
@@ -295,6 +304,12 @@ export function structuredData(data, path = "/") {
       url: origin + path,
       isPartOf: { "@id": `${origin}/#website` },
       about: { "@id": artistId },
+      inLanguage: "en",
+      ...(path === "/" ? {
+        description: homeDescription(data),
+        ...(feature?.image ? { primaryImageOfPage: { "@type": "ImageObject", url: absolute(feature.image) } } : {}),
+        ...(feature ? { mainEntity: { "@id": `${origin}/releases/#${feature.id}` } } : {}),
+      } : {}),
     },
   ];
   if (path === "/" || path === "/releases/")

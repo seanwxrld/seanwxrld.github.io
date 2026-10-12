@@ -10,7 +10,9 @@ import {
   contentUrl,
   validateSection,
   dateLabel,
-} from "./content-model.js?v=20261002b";
+  featuredRelease,
+  homeDescription,
+} from "./content-model.js?v=20261013d";
 import { escapeHtml as e } from "./core.js";
 const data = clone(defaults);
 const path = location.pathname;
@@ -80,10 +82,19 @@ function render() {
     document.head.append(schema);
   }
   schema.textContent = JSON.stringify(structuredData(data, path));
-  if (path === "/")
-    document
-      .querySelector("meta[name=description]")
-      ?.setAttribute("content", data.settings.description);
+  if (path === "/") {
+    const desc = homeDescription(data);
+    const release = featuredRelease(data);
+    document.querySelector('meta[name="description"]')?.setAttribute("content", desc);
+    document.querySelector('meta[property="og:description"]')?.setAttribute("content", desc);
+    document.querySelector('meta[name="twitter:description"]')?.setAttribute("content", desc);
+    const art = release?.image ? new URL(release.image, location.origin).href : "";
+    if (art) {
+      document.querySelector('meta[property="og:image"]')?.setAttribute("content", art);
+      document.querySelector('meta[name="twitter:image"]')?.setAttribute("content", art);
+      document.querySelector('meta[property="og:image:alt"]')?.setAttribute("content", `${release.title} — SĒAN MOSIKILI cover artwork`);
+    }
+  }
   const pageNames = {
     "/": "Official Site",
     "/releases/": "Releases",

@@ -47,8 +47,19 @@ try {
     localStorage.setItem("seanmosikili-cookie-consent", "declined"),
   );
   await page.goto("http://127.0.0.1:8765/");
-  assert.equal(await page.locator("#site-navigation a").count(), 4);
-  assert.equal(await page.locator(".menu-button").isVisible(), false);
+  assert.equal(await page.locator("#site-navigation a").count(), 9);
+  assert.equal(await page.locator(".menu-button").isVisible(), true);
+  assert.equal(await page.locator("#site-navigation").isVisible(), false);
+  await page.getByRole("button", { name: "Open navigation" }).click();
+  assert.equal(await page.locator("#site-navigation").isVisible(), true);
+  await page.keyboard.press("Escape");
+  assert.equal(await page.locator("#site-navigation").isVisible(), false);
+  assert.equal(await page.locator('[data-subscribe-form][data-source="homepage"]').count(), 1);
+  assert.equal(await page.locator('meta[property="og:image"]').getAttribute("content"),
+    "https://seanwxrld.com/assets/monaco_coverart.PNG");
+  const schema = JSON.parse(await page.locator("#site-schema").textContent());
+  assert.equal(schema["@graph"].find(node => node["@id"] === "https://seanwxrld.com/").mainEntity["@id"],
+    "https://seanwxrld.com/releases/#monaco");
   await fs.mkdir("playwright-results", { recursive: true });
   await page.screenshot({
     path: "playwright-results/world-desktop.png",
