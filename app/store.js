@@ -103,13 +103,17 @@ window.addEventListener("storage", (event) => {
     renderCart();
   }
 });
+function preorderOpen(p) { return p.status === "preorder" && (!p.preorderEnds || Date.now() <= Date.parse(p.preorderEnds + "T23:59:59")); }
+function canRequest(p) { return p && (p.status === "requests" || (p.status === "available" && p.stock !== 0) || preorderOpen(p)); }
+function preorderLabel(p) { return p.preorderEnds ? ` · Until ${e(p.preorderEnds)}` : ""; }
 function card(p) {
-  return `<article class="premium-item"><a class="premium-art" href="/shop/product/?id=${encodeURIComponent(p.id)}"><img src="${e(safeUrl(p.image))}" alt="${e(p.name)}" loading="lazy"><span class="object-index">${e(p.category.toUpperCase())}</span></a><div class="item-heading"><h3><a href="/shop/product/?id=${encodeURIComponent(p.id)}">${e(p.name)}</a></h3><span>${money(p.priceCents)}</span></div><p>${e(p.description)}</p><div class="item-bottom"><span>${stockLabel(p)}</span><a href="/shop/product/?id=${encodeURIComponent(p.id)}">View item ↗</a></div></article>`;
+  return `<article class="premium-item"><a class="premium-art" href="/shop/product/?id=${encodeURIComponent(p.id)}"><img src="${e(safeUrl(p.image))}" alt="${e(p.name)}" loading="lazy"><span class="object-index">${e(p.category.toUpperCase())}</span>${preorderOpen(p) ? '<span class="preorder-ribbon">PREORDER OPEN</span>' : ""}</a><div class="item-heading"><h3><a href="/shop/product/?id=${encodeURIComponent(p.id)}">${e(p.name)}</a></h3><span>${money(p.priceCents)}</span></div><p>${e(p.description)}</p><div class="item-bottom"><span>${stockLabel(p)}</span><a href="/shop/product/?id=${encodeURIComponent(p.id)}">View item ↗</a></div></article>`;
 }
 function stockLabel(p) {
   return (
     {
       available: p.stock === 0 ? "Sold out" : "Available",
+      preorder: preorderOpen(p) ? "Preorders open" : "Preorder closed",
       requests: "Availability requests open",
       soldout: "Sold out",
       hidden: "Unavailable",
@@ -131,7 +135,7 @@ function renderCatalog() {
       : null;
   document.querySelectorAll(".premium-grid").forEach((grid) => {
     const list = [...products.values()].filter(
-      (p) => (!category || p.category === category) && p.id !== currentId,
+      (p) => (!category || p.category === category) && p.id !== currentId && p.status !== "hidden",
     );
     grid.innerHTML = list.length
       ? list.map(card).join("")
@@ -164,10 +168,11 @@ function renderCatalog() {
     img.src = safeUrl(p.image);
     img.alt = p.name;
   }
-  panel.innerHTML = `<p class="eyebrow">OFFICIAL COLLECTION</p><h1 id="product-title">${e(p.name)}</h1><p class="store-item-meta">${e(p.category)} · ${stockLabel(p)}</p><strong class="store-price">${money(p.priceCents)}</strong><p class="lead">${e(p.description)}</p><form class="cart-controls"><label>Option<select name="option">${p.options.map((o) => `<option>${e(o)}</option>`).join("")}</select></label><label>Quantity<input name="quantity" type="number" min="1" max="20" value="1" required></label><button class="solid" ${p.status === "soldout" || (p.status === "available" && p.stock === 0) ? "disabled" : ""}>ADD TO REQUEST CART ↗</button><p role="status"></p></form><p class="request-note">A request is not a confirmed order. Availability and shipping are confirmed personally. Prices in USD.</p><a href="/cart/">View your cart ↗</a>`;
+  panel.innerHTML = `<p class="eyebrow">OFFICIAL COLLECTION</p><h1 id="product-title">${e(p.name)}</h1><p class="store-item-meta">${e(p.category)} · ${stockLabel(p)}</p><strong class="store-price">${money(p.priceCents)}</strong><p class="lead">${e(p.description)}</p>${p.status === "preorder" ? `<div class="preorder-detail"><strong>${preorderOpen(p) ? "Preorder requests are open" : "Preorders are closed"}</strong><span>${e(p.preorderNote || "Reserve your interest before release. No payment is taken at this stage.")}${preorderLabel(p)}</span></div>` : ""}<form class="cart-controls"><label>Option<select name="option">${p.options.map((o) => `<option>${e(o)}</option>`).join("")}</select></label><label>Quantity<input name="quantity" type="number" min="1" max="20" value="1" required></label><button class="solid" ${!canRequest(p) ? "disabled" : ""}>${p.status === "preorder" ? "ADD PREORDER REQUEST ↗" : "ADD TO REQUEST CART ↗"}</button><p role="status"></p></form><p class="request-note">${p.status === "preorder" ? "Preorder interest only. No payment or guaranteed allocation. We will contact you to confirm fulfilment and shipping." : "A request is not a confirmed order. Availability and shipping are confirmed personally."} Prices in USD.</p><a href="/cart/">View your cart ↗</a>`;
   panel.querySelector("form").onsubmit = (event) => {
     event.preventDefault();
     const f = event.currentTarget;
+    if (!canRequest(p)) { f.querySelector("[role=status]").textContent = "Requests are currently closed for this item."; return; }
     const data = new FormData(f);
     const option = data.get("option");
     const quantity = Number(data.get("quantity"));
@@ -207,11 +212,11 @@ function renderCart() {
           const p = products.get(l.productId);
           const valid =
             p &&
-            ["available", "requests"].includes(p.status) &&
+            canRequest(p) &&
             p.options.includes(l.option);
           if (!valid) invalid = true;
           if (p) total += p.priceCents * l.quantity;
-          return `<div class="line-item"><div><strong>${e(p?.name || "Unavailable item")}</strong><p class="muted">${e(l.option)} · ${p ? money(p.priceCents) : "Remove to continue"}${!valid ? " · Unavailable" : ""}</p></div><label>Qty<input data-qty="${i}" type="number" min="1" max="20" value="${l.quantity}"></label><button data-remove="${i}" type="button">Remove</button></div>`;
+          return `<div class="line-item"><div><strong>${e(p?.name || "Unavailable item")}</strong><p class="muted">${e(l.option)} · ${p ? money(p.priceCents) : "Remove to continue"}${p?.status === "preorder" ? " · Preorder request" : ""}${!valid ? " · Unavailable" : ""}</p></div><label>Qty<input data-qty="${i}" type="number" min="1" max="20" value="${l.quantity}"></label><button data-remove="${i}" type="button">Remove</button></div>`;
         })
         .join("")
     : '<div class="empty">Your cart is waiting for a little something.<br><a href="/shop/">Explore the collection ↗</a></div>';
@@ -253,7 +258,7 @@ document
     try {
       const lines = items.map((line) => {
         const p = products.get(line.productId);
-        if (!p || !["available", "requests"].includes(p.status))
+        if (!p || !canRequest(p))
           throw new Error("One of your items is no longer available.");
         if (!p.options.includes(line.option))
           throw new Error("One of your selected options is no longer available.");
@@ -265,6 +270,7 @@ document
           option: line.option,
           quantity: line.quantity,
           priceCents: p.priceCents,
+          preorder: p.status === "preorder",
         };
       });
       const totalCents = lines.reduce(
@@ -280,6 +286,7 @@ document
         totalCents,
         userId: auth.currentUser?.uid || null,
         status: "pending",
+        orderType: lines.some((line) => line.preorder) ? "preorder" : "request",
         createdAt: serverTimestamp(),
       };
       const ref = await addDoc(collection(db, "shop_requests"), payload);
@@ -287,7 +294,7 @@ document
       save();
       renderCart();
       form.reset();
-      status.textContent = `Request received. Reference ${ref.id.slice(0, 10).toUpperCase()}. Item total: ${money(totalCents)}. We’ll contact you to confirm availability and shipping.`;
+      status.textContent = `${payload.orderType === "preorder" ? "Preorder interest received" : "Request received"}. Reference ${ref.id.slice(0, 10).toUpperCase()}. Indicative item total: ${money(totalCents)}. No payment was taken. We’ll contact you to confirm availability, shipping and next steps.`;
     } catch (err) {
       status.textContent =
         err.message || "Could not send. Your cart is saved; please try again.";
