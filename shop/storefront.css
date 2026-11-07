@@ -1,8 +1,8 @@
 /* THE SĒAN COLLECTION — shop-specific presentation, layered last after EGO TRIP.
    Keeps Firebase products, request checkout, admin tools, and global styles untouched. */
 body.site-theme.premium-store {
- --store-bg:#031400;--store-ivory:#f7f5f1;--store-soft:rgba(247,245,241,.7);
- --store-rule:rgba(247,245,241,.25);--store-display:"Cambridge Display","Cormorant Garamond",Georgia,serif;
+ --store-bg:#de8aaa;--store-ivory:#391627;--store-soft:rgba(57,22,39,.74);
+ --store-rule:rgba(57,22,39,.25);--store-display:"Cambridge Display","Cormorant Garamond",Georgia,serif;
  background:var(--store-bg);color:var(--store-ivory);
 }
 body.site-theme.premium-store .page.page-store {
@@ -31,7 +31,7 @@ body.site-theme.premium-store .page.page-store {
 .premium-store .store-editorial-hero {
  position:relative;isolation:isolate;overflow:hidden;border:1px solid var(--store-rule);
  min-height:650px;padding:clamp(28px,4vw,64px);margin-bottom:96px;
- background:radial-gradient(ellipse at 70% 50%,rgba(247,245,241,.065),transparent 58%),#061b05;
+ background:radial-gradient(ellipse at 70% 50%,rgba(255,239,246,.25),transparent 58%),#e9abc4;
  display:grid;grid-template-rows:auto 1fr auto;
 }
 .premium-store .store-editorial-hero::before,.premium-store .store-editorial-hero::after {
@@ -70,7 +70,7 @@ body.site-theme.premium-store .store-hero-copy h1 {
 }
 .premium-store .store-hero-art::before {
  content:"✦";position:absolute;font:400 clamp(330px,38vw,650px)/1 var(--store-display);
- color:rgba(247,245,241,.07);z-index:-1;transform:rotate(-12deg);
+ color:rgba(255,239,246,.3);z-index:-1;transform:rotate(-12deg);
 }
 .premium-store .store-hero-art::after {
  content:"";position:absolute;inset:7% 0;border:1px solid var(--store-rule);border-radius:50%;
@@ -113,7 +113,7 @@ body.site-theme.premium-store .collection-heading h2 {
 .premium-store .premium-item {min-width:0;text-align:left;}
 body.site-theme.premium-store .premium-art {
  display:block;position:relative;overflow:hidden;border:1px solid var(--store-rule);
- background:radial-gradient(circle at 50% 48%,rgba(247,245,241,.09),transparent 60%),#092009;
+ background:radial-gradient(circle at 50% 48%,rgba(255,239,246,.32),transparent 60%),#efb8ce;
  aspect-ratio:4/4.6;
 }
 body.site-theme.premium-store .premium-art::after {content:"↗";position:absolute;bottom:16px;right:18px;color:var(--store-ivory);font-size:22px;line-height:1;opacity:.55;transition:opacity .25s,transform .25s;}
@@ -162,14 +162,14 @@ body.site-theme.premium-store .category-hero .category-intro {font:400 clamp(19p
 .premium-store .category-hero::before {left:18px;}
 .premium-store .category-hero::after {right:18px;}
 .premium-store .category-hero .eyebrow {font:500 10px "JetBrains Mono",monospace;letter-spacing:.18em;color:var(--store-soft);}
-.premium-store .store-category-glyph {position:absolute;right:7%;top:50%;transform:translateY(-50%);font:400 clamp(180px,23vw,370px)/1 var(--store-display);color:rgba(247,245,241,.06);pointer-events:none;}
+.premium-store .store-category-glyph {position:absolute;right:7%;top:50%;transform:translateY(-50%);font:400 clamp(180px,23vw,370px)/1 var(--store-display);color:rgba(255,239,246,.3);pointer-events:none;}
 /* Detail pages, including the dynamic Firebase-rendered product panel */
 .premium-store .store-product-detail {padding-top:12px;}
 .premium-store .product-breadcrumb {display:flex;gap:14px;align-items:center;padding-bottom:20px;margin-bottom:38px;border-bottom:1px solid var(--store-rule);color:var(--store-soft);font:500 10px "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase;}
 .premium-store .product-breadcrumb a {color:var(--store-ivory);text-decoration:none;}
 body.site-theme.premium-store .store-product-layout {display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(32px,6vw,100px);align-items:start;}
 body.site-theme.premium-store .store-product-image {
- position:relative;background:radial-gradient(circle at center,rgba(247,245,241,.08),transparent 65%),#092009;
+ position:relative;background:radial-gradient(circle at center,rgba(255,239,246,.28),transparent 65%),#efb8ce;
  border:1px solid var(--store-rule);margin:0;min-width:0;aspect-ratio:4/4.5;display:grid;place-items:center;
 }
 body.site-theme.premium-store .store-product-image img {display:block;box-sizing:border-box;max-width:100%;max-height:100%;width:100%;height:100%;padding:clamp(25px,5vw,72px);object-fit:contain;}
@@ -186,7 +186,7 @@ body.site-theme.premium-store .cart-controls {
 body.site-theme.premium-store .cart-controls label {display:grid;gap:8px;font:500 10px "JetBrains Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--store-soft);}
 body.site-theme.premium-store .cart-controls :is(select,input) {
  width:100%;box-sizing:border-box;background:transparent;color:var(--store-ivory);border:1px solid var(--store-rule);border-radius:0;padding:15px;
- font:400 13px "JetBrains Mono",monospace;color-scheme:dark;
+ font:400 13px "JetBrains Mono",monospace;color-scheme:light;
 }
 body.site-theme.premium-store .cart-controls :is(select,input):focus-visible {outline:2px solid var(--store-ivory);outline-offset:2px;}
 body.site-theme.premium-store .cart-controls select option {background:var(--store-bg);color:var(--store-ivory);}
@@ -201,35 +201,35 @@ body.site-theme.premium-store .cart-controls [role=status],body.site-theme.premi
 body.site-theme.premium-store .store-product-panel > a[href="/cart/"] {display:block;border-bottom:1px solid var(--store-rule);padding:10px 0;text-decoration:none;color:var(--store-ivory);font:500 11px "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.1em;}
 body.site-theme.premium-store .store-product-detail + .store-collection {margin-top:110px;}
 /* Request-cart checkout has its own .workspace shell; isolate from backstage. */
-.workspace.storefront-cart {--paper:#031400;--ink:#f7f5f1;--muted:rgba(247,245,241,.7);--line:rgba(247,245,241,.25);
- background:#031400;color:#f7f5f1;min-height:100vh;color-scheme:dark;}
-.storefront-cart .site-header.artist-header {background:rgba(3,20,0,.98);color:#f7f5f1;border-bottom:1px solid rgba(247,245,241,.25);}
-.storefront-cart .artist-header .menu-button,.storefront-cart .artist-header .logo {color:#f7f5f1;}
-.storefront-cart .artist-header .nav-drawer {background:#031400!important;color:#f7f5f1;border-color:rgba(247,245,241,.25);}
-.storefront-cart .artist-header .nav-drawer a:nth-child(n) {color:#f7f5f1;}
+.workspace.storefront-cart {--paper:#de8aaa;--ink:#391627;--muted:rgba(57,22,39,.74);--line:rgba(57,22,39,.25);
+ background:#de8aaa;color:#391627;min-height:100vh;color-scheme:light;}
+.storefront-cart .site-header.artist-header {background:rgba(3,20,0,.98);color:#391627;border-bottom:1px solid rgba(57,22,39,.25);}
+.storefront-cart .artist-header .menu-button,.storefront-cart .artist-header .logo {color:#391627;}
+.storefront-cart .artist-header .nav-drawer {background:#de8aaa!important;color:#391627;border-color:rgba(57,22,39,.25);}
+.storefront-cart .artist-header .nav-drawer a:nth-child(n) {color:#391627;}
 .storefront-cart .public-main {max-width:1300px;padding:clamp(110px,13vw,160px) clamp(20px,5vw,70px) 110px;}
-.storefront-cart .page-head {margin-bottom:60px;padding-bottom:36px;border-bottom:1px solid rgba(247,245,241,.25);}
+.storefront-cart .page-head {margin-bottom:60px;padding-bottom:36px;border-bottom:1px solid rgba(57,22,39,.25);}
 .storefront-cart .page-head h1 {font:500 clamp(70px,9vw,132px)/.9 "Cormorant Garamond",Georgia,serif!important;letter-spacing:-.045em;text-transform:none;margin:18px 0;}
-.storefront-cart .page-head .eyebrow {color:rgba(247,245,241,.7);font-size:10px;}
-.storefront-cart .page-head .muted {color:rgba(247,245,241,.7);}
+.storefront-cart .page-head .eyebrow {color:rgba(57,22,39,.74);font-size:10px;}
+.storefront-cart .page-head .muted {color:rgba(57,22,39,.74);}
 .storefront-cart .cart-layout {grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(35px,6vw,90px);}
-.storefront-cart .cart-layout > section:first-child {border-top:1px solid rgba(247,245,241,.25);padding-top:22px;}
-.storefront-cart .cart-layout .panel {background:rgba(247,245,241,.035);border:1px solid rgba(247,245,241,.25);border-radius:0;padding:clamp(24px,3vw,48px);color:#f7f5f1;}
+.storefront-cart .cart-layout > section:first-child {border-top:1px solid rgba(57,22,39,.25);padding-top:22px;}
+.storefront-cart .cart-layout .panel {background:rgba(255,239,246,.3);border:1px solid rgba(57,22,39,.25);border-radius:0;padding:clamp(24px,3vw,48px);color:#391627;}
 .storefront-cart h2 {font:500 clamp(25px,3vw,42px)/1.15 "Cormorant Garamond",Georgia,serif!important;letter-spacing:-.02em;text-transform:none;}
 .storefront-cart .panel h2 {font-size:clamp(36px,4vw,56px)!important;margin:12px 0 24px;}
-.storefront-cart .line-item {grid-template-columns:minmax(0,1fr) 76px auto;border-color:rgba(247,245,241,.25);}
+.storefront-cart .line-item {grid-template-columns:minmax(0,1fr) 76px auto;border-color:rgba(57,22,39,.25);}
 .storefront-cart .line-item strong {font-size:13px;letter-spacing:0;}
-.storefront-cart .line-item .muted,.storefront-cart .fine-print,.storefront-cart .panel .muted {color:rgba(247,245,241,.7);}
-.storefront-cart .line-item input,.storefront-cart #checkout input,.storefront-cart #checkout textarea {background:transparent;color:#f7f5f1;border:1px solid rgba(247,245,241,.3);border-radius:0;min-width:0;}
-.storefront-cart #checkout input:focus-visible,.storefront-cart #checkout textarea:focus-visible {outline:2px solid #f7f5f1;outline-offset:2px;}
-.storefront-cart #checkout button.solid {background:#f7f5f1;color:#031400;border-color:#f7f5f1;border-radius:0;min-height:56px;}
-.storefront-cart #checkout button.solid:hover:not(:disabled) {background:transparent;color:#f7f5f1;}
-.storefront-cart .line-item button {background:transparent;color:#f7f5f1;border:1px solid rgba(247,245,241,.25);border-radius:0;font-size:10px;padding:10px;}
-.storefront-cart .line-item button:hover {background:rgba(247,245,241,.08);}
-.storefront-cart #checkout label {color:rgba(247,245,241,.9);}
-.storefront-cart a {color:#f7f5f1;}
-.storefront-cart .empty {border:1px solid rgba(247,245,241,.25);color:rgba(247,245,241,.7);padding:60px 20px;}
-.storefront-cart .cart-layout .row.spread {padding:27px 0;border-bottom:1px solid rgba(247,245,241,.25);}
+.storefront-cart .line-item .muted,.storefront-cart .fine-print,.storefront-cart .panel .muted {color:rgba(57,22,39,.74);}
+.storefront-cart .line-item input,.storefront-cart #checkout input,.storefront-cart #checkout textarea {background:transparent;color:#391627;border:1px solid rgba(57,22,39,.3);border-radius:0;min-width:0;}
+.storefront-cart #checkout input:focus-visible,.storefront-cart #checkout textarea:focus-visible {outline:2px solid #391627;outline-offset:2px;}
+.storefront-cart #checkout button.solid {background:#391627;color:#de8aaa;border-color:#391627;border-radius:0;min-height:56px;}
+.storefront-cart #checkout button.solid:hover:not(:disabled) {background:transparent;color:#391627;}
+.storefront-cart .line-item button {background:transparent;color:#391627;border:1px solid rgba(57,22,39,.25);border-radius:0;font-size:10px;padding:10px;}
+.storefront-cart .line-item button:hover {background:rgba(255,239,246,.28);}
+.storefront-cart #checkout label {color:rgba(57,22,39,.9);}
+.storefront-cart a {color:#391627;}
+.storefront-cart .empty {border:1px solid rgba(57,22,39,.25);color:rgba(57,22,39,.74);padding:60px 20px;}
+.storefront-cart .cart-layout .row.spread {padding:27px 0;border-bottom:1px solid rgba(57,22,39,.25);}
 .storefront-cart .cart-layout .row.spread h2 {margin:0;}
 .storefront-cart .status[data-error=true] {color:#ffd3cd;}
 @media(max-width:1000px) {
@@ -291,3 +291,12 @@ body.site-theme.premium-store .store-product-detail + .store-collection {margin-
 @media(prefers-reduced-motion:reduce) {
  .premium-store .premium-art img,.premium-store .premium-art::after,.premium-store .store-hero-actions a {transition:none!important;}
 }
+
+/* Limited-run preorder indicators */
+.premium-store .preorder-ribbon {position:absolute;top:18px;right:18px;z-index:2;padding:8px 12px;background:#391627;color:#fff2f7;font:500 9px "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase;}
+.premium-store .preorder-detail {border-top:1px solid var(--store-rule);border-bottom:1px solid var(--store-rule);padding:17px 0;margin:5px 0 8px;display:grid;gap:8px;font:400 12px/1.8 "JetBrains Mono",monospace;color:var(--store-soft);}
+.premium-store .preorder-detail strong {color:var(--store-ivory);letter-spacing:.12em;text-transform:uppercase;font-size:10px;}
+.premium-store .store-hero-art::before {content:"♡";}
+.premium-store .store-edition-mark::after {content:" ♡";}
+.premium-store .store-ornament-line {font-size:22px;}
+.storefront-cart {--pink-highlight:#fff2f7;}
