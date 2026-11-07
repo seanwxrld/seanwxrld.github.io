@@ -286,7 +286,6 @@ document
         totalCents,
         userId: auth.currentUser?.uid || null,
         status: "pending",
-        orderType: lines.some((line) => line.preorder) ? "preorder" : "request",
         createdAt: serverTimestamp(),
       };
       const ref = await addDoc(collection(db, "shop_requests"), payload);
@@ -294,7 +293,7 @@ document
       save();
       renderCart();
       form.reset();
-      status.textContent = `${payload.orderType === "preorder" ? "Preorder interest received" : "Request received"}. Reference ${ref.id.slice(0, 10).toUpperCase()}. Indicative item total: ${money(totalCents)}. No payment was taken. We’ll contact you to confirm availability, shipping and next steps.`;
+      status.textContent = `${lines.some((line) => line.preorder) ? "Preorder interest received" : "Request received"}. Reference ${ref.id.slice(0, 10).toUpperCase()}. Indicative item total: ${money(totalCents)}. No payment was taken. We’ll contact you to confirm availability, shipping and next steps.`;
     } catch (err) {
       status.textContent =
         err.message || "Could not send. Your cart is saved; please try again.";
