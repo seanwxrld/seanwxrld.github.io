@@ -46,7 +46,7 @@ service cloud.firestore {
       allow create: if
         request.resource.data.keys().hasOnly([
           'name', 'email', 'shippingAddress', 'notes', 'items',
-          'totalCents', 'userId', 'status', 'createdAt'
+          'totalCents', 'userId', 'status', 'orderType', 'createdAt'
         ]) &&
         request.resource.data.name is string &&
         request.resource.data.name.size() > 0 &&
@@ -65,6 +65,7 @@ service cloud.firestore {
         request.resource.data.totalCents is int &&
         request.resource.data.totalCents >= 0 &&
         request.resource.data.status == 'pending' &&
+        request.resource.data.orderType in ['request', 'preorder'] &&
         (
           (signedIn() && request.resource.data.userId == request.auth.uid) ||
           (!signedIn() && request.resource.data.userId == null)
