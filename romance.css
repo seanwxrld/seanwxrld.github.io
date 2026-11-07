@@ -1,0 +1,38 @@
+/* SĒAN MOSIKILI — site-wide romantic pink palette, 2026-11-07.
+   Shared overrides deliberately preserve existing structure and layout. */
+:root {
+  --paper:#de8aaa;--ink:#391627;--accent:#873d60;--muted:#63384c;--muted-strong:#4a2235;
+  --line:rgba(57,22,39,.25);--line-strong:rgba(57,22,39,.42);
+  --glass:rgba(244,191,211,.97);--glass-border:rgba(57,22,39,.25);
+  --black:#de8aaa;--black-soft:#e8a6c0;--white:#391627;--red:#873d60;
+  --red-soft:rgba(135,61,96,.2);
+  --ego-bg:#de8aaa;--ego-cream:#391627;--ego-cream-muted:rgba(57,22,39,.78);
+  --ego-rule:rgba(57,22,39,.25);--ego-glaze:rgba(255,240,246,.27);
+  --store-bg:#de8aaa;--store-ivory:#391627;--store-soft:#63384c;
+  --store-rule:rgba(57,22,39,.25);
+  color-scheme:light;
+}
+html,body,body.site-theme,body.shop-body,body.premium-store,body.workspace {background:#de8aaa;color:#391627;color-scheme:light}
+body.site-theme {--paper:#de8aaa;--ink:#391627;--accent:#873d60;--muted:#63384c;--line:rgba(57,22,39,.25);--glass:rgba(244,191,211,.97)}
+body.site-theme :is(main,.page,.page-store,.page.light,.page.red,.public-main),body.site-theme.shop-body,body.site-theme.premium-store,body.site-theme .premium-store .page-store {background:#de8aaa;color:#391627}
+body.site-theme :is(.artist-header,.site-header.artist-header,.nav-drawer,.footer),body.site-theme .artist-header .nav-drawer {background:#de8aaa!important;color:#391627}
+body.site-theme :is(.artist-header .logo,.artist-header .menu-button,.artist-header .menu-button::after,.footer a,.nav-drawer a) {color:#391627!important}
+body.site-theme :is(.button.primary,.listen-button,.tour-request-button,.tour-link),body.site-theme .premium-store .store-actions .button.primary {background:#391627;color:#fff0f6;border-color:#391627}
+body.site-theme :is(.button.primary,.listen-button,.tour-request-button):hover {background:#f4bfd3;color:#391627}
+body.site-theme :is(.button.ghost,.text-link,.editorial-link,.tour-online) {color:#391627;border-color:rgba(57,22,39,.3)}
+body.site-theme :is(input,select,textarea),body.site-theme .premium-store .shop-request-form :is(input,select,textarea) {background:#f4bfd3;color:#391627;border-color:rgba(57,22,39,.3);color-scheme:light}
+body.site-theme select option {background:#f4bfd3;color:#391627}
+body.site-theme :is(.panel,.form,.card,.legal-copy,.newsletter,.store-product-panel,.shop-modal-card,.shop-request-form,.release-card,.gallery-tile) {background:rgba(255,240,246,.22);border-color:rgba(57,22,39,.25);color:#391627}
+body.site-theme :is(.cookie-banner,.release-popup) {background:#f4bfd3;color:#391627}
+body.site-theme :is(.eyebrow,.kicker,.tag,.notice,.meta-note,.store-item-meta,.request-note,.footer p) {color:#63384c}
+body.site-theme :is(a,button,input,textarea,select):focus-visible {outline-color:#873d60}
+body.site-theme .footer-bottom::before {content:"❦";display:block;text-align:center;font:28px/1 Georgia,serif;color:#873d60;margin-bottom:15px}
+body.site-theme .store-editorial-hero h1::after,body.site-theme .archive-heading h1::after {content:" ♡";font-size:.25em;vertical-align:top;color:#873d60}
+body.site-theme .home-section-kicker::before {content:"♡ ";color:#873d60}
+body.site-theme .home-section-head h2::before {content:"❦ ";color:#873d60;font-size:.4em;vertical-align:middle}
+.premium-store .preorder-ribbon {background:#391627;color:#fff0f6}
+.workspace {--paper:#de8aaa;--ink:#391627;--accent:#873d60;--muted:#63384c;--line:rgba(57,22,39,.25)}
+.workspace :is(.topbar,.main-area,.page-head,.workspace-menu,.workspace-choice) {border-color:rgba(57,22,39,.25)}
+.workspace :is(input,select,textarea) {background:#f4bfd3;color:#391627;border-color:rgba(57,22,39,.3)}
+.workspace .save-bar {background:#f4bfd3}
+@media (prefers-reduced-motion:reduce) {body.site-theme .home-section-head h2::before {animation:none}}
