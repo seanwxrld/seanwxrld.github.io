@@ -158,7 +158,7 @@
             <h1>Your store.</h1>
             <div class="row spread">
               <p class="muted">
-                Add a piece, change a price, or open up requests.
+                Add a piece, change a price, or open and close preorders.
               </p>
               <div class="row">
                 <button id="edit-store-page">Edit store page</button
@@ -373,6 +373,7 @@
                 Requests open (availability unconfirmed)
               </option>
               <option value="available">Available</option>
+              <option value="preorder">Preorder requests open (no payment)</option>
               <option value="soldout">Sold out (requests closed)</option>
               <option value="hidden">Hidden from store</option>
             </select></label
@@ -384,6 +385,11 @@
               max="1000000"
           /></label>
         </div>
+        <div class="grid-two">
+          <label>Preorder closes (optional)<input name="preorderEnds" type="date" /></label>
+          <label>Preorder details (optional)<input name="preorderNote" maxlength="500" placeholder="Signed edition · Expected dispatch after release" /></label>
+        </div>
+        <p class="fine-print">Selecting Preorder opens a preorder-interest request, not a paid checkout. Customers are not charged or guaranteed stock. Closing date automatically stops new requests. Admin controls the listing and follows up with customers.</p>
         <p class="fine-print">
           Requests don’t reserve or deduct stock. Update this count as orders
           are fulfilled.
@@ -404,6 +410,6 @@
     <div hidden>
       <button id="test-email"></button><button id="queue-email"></button>
     </div>
-    <script type="module" src="/app/admin.js?v=20261002b"></script>
+    <script type="module" src="/app/admin.js?v=20261107preorder"></script>
   </body>
 </html>
