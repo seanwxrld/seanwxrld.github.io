@@ -8,12 +8,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
 @font-face { font-family:"Cambridge Display"; src:local("Cambridge"),local("Cambridge Regular"); font-display:swap; }
 :root {
-  color-scheme: dark;
-  --ego-bg:#031400;
-  --ego-cream:#f7f5f1;
-  --ego-cream-muted:rgba(247,245,241,.74);
-  --ego-rule:rgba(247,245,241,.25);
-  --ego-glaze:rgba(247,245,241,.045);
+  color-scheme: light;
+  --ego-bg:#de8aaa;
+  --ego-cream:#391627;
+  --ego-cream-muted:rgba(57,22,39,.77);
+  --ego-rule:rgba(57,22,39,.25);
+  --ego-glaze:rgba(255,239,246,.24);
   --ego-display:"Cambridge Display","Cormorant Garamond",Georgia,serif;
   --ego-ornate:"Cambridge Display","Cinzel Decorative","Cormorant Garamond",serif;
 }
@@ -25,14 +25,14 @@ body.site-theme {
   --muted:var(--ego-cream-muted);
   --muted-strong:var(--ego-cream);
   --line:var(--ego-rule);
-  --line-strong:rgba(247,245,241,.44);
-  --glass:rgba(3,20,0,.98);
+  --line-strong:rgba(57,22,39,.44);
+  --glass:rgba(222,138,170,.98);
   --glass-border:var(--ego-rule);
   --shadow:0 24px 70px rgba(0,0,0,.22);
   --red:var(--ego-cream);
   --white:var(--ego-cream);
   --black:var(--ego-bg);
-  color-scheme:dark;
+  color-scheme:light;
   background:var(--ego-bg);
   color:var(--ego-cream);
 }
@@ -65,7 +65,7 @@ body.site-theme :is(.logo,.artist-header .logo,[data-artist-name]) {
 }
 body.site-theme .site-header.artist-header,
 body.site-theme .artist-header {
-  background:rgba(3,20,0,.97);
+  background:rgba(222,138,170,.97);
   color:var(--ego-cream);
   border-bottom:1px solid var(--ego-rule);
 }
@@ -130,7 +130,7 @@ body.site-theme .home-signup-row input {
   background:var(--ego-bg);
   color:var(--ego-cream);
   border-color:var(--ego-rule);
-  color-scheme:dark;
+  color-scheme:light;
 }
 body.site-theme :is(input,textarea)::placeholder {color:var(--ego-cream-muted);}
 body.site-theme select option {color:var(--ego-cream);background:var(--ego-bg);}
@@ -303,7 +303,7 @@ body.site-theme .page.home-page .ego-stage {
   font-size:clamp(68px,13.2vw,180px);
   line-height:.96;
   letter-spacing:-.068em;
-  text-shadow:0 4px 35px rgba(3,20,0,.95),0 0 80px rgba(3,20,0,.65);
+  text-shadow:0 4px 35px rgba(222,138,170,.95),0 0 80px rgba(222,138,170,.65);
 }
 .home-page .ego-carousel {
   display:block;
@@ -413,3 +413,15 @@ body.site-theme .page.home-page .home-feature {
 @media(prefers-reduced-motion:reduce) {
   .home-page .ego-carousel-horses {animation:none;}
 }
+
+/* Romantic ornamentation: purely decorative, no structural layout changes. */
+body.site-theme .home-page .ego-stage::before,body.site-theme .home-page .ego-stage::after {border-color:var(--ego-rule);}
+body.site-theme .home-page .ego-stage .ego-title {text-shadow:0 4px 30px rgba(255,234,245,.4);}
+body.site-theme .home-section-kicker::before {content:"♡";}
+body.site-theme .home-section-head h2::before {content:"❦";}
+body.site-theme .home-feature-divider span {font-size:20px;}
+body.site-theme .home-feature-divider span::after {content:" ♡";font-size:.75em;}
+body.site-theme .archive-heading h1::after,body.site-theme .store-editorial-hero h1::after {content:" ♡";font-size:.25em;vertical-align:top;color:#7f3656;}
+body.site-theme .artist-header .nav-drawer a:hover {text-decoration-color:#7f3656;}
+body.site-theme .footer-bottom::before {content:"❦";display:block;text-align:center;font:28px/1 "Cormorant Garamond",serif;color:#7f3656;margin-bottom:15px;}
+body.site-theme .cookie-banner,body.site-theme .release-popup {background:#f7d8e5;}
