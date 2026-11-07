@@ -141,10 +141,10 @@ function table(headers, rows) {
 function requestTable(rows) {
   return rows.length
     ? table(
-        ["Customer", "Selection", "Status", ""],
+        ["Customer", "Selection", "Type", "Status", ""],
         rows.map(
           (r) =>
-            `<tr><td><strong>${e(r.name)}</strong><br><span class="muted">${e(r.email)}</span></td><td>${e(r.items?.map((l) => `${l.name} × ${l.quantity}`).join(", ") || r.item || "Product request")}<br><span class="muted">${r.totalCents != null ? money(r.totalCents) : e(r.price || "")}</span></td><td><span class="pill">${e(r.status || "pending")}</span></td><td><button data-request="${e(r.id)}">Open ↗</button></td></tr>`,
+            `<tr><td><strong>${e(r.name)}</strong><br><span class="muted">${e(r.email)}</span></td><td>${e(r.items?.map((l) => `${l.name} × ${l.quantity}`).join(", ") || r.item || "Product request")}<br><span class="muted">${r.totalCents != null ? money(r.totalCents) : e(r.price || "")}</span></td><td><span class="pill">${e(r.orderType === "preorder" || r.items?.some(l=>l.preorder) ? "PREORDER" : "REQUEST")}</span></td><td><span class="pill">${e(r.status || "pending")}</span></td><td><button data-request="${e(r.id)}">Open ↗</button></td></tr>`,
         ),
       )
     : empty("No requests here yet.");
@@ -158,7 +158,7 @@ function openRequest(key) {
   const r = state.shop_requests.find((r) => r.id === key);
   if (!r) return;
   $("#request-detail").innerHTML =
-    `<p class="eyebrow">${e(key.slice(0, 10).toUpperCase())}</p><h3>${e(r.name)}</h3><p>${e(r.email)}</p><div class="receipt">${e(r.items?.map((l) => `${l.name} / ${l.option} × ${l.quantity} — ${money(l.priceCents * l.quantity)}`).join("\n") || `${r.item || ""} / ${r.size || ""} × ${r.quantity || 1}`)}</div><h3>Shipping address</h3><p class="pre">${e(r.shippingAddress)}</p><h3>Notes</h3><p class="pre">${e(r.notes || "No notes.")}</p><label>Status<select id="detail-status">${["pending", "reviewing", "confirmed", "completed", "cancelled"].map((s) => `<option ${s === (r.status || "pending") ? "selected" : ""}>${s}</option>`).join("")}</select></label><p class="fine-print">Status changes do not send an email or deduct stock. Contact the customer and adjust stock when needed.</p><button class="solid" id="save-request">Save status</button><p class="status" id="request-status" role="status"></p>`;
+    `<p class="eyebrow">${e(key.slice(0, 10).toUpperCase())}</p><h3>${e(r.name)}</h3><p>${e(r.email)}</p><p class="pill">${e(r.orderType === "preorder" || r.items?.some(l=>l.preorder) ? "PREORDER INTEREST" : "PRODUCT REQUEST")}</p><div class="receipt">${e(r.items?.map((l) => `${l.name} / ${l.option} × ${l.quantity} — ${money(l.priceCents * l.quantity)}`).join("\n") || `${r.item || ""} / ${r.size || ""} × ${r.quantity || 1}`)}</div><h3>Shipping address</h3><p class="pre">${e(r.shippingAddress)}</p><h3>Notes</h3><p class="pre">${e(r.notes || "No notes.")}</p><label>Status<select id="detail-status">${["pending", "reviewing", "confirmed", "completed", "cancelled"].map((s) => `<option ${s === (r.status || "pending") ? "selected" : ""}>${s}</option>`).join("")}</select></label><p class="fine-print">Status changes do not send an email or deduct stock. Contact the customer and adjust stock when needed.</p><button class="solid" id="save-request">Save status</button><p class="status" id="request-status" role="status"></p>`;
   $("#save-request").onclick = async () => {
     const b = $("#save-request");
     b.disabled = true;
@@ -198,7 +198,7 @@ function renderProducts() {
     ? rows
         .map(
           (p) =>
-            `<article class="product-card"><img src="${e(safeUrl(p.image))}" alt="${e(p.name)}"><div class="copy"><div class="row spread"><span class="eyebrow">${e(p.category)}</span><span class="pill">${e(p.status)}</span></div><h3>${e(p.name)}</h3><p class="muted">${money(p.priceCents)} · ${p.stock === null ? "Stock untracked" : `${p.stock} in stock`}</p><button data-edit-product="${e(p.id)}">Edit piece ↗</button></div></article>`,
+            `<article class="product-card"><img src="${e(safeUrl(p.image))}" alt="${e(p.name)}"><div class="copy"><div class="row spread"><span class="eyebrow">${e(p.category)}</span><span class="pill">${e(p.status === "preorder" ? "PREORDER" : p.status)}</span></div><h3>${e(p.name)}</h3><p class="muted">${money(p.priceCents)} · ${p.status === "preorder" ? "Preorder interest" + (p.preorderEnds ? " · Closes " + e(p.preorderEnds) : "") : p.stock === null ? "Stock untracked" : `${p.stock} in stock`}</p><button data-edit-product="${e(p.id)}">Edit piece ↗</button></div></article>`,
         )
         .join("")
     : empty(
@@ -223,7 +223,9 @@ function editProduct(key) {
           ? v.join(", ")
           : (v ?? "");
     f.elements.price.value = (p.priceCents / 100).toFixed(2);
-  } else f.elements.id.value = "";
+    f.elements.preorderEnds.value = p.preorderEnds || "";
+    f.elements.preorderNote.value = p.preorderNote || "";
+  } else { f.elements.id.value = ""; f.elements.preorderEnds.value = ""; f.elements.preorderNote.value = ""; }
   $("#product-dialog").showModal();
 }
 $("#add-product").onclick = () => editProduct();
@@ -249,8 +251,11 @@ $("#product-form").onsubmit = async (event) => {
         .filter(Boolean),
       status: d.status,
       stock: d.stock === "" ? null : Number(d.stock),
+      preorderEnds: d.preorderEnds || "",
+      preorderNote: (d.preorderNote || "").trim().slice(0, 500),
       updatedAt: serverTimestamp(),
     };
+    if (payload.status === "preorder" && payload.preorderEnds && payload.preorderEnds < new Date().toISOString().slice(0,10)) throw new Error("Preorder closing date cannot be in the past.");
     if (d.id) await setDoc(doc(db, "products", d.id), payload, { merge: true });
     else await addDoc(collection(db, "products"), payload);
     $("#product-dialog").close();
