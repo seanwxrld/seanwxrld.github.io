@@ -108,7 +108,7 @@
   aspect-ratio: 1;
   height: auto;
   object-fit: contain;
-  background: #eeeae3;
+  background: #f4bfd3;
 }
 .workspace .product-card .copy {
   padding: 18px 0;
@@ -186,7 +186,7 @@
   bottom: 0;
   padding: 16px 0;
   border-top: 1px solid var(--line);
-  background: #f7f5f1fa;
+  background: #de8aaafa;
   display: flex;
   justify-content: space-between;
   align-items: center;
