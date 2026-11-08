@@ -36,3 +36,39 @@ body.site-theme .home-section-head h2::before {content:"❦ ";color:#873d60;font
 .workspace :is(input,select,textarea) {background:#f4bfd3;color:#391627;border-color:rgba(57,22,39,.3)}
 .workspace .save-bar {background:#f4bfd3}
 @media (prefers-reduced-motion:reduce) {body.site-theme .home-section-head h2::before {animation:none}}
+
+/* Full workspace coverage: dialog portals, legacy cards, cart and admin. */
+body.workspace {--paper:#de8aaa;--ink:#391627;--accent:#873d60;--muted:#63384c;--line:rgba(57,22,39,.25);--glass:#f4bfd3;background:#de8aaa;color:#391627}
+body.workspace :is(.panel,.metric,.product-card,.welcome,.auth-card,.insights-shell,.insights-link,.email-preview,.receipt,.empty) {background:#f9e3ed;color:#391627;border-color:rgba(57,22,39,.25)}
+body.workspace :is(.main-area,.public-main,.backstage,.topbar,.page-head,.workspace-menu,.content-list,.content-row) {background-color:transparent;color:#391627;border-color:rgba(57,22,39,.25)}
+body.workspace :is(.product-card img,.insights-frame-wrap,.sidebar,.pill) {background:#f4bfd3;color:#391627}
+body.workspace :is(button,.action) {background:transparent;color:#391627;border-color:rgba(57,22,39,.3)}
+body.workspace :is(button,.action):hover:not(:disabled) {background:#f4bfd3;color:#391627}
+body.workspace :is(button.solid,.solid,.sidebar nav button[aria-current="page"]) {background:#391627;color:#fff0f6;border-color:#391627}
+body.workspace :is(button.solid,.solid):hover:not(:disabled) {background:#873d60;color:#fff0f6}
+body.workspace :is(input,select,textarea) {background:#fff0f6;color:#391627;border-color:#b9688a;color-scheme:light}
+body.workspace :is(input,textarea)::placeholder {color:#82536a;opacity:1}
+body.workspace :is(.eyebrow,.muted,.fine-print,.topbar,.metric span,th,.product-card .muted) {color:#63384c}
+body.workspace dialog {background:#f9e3ed!important;color:#391627!important;border:1px solid #b9688a}
+body.workspace dialog::backdrop {background:rgba(57,22,39,.5)}
+body.workspace .save-bar {background:#de8aaa;border-color:rgba(57,22,39,.25)}
+body.workspace .sidebar {border-color:rgba(57,22,39,.25)}
+body.workspace .line-item {border-color:rgba(57,22,39,.25)}
+body.workspace .insights-frame {background:#fff0f6}
+body.workspace .workspace-choice:hover,body.workspace .content-row:hover {background:rgba(255,240,246,.4)}
+body.workspace :is(.page-head h1,.auth-card h1)::after {content:" ♡";font:italic .55em Georgia,serif;color:#873d60}
+body.workspace .topbar .brand::after {content:" ❦";color:#873d60}
+body.workspace :is(.workspace-choice,.content-row) > span:first-child {color:#873d60}
+body.workspace :is(button,input,select,textarea,a):focus-visible {outline:2px solid #873d60;outline-offset:3px}
+body.workspace.storefront-cart .site-header.artist-header {background:#de8aaa!important;color:#391627!important}
+body.workspace.storefront-cart .artist-header :is(.logo,.menu-button,.nav-drawer a) {color:#391627!important}
+body.workspace.storefront-cart .artist-header .nav-drawer {background:#de8aaa!important;color:#391627!important}
+body.workspace.storefront-cart .page-head h1 {color:#391627}
+body.workspace.storefront-cart .cart-layout .panel {background:#f9e3ed;color:#391627;border-color:rgba(57,22,39,.25)}
+body.workspace.storefront-cart .cart-layout .line-item button {color:#391627;border-color:#b9688a}
+body.workspace.storefront-cart #checkout button.solid {background:#391627;color:#fff0f6;border-color:#391627}
+body.workspace.storefront-cart #checkout button.solid:hover {background:#873d60;color:#fff0f6}
+body.workspace.storefront-cart .cart-layout .muted,body.workspace.storefront-cart .fine-print {color:#63384c}
+body.workspace.storefront-cart .empty {color:#63384c;border-color:#b9688a}
+body.workspace.storefront-cart .cart-layout :is(input,textarea) {background:#fff0f6;color:#391627;border-color:#b9688a;color-scheme:light}
+body.workspace.storefront-cart .cart-layout .row.spread {border-color:rgba(57,22,39,.25)}
