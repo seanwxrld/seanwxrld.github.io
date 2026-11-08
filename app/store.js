@@ -167,6 +167,7 @@ function renderCatalog() {
   if (img) {
     img.src = safeUrl(p.image);
     img.alt = p.name;
+    img.hidden = false;
   }
   panel.innerHTML = `<p class="eyebrow">OFFICIAL COLLECTION</p><h1 id="product-title">${e(p.name)}</h1><p class="store-item-meta">${e(p.category)} · ${stockLabel(p)}</p><strong class="store-price">${money(p.priceCents)}</strong><p class="lead">${e(p.description)}</p>${p.status === "preorder" ? `<div class="preorder-detail"><strong>${preorderOpen(p) ? "Preorder requests are open" : "Preorders are closed"}</strong><span>${e(p.preorderNote || "Reserve your interest before release. No payment is taken at this stage.")}${preorderLabel(p)}</span></div>` : ""}<form class="cart-controls"><label>Option<select name="option">${p.options.map((o) => `<option>${e(o)}</option>`).join("")}</select></label><label>Quantity<input name="quantity" type="number" min="1" max="20" value="1" required></label><button class="solid" ${!canRequest(p) ? "disabled" : ""}>${p.status === "preorder" ? "ADD PREORDER REQUEST ↗" : "ADD TO REQUEST CART ↗"}</button><p role="status"></p></form><p class="request-note">${p.status === "preorder" ? "Preorder interest only. No payment or guaranteed allocation. We will contact you to confirm fulfilment and shipping." : "A request is not a confirmed order. Availability and shipping are confirmed personally."} Prices in USD.</p><a href="/cart/">View your cart ↗</a>`;
   panel.querySelector("form").onsubmit = (event) => {
