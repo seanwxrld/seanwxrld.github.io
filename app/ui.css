@@ -3,11 +3,11 @@
   display: none !important;
 }
 .workspace {
-  --paper: #f7f5f1;
-  --ink: #171717;
-  --accent: #79543b;
-  --line: #d8d3ca;
-  --muted: #69645e;
+  --paper: #de8aaa;
+  --ink: #391627;
+  --accent: #873d60;
+  --line: #c77c9b;
+  --muted: #63384c;
   background: var(--paper);
   color: var(--ink);
   margin: 0;
@@ -43,16 +43,16 @@
 }
 .workspace button:hover,
 .workspace .action:hover {
-  background: #eee7de;
+  background: #f4bfd3;
 }
 .workspace .solid,
 .cart-controls .solid {
-  background: #79543b;
+  background: #873d60;
   color: #fff;
-  border-color: #79543b;
+  border-color: #873d60;
 }
 .workspace .solid:hover {
-  background: #543923;
+  background: #391627;
 }
 .workspace button:disabled,
 .cart-controls button:disabled {
@@ -66,10 +66,10 @@
 .cart-controls input {
   width: 100%;
   padding: 12px;
-  border: 1px solid #bcb5ab;
+  border: 1px solid #c77c9b;
   border-radius: 3px;
-  color: #171717;
-  background: #fffdfa;
+  color: #391627;
+  background: #f9e3ed;
   min-width: 0;
 }
 .workspace textarea {
@@ -96,7 +96,7 @@
 }
 .workspace :focus-visible,
 .cart-controls :focus-visible {
-  outline: 2px solid #79543b;
+  outline: 2px solid #873d60;
   outline-offset: 4px;
 }
 .workspace h1,
@@ -127,7 +127,7 @@
     monospace;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #79543b;
+  color: #873d60;
 }
 .workspace .muted {
   color: var(--muted);
@@ -149,7 +149,7 @@
 }
 .workspace .panel {
   padding: 28px;
-  background: #fffdfa;
+  background: #f9e3ed;
   border: 1px solid var(--line);
   border-radius: 4px;
   min-width: 0;
@@ -170,10 +170,10 @@
     monospace;
   text-transform: uppercase;
   letter-spacing: 1px;
-  background: #eee7de;
+  background: #f4bfd3;
   padding: 6px 9px;
   border-radius: 2px;
-  color: #654832;
+  color: #63384c;
 }
 .workspace .page-head {
   border-bottom: 1px solid var(--line);
@@ -212,7 +212,7 @@
   min-height: 100vh;
 }
 .workspace .sidebar {
-  background: #eeeae3;
+  background: #f4bfd3;
   border-right: 1px solid var(--line);
   padding: 32px 24px;
   display: flex;
@@ -229,8 +229,8 @@
   padding: 14px;
 }
 .workspace .sidebar nav button[aria-current="page"] {
-  background: #79543b;
-  color: white;
+  background: #873d60;
+  color: #fff0f6;
 }
 .workspace .sidebar .side-foot {
   margin-top: auto;
@@ -250,7 +250,7 @@
   align-items: center;
   margin-bottom: 40px;
   font-size: 12px;
-  color: #69645e;
+  color: #63384c;
 }
 .workspace .metrics {
   display: grid;
@@ -261,7 +261,7 @@
 .workspace .metric {
   border: 1px solid var(--line);
   padding: 24px;
-  background: #fffdfa;
+  background: #f9e3ed;
 }
 .workspace .metric strong {
   display: block;
@@ -271,12 +271,12 @@
 }
 .workspace .metric span {
   font-size: 12px;
-  color: #69645e;
+  color: #63384c;
 }
 .workspace .welcome {
-  background: #e7ded2;
+  background: #f4bfd3;
   padding: 32px;
-  border: 1px solid #d5c7b8;
+  border: 1px solid #c77c9b;
   position: relative;
   margin: 24px 0;
 }
@@ -298,7 +298,7 @@
   font-size: 10px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #69645e;
+  color: #63384c;
   font-weight: 500;
 }
 .workspace td,
@@ -318,13 +318,13 @@
 }
 .workspace .product-card {
   border: 1px solid var(--line);
-  background: #fffdfa;
+  background: #f9e3ed;
 }
 .workspace .product-card img {
   width: 100%;
   aspect-ratio: 1;
   object-fit: contain;
-  background: #eeeae3;
+  background: #f4bfd3;
 }
 .workspace .product-card .copy {
   padding: 20px;
@@ -332,27 +332,27 @@
 .workspace .empty {
   padding: 40px 20px;
   text-align: center;
-  border: 1px dashed #bcb5ab;
-  color: #69645e;
+  border: 1px dashed #c77c9b;
+  color: #63384c;
 }
 .workspace .email-preview {
   width: 100%;
   height: 680px;
   border: 1px solid var(--line);
-  background: #f7f5f1;
+  background: #de8aaa;
 }
 .workspace dialog {
   border: 1px solid var(--line);
   border-radius: 4px;
   padding: 32px;
-  background: #fffdfa;
-  color: #171717;
+  background: #f9e3ed;
+  color: #391627;
   width: min(660px, 94vw);
   max-height: 90vh;
   overflow: auto;
 }
 .workspace dialog::backdrop {
-  background: rgba(25, 17, 10, 0.45);
+  background: rgba(57,22,39,.48);
 }
 .workspace .line-item {
   display: grid;
@@ -375,7 +375,7 @@
 }
 .workspace .fine-print {
   font-size: 12px;
-  color: #69645e;
+  color: #63384c;
 }
 .workspace .receipt {
   white-space: pre-wrap;
@@ -412,7 +412,7 @@
 }
 .dynamic-message {
   font-size: 13px;
-  color: #69645e;
+  color: #63384c;
 }
 .workspace .actions {
   display: flex;
@@ -582,11 +582,11 @@
   border: 1px solid var(--line);
   text-decoration: none;
   white-space: nowrap;
-  background: #fffdfa;
+  background: #f9e3ed;
 }
 .workspace .insights-frame-wrap {
   width: 100%;
-  background: #eeeae3;
+  background: #f4bfd3;
   overflow: hidden;
 }
 .workspace .insights-frame {
@@ -595,7 +595,7 @@
   height: min(980px, 80vh);
   min-height: 720px;
   border: 0;
-  background: #fffdfa;
+  background: #f9e3ed;
 }
 .workspace .insights-shell > .fine-print {
   margin: 0;
