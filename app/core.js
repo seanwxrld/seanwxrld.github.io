@@ -28,7 +28,7 @@ export const cleanCart = (value) => {
     if (
       !l ||
       typeof l.productId !== "string" ||
-      !/^[a-z0-9-]{1,80}$/.test(l.productId) ||
+      !/^[A-Za-z0-9_-]{1,128}$/.test(l.productId) ||
       typeof l.option !== "string" ||
       l.option.length > 40 ||
       !Number.isInteger(l.quantity) ||
