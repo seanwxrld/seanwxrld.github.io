@@ -171,7 +171,7 @@ export function featuredRelease(data) {
 }
 export function homeDescription(data) {
   const title = featuredRelease(data)?.title || "new music";
-  return `${data.settings.artistName} — official site. Discover ${title}, explore releases, live dates, visuals and the store, and join Swarm. Enter the EGO TRIP era.`;
+  return `${data.settings.artistName} — official site. Discover ${title}, explore releases, live dates, visuals and the store, and join Swarm. Enter the HOTLINE (1-800) era.`;
 }
 export function renderHome(data) {
   const feature = featuredRelease(data);
